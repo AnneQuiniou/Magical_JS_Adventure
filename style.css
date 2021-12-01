@@ -1,0 +1,111 @@
+@font-face {
+  font-family: "m3x6medium";
+  src: url("fonts/m3x6-webfont.woff2") format("woff2"), url("fonts/m3x6-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "alagardmedium";
+  src: url("fonts/alagard-webfont.woff2") format("woff2"), url("fonts/alagard-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  background-color: #5c5980;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  width: 100%;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+}
+body a {
+  color: white;
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+nav {
+  height: 17%;
+  text-align: center;
+  width: 100%;
+}
+nav h1 {
+  display: inline-block;
+  font-family: "alagardmedium";
+  font-size: 4em;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px #110c2f;
+}
+nav ul {
+  display: inline-block;
+  list-style-type: none;
+  padding: none;
+}
+nav ul li {
+  display: inline-block;
+  width: 80px;
+}
+nav ul img {
+  width: 40px;
+  padding: 0 10px;
+}
+nav ul img:hover {
+  width: 50px;
+  transform: rotate(-10deg);
+  transition: all 0.2s ease-in-out;
+}
+nav ul img:first-of-type:hover::before {
+  content: "Mon CV";
+  color: white;
+  font-family: "alagardmedium";
+}
+
+content {
+  border: 5px solid #2b2a35;
+  border-radius: 5px;
+  height: 520px;
+  width: 800px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.bg {
+  width: 800px;
+  height: 500px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+}
+.bg div:nth-of-type(1) {
+  background-image: url("images/bg_city/far-buildings.png");
+  z-index: 10;
+}
+.bg .bg:nth-of-type(2) {
+  background-image: url("images/bg_city/back-buildings.png");
+  z-index: 11;
+}
+.bg .bg:nth-of-type(3) {
+  background-image: url("images/bg_city/foreground.png");
+  margin-top: 100px;
+  height: 400px;
+  z-index: 12;
+}
+
+footer {
+  background-color: #2b2a35;
+  height: 30px;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  font-size: 0.8em;
+}
+
+/*# sourceMappingURL=style.css.map */

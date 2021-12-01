@@ -1,0 +1,138 @@
+@font-face {
+    font-family: 'm3x6medium';
+    src: url('fonts/m3x6-webfont.woff2') format('woff2'),
+    url('fonts/m3x6-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'alagardmedium';
+    src: url('fonts/alagard-webfont.woff2') format('woff2'),
+    url('fonts/alagard-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// ---------------------- Propriétés générales du body ----------------------  //
+body {
+    background-color: rgb(92, 89, 128);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    width: 100%;
+
+    
+    // ----------- Mise en forme des polices-----------  //
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+
+    a {
+        color: white;
+        font-style: italic;
+        font-weight: bold;
+        text-decoration: none;
+    }
+}
+
+
+// ----------------------------- Propriétés NAV  ----------------------------  //
+nav {
+    height: 17%;
+    text-align: center;
+    width: 100%;
+
+    h1 {
+        display: inline-block;
+        font-family: 'alagardmedium';
+        font-size: 4em;
+        letter-spacing: .1em;
+        text-shadow: 0 0 10px #110c2f;
+    }
+
+    ul {
+        display: inline-block;
+        list-style-type: none;
+        padding: none;
+    
+        li {
+            display: inline-block;
+            width: 80px;
+        }
+
+
+        img {
+            width: 40px;
+            padding: 0 10px;
+        }
+
+        img:hover {
+            width: 50px;
+            transform: rotate(-10deg);
+            transition: all .2s ease-in-out;
+        }
+
+        img:first-of-type:hover::before {
+            content: 'Mon CV';
+            color: white;
+            font-family: 'alagardmedium';
+        };
+    }
+}
+
+
+// ----------------------------- Propriétés CONTENT  ----------------------------  //
+content {
+    border: 5px solid rgb(43, 42, 53);
+    border-radius: 5px;
+    height: 520px;
+    width: 800px;
+    overflow:hidden;
+    position: relative;
+    z-index: 1;
+
+}
+
+
+.bg {
+    width: 800px;
+    height: 500px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+
+    div:nth-of-type(1) {
+        background-image: url('images/bg_city/far-buildings.png');
+        z-index: 10; // probleme de connexion de ça dans la fenetre
+    }
+    
+    .bg:nth-of-type(2) {
+        background-image: url('images/bg_city/back-buildings.png');
+        z-index: 11;
+    }
+    
+    .bg:nth-of-type(3) {
+        background-image: url('images/bg_city/foreground.png');
+        margin-top:100px;
+        height: 400px;
+        z-index: 12;
+    }
+}
+
+
+// ----------------------------- Propriétés FOOTER  ----------------------------  //
+footer {
+    background-color: rgb(43, 42, 53);
+    height: 30px;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+
+    // ----------- Mise en forme des polices-----------  //
+    font-size: .8em;
+}
