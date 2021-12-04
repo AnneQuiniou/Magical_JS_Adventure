@@ -1,3 +1,5 @@
+@import "sass/_colorvariables";
+
 @font-face {
     font-family: 'm3x6medium';
     src: url('fonts/m3x6-webfont.woff2') format('woff2'),
@@ -16,7 +18,7 @@
 
 // ---------------------- Propriétés générales du body ----------------------  //
 body {
-    background-color: rgb(92, 89, 128);
+    background-color: $purple;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -104,7 +106,7 @@ content {
     height: 80px;
     width: 60px; 
     overflow: hidden;
-    top: 450px;
+    top: 420px;
 
     img {
         width: 1024px;
@@ -127,29 +129,37 @@ content {
     top: 0;
     left: 0;
     background-size: cover;
+    z-index: 1;
 }
+
+// ----------------------------- CITYSCAPE  ----------------------------  //
 
     .bg:nth-of-type(1) {
         background-image: url('images/bg_city/far-buildings.png');
-        z-index: 10; // probleme de connexion de ça dans la fenetre
+        z-index: 2; // probleme de connexion de ça dans la fenetre
     }
     
     .bg:nth-of-type(2) {
         background-image: url('images/bg_city/back-buildings.png');
+        background-size: 90%;
         margin-top: -46px;
-        z-index: 11;
+
+        z-index: 3;
     }
     
     .bg:nth-of-type(3) {
         background-image: url('images/bg_city/foreground.png');
-        margin-top:120px;
-        height: 400px;
-        z-index: 12;
+        background-size: 90%;
+        margin-top:130px;
+        height: 500px;
+        z-index: 4;
     }
+
+// ----------------------------- FORET  ----------------------------  //
 
 .bg_forest {
         width: 800px;
-        height: 500px;
+        height: 520px;
         position: absolute;
         top: 0;
         left: 0;
@@ -158,27 +168,33 @@ content {
     }
     .bg_forest:nth-of-type(1) {
         background-image: url('images/bg_forest/background_0.png');
-        z-index: 10; // probleme de connexion de ça dans la fenetre
+        z-index: 2; // probleme de connexion de ça dans la fenetre
     }
     
     .bg_forest:nth-of-type(2) {
         background-image: url('images/bg_forest/background_1.png');
         margin-top: -20px;
-        z-index: 11;
+        z-index: 3;
     }
     
     .bg_forest:nth-of-type(3) {
         background-image: url('images/bg_forest/background_2.png');
-        background-position-y: -70px;
-        height: 520px;
-        z-index: 12;
+        background-position-y: -160px;
+        z-index: 4;
     }
 
-
+.bg_sol {
+    bottom: 0px;
+    height: 40px;
+    width: 800px;
+    background-color: $pavement;
+    position: absolute;
+    z-index: 6;
+}
 
 // ----------------------------- Propriétés FOOTER  ----------------------------  //
 footer {
-    background-color: rgb(43, 42, 53);
+    background-color: $dark_purple;
     height: 30px;
     text-align: center;
     padding: 10px 0;
