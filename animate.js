@@ -63,7 +63,6 @@ window.addEventListener('DOMContentLoaded', function() {
             direction.idle = false;
         }
         if ('ShiftRight' === evenementSurevenu.code) {      
-            console.log('touche');
             sauter();
         }
         if ('Enter' === evenementSurevenu.code) {      
@@ -216,39 +215,97 @@ var marcheDuPersonnage = function(nbrFrame,tailleFrame,varianteDeDirection) {
 // gestion 
 var sautEnCours = false;
 var hauteurDuPerso;
-var incrementDeSaut = -5;
-var stockageDeLaHauteurDeBase;
-var limiteHaute = 290;
+var hauteurDeBase;
+
+
+var gestionDuSaut = {
+    debut: {
+        limite:40,
+        incrementDeSaut: 10,
+    },
+    milieu: {
+        limite:140,
+        incrementDeSaut:5,
+    },
+    fin: {
+        limite:180,
+        incrementDeSaut:4,
+    },
+    monter: true,
+    hauteurDeBase: parseFloat(divPersoPrincipal.style.bottom),
+}
+
 
 var sautDuPersonnage = function() {
-    stockageDeLaHauteurDeBase = parseFloat(divPersoPrincipal.style.top);
+    hauteurDuPerso = parseFloat(divPersoPrincipal.style.bottom);
 
-    hauteurDuPerso = parseFloat(divPersoPrincipal.style.top);
-    if(isNaN(stockageDeLaHauteurDeBase)) {
-        stockageDeLaHauteurDeBase = 420;
-        hauteurDuPerso = 420;
+    if(isNaN(gestionDuSaut.hauteurDeBase)) {
+        gestionDuSaut.hauteurDeBase = 25;
+        hauteurDuPerso = gestionDuSaut.hauteurDeBase;
     }
 
-    if(hauteurDuPerso > limiteHaute) { // si le perso est moins haut que la limite
-            if(hauteurDuPerso < stockageDeLaHauteurDeBase){
-                hauteurDuPerso = hauteurDuPerso + incrementDeSaut;} // si le perso est moins haut mais qu'on descend
-
-        hauteurDuPerso = hauteurDuPerso + incrementDeSaut; // on monte
-
-    } else {
-        hauteurDuPerso = hauteurDuPerso - incrementDeSaut;} // on descend
+    console.log(gestionDuSaut.hauteurDeBase);
     
-    // ALGO DE SAUT QUI PETE VOIR EXO DU RECTANGLE QUI GRANDIT
-    // FAIRE VARIER L'INCREMENT EN FONCTION DE L'AVANCEE DANS LE SAUT
-    // DEBUT DU SAUT : GROS INCREMENT, FIN DU SAUT, PETIT INCREMENT
+    let pallierDebut = gestionDuSaut.hauteurDeBase + gestionDuSaut.debut.limite;
+    let pallierMilieu = gestionDuSaut.hauteurDeBase + gestionDuSaut.milieu.limite;
+    let pallierFin = gestionDuSaut.hauteurDeBase + gestionDuSaut.fin.limite;
 
-    divPersoPrincipal.style.top = hauteurDuPerso + 'px';
-    sautEnCours = true;
-
-    if(sautEnCours == true && hauteurDuPerso == stockageDeLaHauteurDeBase) {
+    let incrementDebut = gestionDuSaut.debut.incrementDeSaut;
+    let incrementMilieu = gestionDuSaut.milieu.incrementDeSaut;
+    let incrementFin = gestionDuSaut.fin.incrementDeSaut;
+    
+    if(hauteurDuPerso >= pallierFin) {
+        gestionDuSaut.monter = false;
+        console.log('ici0');
+    } else {
+        if(hauteurDuPerso <= gestionDuSaut.hauteurDeBase) {
+            gestionDuSaut.monter = true;
+            console.log('ici1');
+        }
+    }
+    
+    if(hauteurDuPerso >= gestionDuSaut.hauteurDeBase && hauteurDuPerso < pallierDebut) {
+        if(gestionDuSaut.monter) {
+            hauteurDuPerso = hauteurDuPerso + incrementDebut;
+            console.log('ici3');
+        } else {
+            hauteurDuPerso = hauteurDuPerso - incrementDebut;
+            console.log('ici4');
+        }
+    }
+    
+    if(hauteurDuPerso >= pallierDebut && hauteurDuPerso < pallierMilieu) {
+        if(gestionDuSaut.monter) {
+            hauteurDuPerso = hauteurDuPerso + incrementMilieu;
+            console.log('ici5');
+        } else {
+            hauteurDuPerso = hauteurDuPerso - incrementMilieu;
+            console.log('ici6');
+        }
+    }
+    
+    if(hauteurDuPerso >= pallierMilieu && hauteurDuPerso <= pallierFin) {
+        
+        if(gestionDuSaut.monter) {
+            hauteurDuPerso = hauteurDuPerso + incrementFin;
+            console.log('ici7');
+        } else {
+            hauteurDuPerso = hauteurDuPerso - incrementFin;
+            console.log('ici8');
+        }
+    }
+    
+    divPersoPrincipal.style.bottom = hauteurDuPerso + 'px';
+    console.log(hauteurDuPerso);
+    
+    if(sautEnCours == true && hauteurDuPerso <= gestionDuSaut.hauteurDeBase) {
         clearInterval(finDuSaut);
         sautEnCours = false;
+        gestionDuSaut.monter = true;
+        console.log('ici9');
     }
+    
+    sautEnCours = true;
 
 };
 

@@ -81,7 +81,7 @@ content {
   height: 80px;
   width: 60px;
   overflow: hidden;
-  top: 420px;
+  bottom: 25px;
 }
 .perso_anne img {
   width: 1024px;
