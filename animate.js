@@ -147,9 +147,9 @@ var leMoteurPourLIdle = function() {  //IDLE UNIQUEMENT DU PERSO PRINCIPAL SELON
 };
 
 
-let incrementParallaxeUn = -3;
-let incrementParallaxeDeux= - 10;
-let incrementParallaxeTrois = -20;
+let incrementParallaxeUn;
+let incrementParallaxeDeux;
+let incrementParallaxeTrois;
 
 var premierFond;
 var deuxiemeFond;
@@ -238,6 +238,7 @@ var lancementIdleDuChien = function() {
 };
 lancementIdleDuChien();
 
+// deplacement d'un element avec le fond mais ça ne marche pas encore
 var deplacementDeLElementAvecFond = function(objet) {
 var elementConsidere = objet;
 
