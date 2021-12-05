@@ -2,7 +2,7 @@
 
 window.addEventListener('DOMContentLoaded', function() {
     
-    // stockage des directions possibles
+    // stockage des mouvements possibles
     const direction = {
         gauche: false,
         droite: false,
@@ -40,11 +40,11 @@ window.addEventListener('DOMContentLoaded', function() {
         },
         
         chien: {
-            frameX: '95px',
-            line1:12,
-            line2:12,
-            line3:12,
-            directionDesImages: 'left'
+            reference: document.querySelectorAll('.pnj_chien > img')[0],
+            div: document.querySelectorAll('.pnj_chien')[0],
+            frameX: '67px',
+            directionDesImages: 'left',
+            nombreDeFrames: 2
         }
         
     };
@@ -86,6 +86,7 @@ let mouvementDuPerso;
 var leMoteurPourLesAnimations = function() {
     if(direction.droite) {
         deplacementDuFond('bg','droite');
+        deplacementDeLElementAvecFond(sprite.chien.div);
         if(persoPrincipal == sprite.classique.reference) {
             mouvementDuPerso = parseFloat(persoPrincipal.style.top);
             
@@ -97,7 +98,7 @@ var leMoteurPourLesAnimations = function() {
 
             persoPrincipal.style.top = mouvementDuPerso + 'px';
 
-            marcheDuPersonnage(sprite.classique.marcherADroite.nombreDeFrames,sprite.classique.frameX,sprite.classique.directionDesImages);
+            marcheDuPersonnage(sprite.classique.marcherADroite.nombreDeFrames, sprite.classique.frameX, sprite.classique.directionDesImages);
         } else {
             console.log('tbd');
         }
@@ -105,7 +106,7 @@ var leMoteurPourLesAnimations = function() {
 
     if(direction.gauche) {
         deplacementDuFond('bg','gauche');
-        
+        deplacementDeLElementAvecFond(sprite.chien.div);
         if(persoPrincipal == sprite.classique.reference) {
             mouvementDuPerso = parseFloat(persoPrincipal.style.top);
             
@@ -116,7 +117,7 @@ var leMoteurPourLesAnimations = function() {
             mouvementDuPerso = sprite.classique.marcherAGauche.placement;
             persoPrincipal.style.top = mouvementDuPerso + 'px';
     
-            marcheDuPersonnage(sprite.classique.marcherAGauche.nombreDeFrames,sprite.classique.frameX,sprite.classique.directionDesImages);
+            marcheDuPersonnage(sprite.classique.marcherAGauche.nombreDeFrames, sprite.classique.frameX, sprite.classique.directionDesImages);
         } else {
             console.log('tbd');
         }
@@ -125,7 +126,7 @@ var leMoteurPourLesAnimations = function() {
 };
 
 
-var leMoteurPourLIdle = function() {
+var leMoteurPourLIdle = function() {  //IDLE UNIQUEMENT DU PERSO PRINCIPAL SELON SPRITE UTILISE
     if(direction.idle) {
         if(persoPrincipal == sprite.classique.reference) {
             mouvementDuPerso = parseFloat(persoPrincipal.style.top);
@@ -144,6 +145,7 @@ var leMoteurPourLIdle = function() {
         }
     }
 };
+
 
 let incrementParallaxeUn = -3;
 let incrementParallaxeDeux= - 10;
@@ -210,6 +212,51 @@ var marcheDuPersonnage = function(nbrFrame,tailleFrame,varianteDeDirection) {
 
     persoPrincipal.style[varianteDeDirection] = positionImage + 'px';
 };
+
+//gestion de l'idle des PNJ chiens
+
+var idleChien = function() {
+
+    var chien = sprite.chien.reference;
+
+    var positionChien =  parseFloat(chien.style.left);
+
+    if(isNaN(positionChien)) {
+        positionChien = 0;
+    }
+
+    positionChien = positionChien - 67;
+    if(positionChien < -67) {
+        positionChien = 0;
+    }
+
+    chien.style.left = positionChien + 'px';
+};
+
+var lancementIdleDuChien = function() {
+    setInterval(idleChien,300);
+};
+lancementIdleDuChien();
+
+var deplacementDeLElementAvecFond = function(objet) {
+var elementConsidere = objet;
+
+var increment;
+if(direction == 'droite') {
+    increment = -5;
+} else {
+    increment = 5;
+}
+
+var valeurX = parseFloat(elementConsidere.style.right);
+if(isNaN(valeurX)) {
+    valeurX = 0;
+}
+
+valeurX = valeurX + increment;
+
+elementConsidere.style.right = valeurX + 'px';
+}
 
 
 // gestion 
@@ -323,6 +370,10 @@ window.setInterval(function(){
     finDuSaut = setInterval(sautDuPersonnage,25);
 };
 
+
+var apparitionPNJ = function() {
+
+}
 
 
 
