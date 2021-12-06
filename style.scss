@@ -1,4 +1,4 @@
-@import "sass/_colorvariables";
+@import "sass/_variables";
 
 @font-face {
     font-family: 'm3x6medium';
@@ -14,6 +14,15 @@
     url('fonts/alagard-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'minecraftiaregular';
+    src: url('fonts/minecraftia-regular-webfont.woff2') format('woff2'),
+         url('fonts/minecraftia-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
 
@@ -101,7 +110,11 @@ content {
 
 }
 
+
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 // ----------------------------- PERSONNAGES  ----------------------------  //
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+// ----------------------------- PERSO PRINCIPAL  ----------------------------  //
 
 .perso_anne {
     position: absolute;
@@ -120,7 +133,8 @@ content {
 
 }
 
-@keyframes animation_chien {
+// ---------------------------------- Sprites de chien ---------------------------------- //
+@keyframes animation_pnj_chien {
     from { left: 0px; }
     to { left: -134px; }
 }
@@ -137,13 +151,41 @@ content {
         position: absolute;
         z-index: 90;
         left: 0px;
-        animation-name: animation_chien;
+        animation-name: animation_pnj_chien;
         animation-duration: 1s;
         animation-iteration-count: infinite;
         animation-timing-function: steps(2);
 
     }
+}
 
+// ---------------------------------- Sprites de sorcier---------------------------------- //
+@keyframes animation_pnj_sorcier {
+    from { top: 0px; }
+    to { top: -576px; }
+}
+
+.pnj_sorcier {
+    position: absolute;
+    height: 80px;
+    width: 60px; 
+    overflow: hidden;
+    bottom: 40px;
+    right: 400px;
+
+    img {
+        position: absolute;
+        width: 380px;
+        z-index: 90;
+        left: -164px;
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        animation-name: animation_pnj_sorcier;
+        animation-duration: 1.2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(6);
+
+    }
 }
 
 // ----------------------------- SCORE  ----------------------------  //
@@ -163,9 +205,37 @@ content {
 
 }
 
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+// ----------------------------- DIALOGUES  ----------------------------  //
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 
+.dialogue {
+    background-color: rgba(245, 230, 211, 0.8);
+    border: 5px solid $darkturquoise;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 300px;
+    position: absolute;
+    top:270px;
+    left:50px;
+    z-index: 200;
+    
+    //---------------------------------gestion des polices ------------------------///
+    font-family: $font_dialogue ;
+    color: $darkturquoise;
+    font-size: 16px;
+    padding: 10px;
+
+
+    p {
+        margin:0;
+    }
+}
+
+
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 // ----------------------------- FONDS  ----------------------------  //
-
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 .bg {
     width: 800px;
     height: 500px;
@@ -201,6 +271,28 @@ content {
 
 
 // ----------------------------- NUAGES  ----------------------------  //
+//VERIFIER LE CIBLAGE
+
+.bg_nuages {
+    width: 800px;
+    height: 520px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    display:none; // A RETIRER QUAND ON LANCERA LE JEU HEIN ANNE N'EST-CE PAS
+}
+
+.bg_nuages:nth-of-type(4) {
+    background-image: url('images/bg_mystery/background_0.png');
+    z-index: 6;
+}
+
+.bg_nuages:nth-of-type(5) {
+    background-image: url('images/bg_mystery/background_1.png');
+    top: 55px;
+    z-index: 100;
+}
 
 // ----------------------------- FORET  ----------------------------  //
 
