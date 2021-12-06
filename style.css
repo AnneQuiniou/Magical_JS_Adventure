@@ -91,6 +91,14 @@ content {
   top: -26px;
 }
 
+@keyframes animation_chien {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -134px;
+  }
+}
 .pnj_chien {
   position: absolute;
   height: 80px;
@@ -102,6 +110,11 @@ content {
 .pnj_chien img {
   position: absolute;
   z-index: 90;
+  left: 0px;
+  animation-name: animation_chien;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(2);
 }
 
 .score {

@@ -213,30 +213,7 @@ var marcheDuPersonnage = function(nbrFrame,tailleFrame,varianteDeDirection) {
     persoPrincipal.style[varianteDeDirection] = positionImage + 'px';
 };
 
-//gestion de l'idle des PNJ chiens
 
-var idleChien = function() {
-
-    var chien = sprite.chien.reference;
-
-    var positionChien =  parseFloat(chien.style.left);
-
-    if(isNaN(positionChien)) {
-        positionChien = 0;
-    }
-
-    positionChien = positionChien - 67;
-    if(positionChien < -67) {
-        positionChien = 0;
-    }
-
-    chien.style.left = positionChien + 'px';
-};
-
-var lancementIdleDuChien = function() {
-    setInterval(idleChien,300);
-};
-lancementIdleDuChien();
 
 // deplacement d'un element avec le fond mais ça ne marche pas encore
 var deplacementDeLElementAvecFond = function(objet) {

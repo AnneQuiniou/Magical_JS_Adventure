@@ -16,6 +16,8 @@
     font-style: normal;
 }
 
+
+
 // ---------------------- Propriétés générales du body ----------------------  //
 body {
     background-color: $purple;
@@ -118,6 +120,11 @@ content {
 
 }
 
+@keyframes animation_chien {
+    from { left: 0px; }
+    to { left: -134px; }
+}
+
 .pnj_chien {
     position: absolute;
     height: 80px;
@@ -129,6 +136,12 @@ content {
     img {
         position: absolute;
         z-index: 90;
+        left: 0px;
+        animation-name: animation_chien;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(2);
+
     }
 
 }
