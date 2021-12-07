@@ -146,6 +146,7 @@ content {
     overflow: hidden;
     bottom: 25px;
     right: 0px;
+    display: none;
 
     img {
         position: absolute;
@@ -172,6 +173,7 @@ content {
     overflow: hidden;
     bottom: 40px;
     right: 400px;
+    display: none; // ATTENTION A CETTE PROPRIETE
 
     img {
         position: absolute;
@@ -219,6 +221,7 @@ content {
     top:270px;
     left:50px;
     z-index: 200;
+    display: none;
     
     //---------------------------------gestion des polices ------------------------///
     font-family: $font_dialogue ;
@@ -232,6 +235,20 @@ content {
     }
 }
 
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+// ----------------------------- obstacles  ----------------------------  //
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+
+.obstacle {
+    position: absolute;
+    z-index: 20;
+    bottom: 33px;
+    left:40px;
+    
+    img {
+        width: 40px;
+    }
+}
 
 //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 // ----------------------------- FONDS  ----------------------------  //

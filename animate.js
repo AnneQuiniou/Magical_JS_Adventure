@@ -10,6 +10,7 @@ window.addEventListener('DOMContentLoaded', function() {
     };
     
     let divPersoPrincipal = document.getElementsByClassName('perso_anne')[0];
+
     let finDuSaut;
 
     // stockages des informations pour les différents sprites utilisés
@@ -48,7 +49,29 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         
     };
+
+    let obstacles = {
+        city: {
+            boite: {
+                hauteur: 48,
+                largeur: 40,
+            },
+
+        },
+        forest: {
+
+        }
+    }
     
+    let bonus = {
+        gateau: {
+            positionX:-200,
+            positionY:23,
+            sprite: `url('images/icones/pie.png')`,
+        }
+    }
+
+
     let persoPrincipal = sprite.classique.reference;
 
     
@@ -238,14 +261,14 @@ elementConsidere.style.right = valeurX + 'px';
 
 
 // gestion 
-var sautEnCours = false;
 var hauteurDuPerso;
 var hauteurDeBase;
 
 
 var gestionDuSaut = {
+    enCours: false,
     debut: {
-        limite:40,
+        limite:45,
         incrementDeSaut: 10,
     },
     milieu: {
@@ -263,13 +286,12 @@ var gestionDuSaut = {
 
 var sautDuPersonnage = function() {
     hauteurDuPerso = parseFloat(divPersoPrincipal.style.bottom);
+    console.log("🚀 ~ file: animate.js ~ line 289 ~ sautDuPersonnage ~ hauteurDuPerso", hauteurDuPerso)
 
-    if(isNaN(gestionDuSaut.hauteurDeBase)) {
+    if(isNaN(hauteurDuPerso)) {
         gestionDuSaut.hauteurDeBase = 25;
-        hauteurDuPerso = gestionDuSaut.hauteurDeBase;
+        hauteurDuPerso = gestionDuSaut.hauteurDeBase + 1;
     }
-
-    console.log(gestionDuSaut.hauteurDeBase);
     
     let pallierDebut = gestionDuSaut.hauteurDeBase + gestionDuSaut.debut.limite;
     let pallierMilieu = gestionDuSaut.hauteurDeBase + gestionDuSaut.milieu.limite;
@@ -281,31 +303,25 @@ var sautDuPersonnage = function() {
     
     if(hauteurDuPerso >= pallierFin) {
         gestionDuSaut.monter = false;
-        console.log('ici0');
     } else {
         if(hauteurDuPerso <= gestionDuSaut.hauteurDeBase) {
             gestionDuSaut.monter = true;
-            console.log('ici1');
         }
     }
     
-    if(hauteurDuPerso >= gestionDuSaut.hauteurDeBase && hauteurDuPerso < pallierDebut) {
+    if(hauteurDuPerso >= gestionDuSaut.hauteurDeBase && hauteurDuPerso <= pallierDebut) {
         if(gestionDuSaut.monter) {
             hauteurDuPerso = hauteurDuPerso + incrementDebut;
-            console.log('ici3');
         } else {
             hauteurDuPerso = hauteurDuPerso - incrementDebut;
-            console.log('ici4');
         }
     }
     
-    if(hauteurDuPerso >= pallierDebut && hauteurDuPerso < pallierMilieu) {
+    if(hauteurDuPerso >= pallierDebut && hauteurDuPerso <= pallierMilieu) {
         if(gestionDuSaut.monter) {
             hauteurDuPerso = hauteurDuPerso + incrementMilieu;
-            console.log('ici5');
         } else {
             hauteurDuPerso = hauteurDuPerso - incrementMilieu;
-            console.log('ici6');
         }
     }
     
@@ -313,24 +329,21 @@ var sautDuPersonnage = function() {
         
         if(gestionDuSaut.monter) {
             hauteurDuPerso = hauteurDuPerso + incrementFin;
-            console.log('ici7');
         } else {
             hauteurDuPerso = hauteurDuPerso - incrementFin;
-            console.log('ici8');
         }
     }
     
     divPersoPrincipal.style.bottom = hauteurDuPerso + 'px';
-    console.log(hauteurDuPerso);
     
-    if(sautEnCours == true && hauteurDuPerso <= gestionDuSaut.hauteurDeBase) {
+    gestionDuSaut.enCours = true;
+
+    if(hauteurDuPerso <= gestionDuSaut.hauteurDeBase) {
         clearInterval(finDuSaut);
-        sautEnCours = false;
+        gestionDuSaut.enCours = false;
         gestionDuSaut.monter = true;
-        console.log('ici9');
     }
     
-    sautEnCours = true;
 
 };
 

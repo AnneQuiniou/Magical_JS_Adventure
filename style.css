@@ -112,6 +112,7 @@ content {
   overflow: hidden;
   bottom: 25px;
   right: 0px;
+  display: none;
 }
 .pnj_chien img {
   position: absolute;
@@ -138,6 +139,7 @@ content {
   overflow: hidden;
   bottom: 40px;
   right: 400px;
+  display: none;
 }
 .pnj_sorcier img {
   position: absolute;
@@ -175,6 +177,7 @@ content {
   top: 270px;
   left: 50px;
   z-index: 200;
+  display: none;
   font-family: "minecraftiaregular";
   color: #00354e;
   font-size: 16px;
@@ -182,6 +185,16 @@ content {
 }
 .dialogue p {
   margin: 0;
+}
+
+.obstacle {
+  position: absolute;
+  z-index: 20;
+  bottom: 33px;
+  left: 40px;
+}
+.obstacle img {
+  width: 40px;
 }
 
 .bg {
