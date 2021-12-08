@@ -283,11 +283,9 @@ var gestionDuSaut = {
     hauteurDeBase: parseFloat(divPersoPrincipal.style.bottom),
 }
 
-
 var sautDuPersonnage = function() {
     hauteurDuPerso = parseFloat(divPersoPrincipal.style.bottom);
-    console.log("🚀 ~ file: animate.js ~ line 289 ~ sautDuPersonnage ~ hauteurDuPerso", hauteurDuPerso)
-
+// il vaudrait mieux une hauteur de sol de base?
     if(isNaN(hauteurDuPerso)) {
         gestionDuSaut.hauteurDeBase = 25;
         hauteurDuPerso = gestionDuSaut.hauteurDeBase + 1;
@@ -325,13 +323,17 @@ var sautDuPersonnage = function() {
         }
     }
     
-    if(hauteurDuPerso >= pallierMilieu && hauteurDuPerso <= pallierFin) {
+    if(hauteurDuPerso >= pallierMilieu) {
         
         if(gestionDuSaut.monter) {
             hauteurDuPerso = hauteurDuPerso + incrementFin;
         } else {
             hauteurDuPerso = hauteurDuPerso - incrementFin;
         }
+    }
+
+    if(hauteurDuPerso < gestionDuSaut.hauteurDeBase) {
+        hauteurDuPerso = gestionDuSaut.hauteurDeBase;
     }
     
     divPersoPrincipal.style.bottom = hauteurDuPerso + 'px';
@@ -344,7 +346,6 @@ var sautDuPersonnage = function() {
         gestionDuSaut.monter = true;
     }
     
-
 };
 
 
@@ -358,7 +359,7 @@ window.setInterval(function(){
   },250);
 
  var sauter = function() {
-    finDuSaut = setInterval(sautDuPersonnage,25);
+    finDuSaut = setInterval(sautDuPersonnage,10);
 };
 
 
