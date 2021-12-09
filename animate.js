@@ -1,6 +1,6 @@
 'use strict';
 
-//window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function() {
     
     // stockage des mouvements possibles
     const direction = {
@@ -9,6 +9,8 @@
         idle: true,
     };
     
+    let animationEnCours = false;
+    let dialogueVisible = false; 
     let divPersoPrincipal = document.getElementsByClassName('perso_anne')[0];
 
     let finDuSaut;
@@ -51,6 +53,10 @@
     };
 
     let obstacles = {
+        limitegauche: {
+            apparitionX: -305,
+            div: document.querySelectorAll('.panneaux')[0]
+        },
         city: {
             boite: {
                 hauteur: 48,
@@ -118,7 +124,10 @@
             direction.idle = false;
         }
         if ('ShiftRight' === evenementSurevenu.code) {      
-            sauter();
+            if(!gestionDuSaut.enCours) {
+                sauter();
+
+            }
         }
         if ('Enter' === evenementSurevenu.code) {      
 
@@ -149,6 +158,8 @@ var leMoteurPourLesAnimations = function() {
     if(direction.droite) {
         deplacementDuFond('bg','droite');
         deplacementDeLElementAvecFond(sprite.chien.div);
+        deplacementDeLElementAvecFond(obstacles.limitegauche.div);
+
         if(persoPrincipal == sprite.classique.reference) {
             mouvementDuPerso = parseFloat(persoPrincipal.style.top);
             
@@ -169,6 +180,7 @@ var leMoteurPourLesAnimations = function() {
     if(direction.gauche) {
         deplacementDuFond('bg','gauche');
         deplacementDeLElementAvecFond(sprite.chien.div);
+        deplacementDeLElementAvecFond(obstacles.limitegauche.div);
         if(persoPrincipal == sprite.classique.reference) {
             mouvementDuPerso = parseFloat(persoPrincipal.style.top);
             
@@ -277,33 +289,6 @@ var marcheDuPersonnage = function(nbrFrame,tailleFrame,varianteDeDirection) {
 
 
 
-// deplacement d'un element avec le fond mais ça ne marche pas encore
-
-var deplacementDeLElementAvecFond = function(nomDeClasse) {
-let classeConsideree = document.querySelector(nomDeClasse);
-let positionClasse = classeConsideree.style.right;
-
-var increment;
-if(direction == 'droite') {
-    increment = -5;
-}
-
-if(direction == 'gauche') {
-    increment = 5;
-}
-
-var positionX = parseFloat(classeConsideree.style.right);
-if(isNaN(positionX)) {
-    positionX = 0;
-}
-
-positionX = positionX + incrementParallaxeTrois;
-
-classeConsideree.style.right = positionX + 'px';
-};
-
-deplacementDeLElementAvecFond('.panneaux');
-
 
 
 // gestion 
@@ -402,35 +387,29 @@ const apparitionObstacle = function () {
 }
 
 var apparitionPNJ = function() {
-
-}
-
-var animationIntro = function () {
-    const $opening = $('.opening');
-
+    
 }
 
 
 window.setInterval(function(){
     leMoteurPourLesAnimations();
-  },25);
+},25);
 
 window.setInterval(function(){
     leMoteurPourLIdle();
-  },250);
+},250);
 
- var sauter = function() {
+var sauter = function() {
     finDuSaut = setInterval(sautDuPersonnage,10);
 };
 
 // MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM Intro MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM //
 $('#getcv').on('click', function() {
     window.open('/docs/Anne Quiniou - Développeuse JS Fullstack.pdf','CV','location=no,menubar=no');
-
+    
 });
 
 let reduceOpacity = 0.017;
-let animationEnCours = false;
 
 $('#launch').on('click', function() {
     animationEnCours = true;
@@ -474,7 +453,6 @@ $('#launch').on('click', function() {
     setTimeout(function() {afficherDialogue(dialogues.intro0)},2000);
 });
 
-let dialogueVisible = false; 
 
 // gestion des dialogues
 var afficherDialogue= function(objetTexte) {
@@ -501,6 +479,36 @@ obj.forEach(function() {
 
 }
 
+// deplacement d'un element avec le fond mais ça ne marche pas encore
+
+var deplacementDeLElementAvecFond = function(objet) {
+    let elementChoisi = objet;
+    let positionClasse = elementChoisi.style.left;
+    
+    var incrementElement;
+    if(direction == 'droite') {
+        incrementElement = -5;
+    }
+    
+    if(direction == 'gauche') {
+        incrementElement = 5;
+    }
+    
+    var positionX = parseFloat(elementChoisi.style.left);
+    
+    if(isNaN(positionX)) {
+        positionX = 0;
+    }
+    
+    positionX = positionX + incrementElement;
+    
+    elementChoisi.style.left = positionX + 'px';
+    };
+    
+    
+
+    
+    
 
 
-//});
+});
