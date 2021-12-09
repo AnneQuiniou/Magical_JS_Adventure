@@ -1,4 +1,5 @@
 @import "sass/_variables";
+@import "sass/_intro";
 
 @font-face {
     font-family: 'm3x6medium';
@@ -218,10 +219,9 @@ content {
     border-bottom-right-radius: 20px;
     width: 300px;
     position: absolute;
-    top:270px;
+    bottom:270px;
     left:50px;
     z-index: 200;
-    display: none;
     
     //---------------------------------gestion des polices ------------------------///
     font-family: $font_dialogue ;
@@ -244,6 +244,7 @@ content {
     z-index: 20;
     bottom: 33px;
     left:40px;
+    display: none;
     
     img {
         width: 40px;
@@ -265,12 +266,12 @@ content {
 
 // ----------------------------- CITYSCAPE  ----------------------------  //
 
-    .bg:nth-of-type(1) {
+    .bg:nth-of-type(2) {
         background-image: url('images/bg_city/far-buildings.png');
         z-index: 3; // probleme de connexion de ça dans la fenetre
     }
     
-    .bg:nth-of-type(2) {
+    .bg:nth-of-type(3) {
         background-image: url('images/bg_city/back-buildings.png');
         background-size: 90%;
         margin-top: -46px;
@@ -278,7 +279,7 @@ content {
         z-index: 5;
     }
     
-    .bg:nth-of-type(3) {
+    .bg:nth-of-type(4) {
         background-image: url('images/bg_city/foreground.png');
         background-size: 90%;
         margin-top:130px;
@@ -300,12 +301,12 @@ content {
     display:none; // A RETIRER QUAND ON LANCERA LE JEU HEIN ANNE N'EST-CE PAS
 }
 
-.bg_nuages:nth-of-type(4) {
+.bg_nuages:nth-of-type(5) {
     background-image: url('images/bg_mystery/background_0.png');
     z-index: 6;
 }
 
-.bg_nuages:nth-of-type(5) {
+.bg_nuages:nth-of-type(6) {
     background-image: url('images/bg_mystery/background_1.png');
     top: 55px;
     z-index: 100;
@@ -322,18 +323,18 @@ content {
         background-size: cover;
 
     }
-    .bg_forest:nth-of-type(1) {
+    .bg_forest:nth-of-type(2) {
         background-image: url('images/bg_forest/background_0.png');
         z-index: 3; 
     }
     
-    .bg_forest:nth-of-type(2) {
+    .bg_forest:nth-of-type(3) {
         background-image: url('images/bg_forest/background_1.png');
         margin-top: -20px;
         z-index: 5;
     }
     
-    .bg_forest:nth-of-type(3) {
+    .bg_forest:nth-of-type(4) {
         background-image: url('images/bg_forest/background_2.png');
         background-position-y: -160px;
         z-index: 7;

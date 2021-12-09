@@ -1,0 +1,68 @@
+.opening {
+    width: 800px;
+    height: 520px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 120;
+
+    //--- gestion visualisation texte --//
+    text-align: center;
+    padding-top: 30px;
+    font-family: $font_titles;
+    font-size: 2em;
+    
+    //--- gestion animation du fond --//
+    background-image: url('images/bg_tiles/fond_intro.webp');
+    background-size: cover;
+    background-repeat: repeat;
+    animation: animation_bg_intro 100s linear infinite alternate;
+
+    strong {
+        color: $highlight;
+
+    }
+
+    
+
+img {
+    width: 40px;
+}
+
+button {
+    background-color: $lightturquoise;
+    font-family: $font_titles;
+    font-size: 1em;
+    color: white;
+    margin: 10px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    border-top: 4px solid lighten($lightturquoise, 20%);
+    border-left: 4px solid lighten($lightturquoise, 20%);
+    border-bottom:4px solid darken($lightturquoise, 20%);
+    border-right: 4px solid darken($lightturquoise, 20%);
+
+}
+
+
+button:hover {
+    background-color: $highlight;
+    border-bottom: 4px solid lighten($highlight, 20%);
+    border-right: 4px solid lighten($highlight, 20%);
+    border-top:4px solid darken($highlight, 20%);
+    border-left: 4px solid darken($highlight, 20%);
+}
+
+
+
+
+@keyframes animation_bg_intro {
+    from {
+        background-position: 0px 0px;}
+
+    to {
+        background-position: -2000px 2000px;}
+}
+
+}

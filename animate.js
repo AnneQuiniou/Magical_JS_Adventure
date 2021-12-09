@@ -55,14 +55,28 @@ window.addEventListener('DOMContentLoaded', function() {
             boite: {
                 hauteur: 48,
                 largeur: 40,
-            },
-
+                apparitionX: -200,
+                visible: false
+            }
         },
         forest: {
 
         }
     }
     
+    var ici= 'this';
+    const dialogues = {
+        intro0: {
+            perso: 'Guide',
+            texte:`Utilisez <strong>D et F</strong> pour aller à gauche et droite. <strong>Maj</strong> pour sauter et <strong>Entrée</strong> pour dialoguer.`,
+            next: ici.intro1,
+        },
+        intro1: {
+            perso: 'Anne',
+            texte: `Wow, Paris. Quelle belle ville. J'ai hâte d'y avoir mes diplômes.`,
+        },
+    }
+
     let bonus = {
         gateau: {
             positionX:-200,
@@ -262,7 +276,7 @@ elementConsidere.style.right = valeurX + 'px';
 
 // gestion 
 var hauteurDuPerso;
-var hauteurDeBase;
+var hauteurDuSol;
 
 
 var gestionDuSaut = {
@@ -350,6 +364,21 @@ var sautDuPersonnage = function() {
 
 
 
+
+const apparitionObstacle = function () {
+
+}
+
+var apparitionPNJ = function() {
+
+}
+
+var animationIntro = function () {
+    const $opening = $('.opening');
+
+}
+
+
 window.setInterval(function(){
     leMoteurPourLesAnimations();
   },25);
@@ -362,11 +391,78 @@ window.setInterval(function(){
     finDuSaut = setInterval(sautDuPersonnage,10);
 };
 
+// MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM Intro MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM //
+$('#getcv').on('click', function() {
+    window.open('/docs/Anne Quiniou - Développeuse JS Fullstack.pdf','CV','location=no,menubar=no');
 
-var apparitionPNJ = function() {
+});
 
-}
+let reduceOpacity = 0.017;
 
+$('#launch').on('click', function() {
+    const divIntro = document.querySelector('.opening');
+    divIntro.innerHTML='';
+    
+    let intro = setInterval(function(){
+        direction.droite = true;
+        direction.idle = false;
+        
+        let opacityIntro = divIntro.style.opacity;
+        if(isNaN(opacityIntro)) {
+            opacityIntro = 1;
+        }
+
+        if(opacityIntro <= 0) {
+            opacityIntro = 1;
+        }
+        
+        opacityIntro = opacityIntro - reduceOpacity;
+        divIntro.style.opacity = opacityIntro;
+
+        
+        let deplacement = parseFloat(divPersoPrincipal.style.left);
+        if(isNaN(deplacement)) {
+            deplacement = 0;
+        }
+        deplacement = deplacement + 5;
+        divPersoPrincipal.style.left = deplacement + 'px';
+
+        if(deplacement >= 260) {
+            clearInterval(intro);
+            divIntro.style.display = 'none';
+            direction.droite = false;
+            direction.idle = true;
+        }
+    },25);
+
+    setTimeout(function() {afficherDialogue(dialogues.intro0)},2000);
+});
+
+
+var afficherDialogue = function(objetTexte) {
+    let dialogue = document.createElement('div');
+    dialogue.className = "dialogue";
+    if(objetTexte.next) {
+        dialogue.id = objetTexte.next;
+    }
+    console.log("🚀 ~ file: animate.js ~ line 445 ~ afficherDialogue ~ objetTexte", objetTexte)
+    dialogue.innerHTML= `
+    <p>${objetTexte.perso} :<br>
+    ${objetTexte.texte}</p>`;
+
+    document.querySelector('content').append(dialogue);
+
+    window.addEventListener('keydown', function (event) {
+        if('Enter' == event.code) {
+            if(dialogue.id) {
+                dialogue.remove();
+                afficherDialogue(dialogue.id);
+                }
+                dialogue.remove();
+            
+        }
+    })
+};
 
 
 });
