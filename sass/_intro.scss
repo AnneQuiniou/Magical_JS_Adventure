@@ -9,9 +9,9 @@
 
     //--- gestion visualisation texte --//
     text-align: center;
-    padding-top: 30px;
+    padding-top: 10px;
     font-family: $font_titles;
-    font-size: 2em;
+    font-size: 3em;
     
     //--- gestion animation du fond --//
     background-image: url('images/bg_tiles/fond_intro.webp');
@@ -33,7 +33,7 @@ img {
 button {
     background-color: $lightturquoise;
     font-family: $font_titles;
-    font-size: 1em;
+    font-size: .5em;
     color: white;
     margin: 10px;
     padding: 10px 30px;

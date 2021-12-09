@@ -7,9 +7,9 @@
   opacity: 1;
   z-index: 120;
   text-align: center;
-  padding-top: 30px;
+  padding-top: 10px;
   font-family: "alagardmedium";
-  font-size: 2em;
+  font-size: 3em;
   background-image: url("images/bg_tiles/fond_intro.webp");
   background-size: cover;
   background-repeat: repeat;
@@ -24,7 +24,7 @@
 .opening button {
   background-color: #00555c;
   font-family: "alagardmedium";
-  font-size: 1em;
+  font-size: 0.5em;
   color: white;
   margin: 10px;
   padding: 10px 30px;
@@ -48,6 +48,13 @@
   to {
     background-position: -2000px 2000px;
   }
+}
+
+.panneaux {
+  position: absolute;
+  z-index: 90;
+  bottom: 26px;
+  left: -305px;
 }
 
 @font-face {

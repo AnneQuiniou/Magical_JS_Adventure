@@ -1,6 +1,6 @@
 'use strict';
 
-window.addEventListener('DOMContentLoaded', function() {
+//window.addEventListener('DOMContentLoaded', function() {
     
     // stockage des mouvements possibles
     const direction = {
@@ -66,6 +66,10 @@ window.addEventListener('DOMContentLoaded', function() {
     
     var ici= 'this';
     const dialogues = {
+        limite: {
+            perso: 'Anne',
+            texte: 'Gif-sur-DotNet? Mais non, je veux aller à Paris!',
+        },
         intro0: {
             perso: '<strong>Guide</strong>',
             texte:`Utilisez <strong>D et F</strong> pour aller à gauche et droite.<br>
@@ -104,7 +108,8 @@ window.addEventListener('DOMContentLoaded', function() {
     
     
     window.addEventListener('keydown', function(evenementSurevenu){
-    if ('KeyF' === evenementSurevenu.code) {
+    if(!dialogueVisible && !animationEnCours) {
+        if ('KeyF' === evenementSurevenu.code) {
             direction.droite = true;
             direction.idle = false;
         }
@@ -118,6 +123,13 @@ window.addEventListener('DOMContentLoaded', function() {
         if ('Enter' === evenementSurevenu.code) {      
 
         }
+    } else {
+        if('Enter' === evenementSurevenu.code) {
+            let dialogueEnCours = this.document.querySelector('.dialogue');
+            dialogueEnCours.remove();
+            dialogueVisible = false;
+        }
+    }
     });    
     
     window.addEventListener('keyup', function(evenementSurevenu){
@@ -266,25 +278,32 @@ var marcheDuPersonnage = function(nbrFrame,tailleFrame,varianteDeDirection) {
 
 
 // deplacement d'un element avec le fond mais ça ne marche pas encore
-var deplacementDeLElementAvecFond = function(objet) {
-var elementConsidere = objet;
+
+var deplacementDeLElementAvecFond = function(nomDeClasse) {
+let classeConsideree = document.querySelector(nomDeClasse);
+let positionClasse = classeConsideree.style.right;
 
 var increment;
 if(direction == 'droite') {
     increment = -5;
-} else {
+}
+
+if(direction == 'gauche') {
     increment = 5;
 }
 
-var valeurX = parseFloat(elementConsidere.style.right);
-if(isNaN(valeurX)) {
-    valeurX = 0;
+var positionX = parseFloat(classeConsideree.style.right);
+if(isNaN(positionX)) {
+    positionX = 0;
 }
 
-valeurX = valeurX + increment;
+positionX = positionX + incrementParallaxeTrois;
 
-elementConsidere.style.right = valeurX + 'px';
-}
+classeConsideree.style.right = positionX + 'px';
+};
+
+deplacementDeLElementAvecFond('.panneaux');
+
 
 
 // gestion 
@@ -411,8 +430,11 @@ $('#getcv').on('click', function() {
 });
 
 let reduceOpacity = 0.017;
+let animationEnCours = false;
 
 $('#launch').on('click', function() {
+    animationEnCours = true;
+
     const divIntro = document.querySelector('.opening');
     divIntro.innerHTML='';
     
@@ -445,11 +467,14 @@ $('#launch').on('click', function() {
             divIntro.style.display = 'none';
             direction.droite = false;
             direction.idle = true;
+            animationEnCours = false;
         }
     },25);
 
     setTimeout(function() {afficherDialogue(dialogues.intro0)},2000);
 });
+
+let dialogueVisible = false; 
 
 // gestion des dialogues
 var afficherDialogue= function(objetTexte) {
@@ -460,13 +485,10 @@ var afficherDialogue= function(objetTexte) {
     ${objetTexte.texte}</p>`;
 
     document.querySelector('content').append(dialogue);
-
-
-    window.addEventListener('keydown', function (event) {  
-                dialogue.remove();
-
-    })
+    dialogueVisible = true;
 };
+
+
 
 var apparitionBonus = function(obj) {
 
@@ -481,4 +503,4 @@ obj.forEach(function() {
 
 
 
-});
+//});
