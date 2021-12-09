@@ -69,16 +69,19 @@ window.addEventListener('DOMContentLoaded', function() {
 
         }
     }
-    
+
+    let persoPrincipal = sprite.classique.reference;
+    let dialogueEnCours;
+
     var ici= 'this';
     const dialogues = {
         limite: {
             perso: 'Anne',
-            texte: 'Gif-sur-DotNet? Mais non, je veux aller à Paris!',
+            texte: 'Gif-sur-DotNet? Mais non, je veux aller à Paris! Demi-tour!',
         },
         intro0: {
             perso: '<strong>Guide</strong>',
-            texte:`Utilisez <strong>D et F</strong> pour aller à gauche et droite.<br>
+            texte:`Utilisez <strong>D et F</strong> pour aller à gauche et à droite.<br>
             Utilisez <strong>Maj</strong> pour sauter et <strong>Entrée</strong> pour dialoguer.`,
             next: this.intro1,
         },
@@ -109,7 +112,6 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    let persoPrincipal = sprite.classique.reference;
 
     
     
@@ -134,7 +136,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     } else {
         if('Enter' === evenementSurevenu.code) {
-            let dialogueEnCours = this.document.querySelector('.dialogue');
+            dialogueEnCours = document.querySelector('.dialogue');
             dialogueEnCours.remove();
             dialogueVisible = false;
         }
@@ -153,10 +155,13 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 let mouvementDuPerso;
+let incrementPosition;
 
 var leMoteurPourLesAnimations = function() {
     if(direction.droite) {
         deplacementDuFond('bg','droite');
+        checkPositionAnne('bg');
+        incrementPosition = -10;
         deplacementDeLElementAvecFond(sprite.chien.div);
         deplacementDeLElementAvecFond(obstacles.limitegauche.div);
 
@@ -177,10 +182,14 @@ var leMoteurPourLesAnimations = function() {
         }
     }
 
+    
     if(direction.gauche) {
         deplacementDuFond('bg','gauche');
+        checkPositionAnne('bg');
+        incrementPosition = 10;
         deplacementDeLElementAvecFond(sprite.chien.div);
         deplacementDeLElementAvecFond(obstacles.limitegauche.div);
+        
         if(persoPrincipal == sprite.classique.reference) {
             mouvementDuPerso = parseFloat(persoPrincipal.style.top);
             
@@ -236,11 +245,11 @@ var deplacementDuFond = function(fondUtilise, direction) {
     if(direction == 'droite') {
         incrementParallaxeUn = -1;
         incrementParallaxeDeux= - 3;
-        incrementParallaxeTrois = -5;
+        incrementParallaxeTrois = -10;
     } else {
         incrementParallaxeUn = 1;
         incrementParallaxeDeux= 3;
-        incrementParallaxeTrois = 5;
+        incrementParallaxeTrois = 10;
     }
 
     premierFond = parseFloat(document.getElementsByClassName(fondUtilise)[0].style['background-position-x']);
@@ -456,14 +465,16 @@ $('#launch').on('click', function() {
 
 // gestion des dialogues
 var afficherDialogue= function(objetTexte) {
+    
+    if(!dialogueVisible) {
     let dialogue = document.createElement('div');
     dialogue.className = "dialogue";
     dialogue.innerHTML= `
     <p>${objetTexte.perso} :<br>
     ${objetTexte.texte}</p>`;
-
+    
     document.querySelector('content').append(dialogue);
-    dialogueVisible = true;
+    dialogueVisible = true;}
 };
 
 
@@ -485,26 +496,34 @@ var deplacementDeLElementAvecFond = function(objet) {
     let elementChoisi = objet;
     let positionClasse = elementChoisi.style.left;
     
-    var incrementElement;
-    if(direction == 'droite') {
-        incrementElement = -5;
-    }
-    
-    if(direction == 'gauche') {
-        incrementElement = 5;
-    }
     
     var positionX = parseFloat(elementChoisi.style.left);
-    
+
     if(isNaN(positionX)) {
         positionX = 0;
-    }
+    } // attention actuellement la position
     
-    positionX = positionX + incrementElement;
+    positionX = positionX + incrementPosition;
     
     elementChoisi.style.left = positionX + 'px';
     };
-    
+
+    var checkPositionAnne = function(nomDuFond) {
+        let positionDeAnne = document.getElementsByClassName(nomDuFond)[2].style['background-position-x'];
+        console.log(positionDeAnne)
+        if(parseFloat(positionDeAnne) >= 120) {
+            direction.gauche = false;
+            afficherDialogue(dialogues.limite);
+            dialogueVisible = true;
+            
+            if (direction.gauche) {
+                incrementPosition = 0;
+            }
+        }
+
+        
+    };
+
     
 
     
