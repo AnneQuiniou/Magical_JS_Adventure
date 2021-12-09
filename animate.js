@@ -47,23 +47,16 @@ window.addEventListener('DOMContentLoaded', function() {
             div: document.querySelectorAll('.pnj_chien')[0],
             frameX: '67px',
             directionDesImages: 'left',
-            nombreDeFrames: 2
+            nombreDeFrames: 2,
+            apparitionX: 210
         }
         
     };
 
     let obstacles = {
         limitegauche: {
-            apparitionX: -305,
+            apparitionX: 0,
             div: document.querySelectorAll('.panneaux')[0]
-        },
-        city: {
-            boite: {
-                hauteur: 48,
-                largeur: 40,
-                apparitionX: -200,
-                visible: false
-            }
         },
         forest: {
 
@@ -73,11 +66,11 @@ window.addEventListener('DOMContentLoaded', function() {
     let persoPrincipal = sprite.classique.reference;
     let dialogueEnCours;
 
-    var ici= 'this';
+  
     const dialogues = {
         limite: {
             perso: 'Anne',
-            texte: 'Gif-sur-DotNet? Mais non, je veux aller à Paris! Demi-tour!',
+            texte: 'Gif-sur-DotNet ?<br> Mais non, je veux aller à Paris ! Allez, hop, demi-tour !',
         },
         intro0: {
             perso: '<strong>Guide</strong>',
@@ -94,20 +87,20 @@ window.addEventListener('DOMContentLoaded', function() {
 
     let bonus = {
         gateau: {
-            positionX:-200,
+            apparitionX:-200,
             positionY:23,
             sprite: `url('images/icones/pie.png')`,
         },
         diplome1: {
-            positionX: -150,
-            positionY: 23,
+            div: document.querySelectorAll('.bonus')[0],
+            apparitionX: 1000,
+            apparitionY: 28,
             message: {
                 perso: 'Bonus',
                 texte: `Vous recevez un <strong>Master d'Anglais</strong>!<br>
                 <em>Good work!</em>`,
             },
-            sprite: `url('images/icones/diplome_1.png')`,
-            visible: false,
+            visible: true,
         },
     }
 
@@ -162,8 +155,10 @@ var leMoteurPourLesAnimations = function() {
         deplacementDuFond('bg','droite');
         checkPositionAnne('bg');
         incrementPosition = -10;
-        deplacementDeLElementAvecFond(sprite.chien.div);
-        deplacementDeLElementAvecFond(obstacles.limitegauche.div);
+        deplacementDeLElementAvecFond(sprite.chien.div,sprite.chien.apparitionX);
+        deplacementDeLElementAvecFond(obstacles.limitegauche.div,obstacles.limitegauche.apparitionX);
+        deplacementDeLElementAvecFond(bonus.diplome1.div,bonus.diplome1.apparitionX);
+        recupererBonus();
 
         if(persoPrincipal == sprite.classique.reference) {
             mouvementDuPerso = parseFloat(persoPrincipal.style.top);
@@ -189,6 +184,8 @@ var leMoteurPourLesAnimations = function() {
         incrementPosition = 10;
         deplacementDeLElementAvecFond(sprite.chien.div);
         deplacementDeLElementAvecFond(obstacles.limitegauche.div);
+        deplacementDeLElementAvecFond(bonus.diplome1.div,bonus.diplome1.apparitionX);
+        recupererBonus();
         
         if(persoPrincipal == sprite.classique.reference) {
             mouvementDuPerso = parseFloat(persoPrincipal.style.top);
@@ -479,28 +476,18 @@ var afficherDialogue= function(objetTexte) {
 
 
 
-var apparitionBonus = function(obj) {
-
-obj.forEach(function() {
-    if(obj.positionX == parseFloat(troisiemeFond)) {
-        
-    }
-
-})
-
-}
 
 // deplacement d'un element avec le fond mais ça ne marche pas encore
 
-var deplacementDeLElementAvecFond = function(objet) {
+var deplacementDeLElementAvecFond = function(objet,positionDepart) {
     let elementChoisi = objet;
     let positionClasse = elementChoisi.style.left;
-    
+
     
     var positionX = parseFloat(elementChoisi.style.left);
 
     if(isNaN(positionX)) {
-        positionX = 0;
+        positionX = positionDepart;
     } // attention actuellement la position
     
     positionX = positionX + incrementPosition;
@@ -508,9 +495,10 @@ var deplacementDeLElementAvecFond = function(objet) {
     elementChoisi.style.left = positionX + 'px';
     };
 
+// ajouter un  argument qui permet de donner la bonne position!
+
     var checkPositionAnne = function(nomDuFond) {
         let positionDeAnne = document.getElementsByClassName(nomDuFond)[2].style['background-position-x'];
-        console.log(positionDeAnne)
         if(parseFloat(positionDeAnne) >= 120) {
             direction.gauche = false;
             afficherDialogue(dialogues.limite);
@@ -524,8 +512,34 @@ var deplacementDeLElementAvecFond = function(objet) {
         
     };
 
-    
+var recupererBonus = function () {
+    var lesBonus = document.querySelectorAll('.bonus');
 
+// REVOIR LES FOREACH
+    lesBonus.forEach(function(element) {
+
+        let positionXBonus = parseFloat(element.style.left);
+        let positionYBonus = parseFloat(element.style.bottom);
+        let positionYPerso = parseFloat(divPersoPrincipal.style.bottom);
+
+        if(isNaN(positionYPerso)){
+            positionYPerso = 25;
+        }
+
+        if(isNaN(positionYBonus)){
+            positionYBonus = 40;
+        }
+
+
+        if( positionXBonus < 290 && positionXBonus > 230){
+            if(positionYPerso <=  positionYBonus+ 50) {
+
+                element.style.display = 'none';
+            }
+        }
+    })
+
+}
     
     
 

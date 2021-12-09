@@ -1,0 +1,27 @@
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+// ----------------------------- DIALOGUES  ----------------------------  //
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+
+.dialogue {
+    background-color: rgba(245, 230, 211, 0.8);
+    border: 5px solid $darkturquoise;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 300px;
+    position: absolute;
+    bottom:270px;
+    left:50px;
+    z-index: 200;
+    
+    //---------------------------------gestion des polices ------------------------///
+    font-family: $font_dialogue ;
+    color: $darkturquoise;
+    font-size: 16px;
+    padding: 10px;
+
+
+    p {
+        margin:0;
+    }
+}
+

@@ -31,13 +31,13 @@
     height: 80px;
     width: 60px; 
     overflow: hidden;
-    bottom: 25px;
+    bottom: 28px;
     left: -280px;
-    display: none; // ATTENTION A CETTE PROPRIETE
+    
 
     img {
         position: absolute;
-        z-index: 90;
+        z-index: 80;
         left: 0px;
         animation-name: animation_pnj_chien;
         animation-duration: 1s;
