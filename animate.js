@@ -67,11 +67,13 @@ window.addEventListener('DOMContentLoaded', function() {
     var ici= 'this';
     const dialogues = {
         intro0: {
-            perso: 'Guide',
-            texte:`Utilisez <strong>D et F</strong> pour aller à gauche et droite. <strong>Maj</strong> pour sauter et <strong>Entrée</strong> pour dialoguer.`,
-            next: ici.intro1,
+            perso: '<strong>Guide</strong>',
+            texte:`Utilisez <strong>D et F</strong> pour aller à gauche et droite.<br>
+            Utilisez <strong>Maj</strong> pour sauter et <strong>Entrée</strong> pour dialoguer.`,
+            next: this.intro1,
         },
         intro1: {
+            positionVSparallax: '-255',
             perso: 'Anne',
             texte: `Wow, Paris. Quelle belle ville. J'ai hâte d'y avoir mes diplômes.`,
         },
@@ -82,7 +84,18 @@ window.addEventListener('DOMContentLoaded', function() {
             positionX:-200,
             positionY:23,
             sprite: `url('images/icones/pie.png')`,
-        }
+        },
+        diplome1: {
+            positionX: -150,
+            positionY: 23,
+            message: {
+                perso: 'Bonus',
+                texte: `Vous recevez un <strong>Master d'Anglais</strong>!<br>
+                <em>Good work!</em>`,
+            },
+            sprite: `url('images/icones/diplome_1.png')`,
+            visible: false,
+        },
     }
 
 
@@ -438,31 +451,34 @@ $('#launch').on('click', function() {
     setTimeout(function() {afficherDialogue(dialogues.intro0)},2000);
 });
 
-
-var afficherDialogue = function(objetTexte) {
+// gestion des dialogues
+var afficherDialogue= function(objetTexte) {
     let dialogue = document.createElement('div');
     dialogue.className = "dialogue";
-    if(objetTexte.next) {
-        dialogue.id = objetTexte.next;
-    }
-    console.log("🚀 ~ file: animate.js ~ line 445 ~ afficherDialogue ~ objetTexte", objetTexte)
     dialogue.innerHTML= `
     <p>${objetTexte.perso} :<br>
     ${objetTexte.texte}</p>`;
 
     document.querySelector('content').append(dialogue);
 
-    window.addEventListener('keydown', function (event) {
-        if('Enter' == event.code) {
-            if(dialogue.id) {
+
+    window.addEventListener('keydown', function (event) {  
                 dialogue.remove();
-                afficherDialogue(dialogue.id);
-                }
-                dialogue.remove();
-            
-        }
+
     })
 };
+
+var apparitionBonus = function(obj) {
+
+obj.forEach(function() {
+    if(obj.positionX == parseFloat(troisiemeFond)) {
+        
+    }
+
+})
+
+}
+
 
 
 });
