@@ -1,22 +1,31 @@
 .plateforme {
-    position: absolute;
-    z-index: 70;
-    bottom: 0px;
-    left: 0px;
-    
+  position: absolute;
+  z-index: 70;
+  bottom: 0px;
+  left: 0px;
 }
 
 #plat1 {
-    bottom: 110px;
-    width: 120px;
+  bottom: 110px;
+  img {
+    width: 70px;
+  }
 }
 #plat2 {
-    bottom: 200px;
-    width: 400px;
+  bottom: 200px;
+  img {
+    width: 190px;
+  }
 }
 #plat3 {
-    bottom: 110px;
+  bottom: 110px;
+  img {
+    width: 70px;
+  }
 }
 #plat4 {
-    bottom: 200px;
+  bottom: 200px;
+  img {
+    width: 190px;
+  }
 }

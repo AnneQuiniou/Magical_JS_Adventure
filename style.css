@@ -186,20 +186,30 @@
 
 #plat1 {
   bottom: 110px;
-  width: 120px;
+}
+#plat1 img {
+  width: 70px;
 }
 
 #plat2 {
   bottom: 200px;
-  width: 400px;
+}
+#plat2 img {
+  width: 190px;
 }
 
 #plat3 {
   bottom: 110px;
 }
+#plat3 img {
+  width: 70px;
+}
 
 #plat4 {
   bottom: 200px;
+}
+#plat4 img {
+  width: 190px;
 }
 
 @font-face {
