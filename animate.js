@@ -449,7 +449,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // gestion
   var hauteurDuPerso;
-  var hauteurDuSol;
 
   var gestionDuSaut = {
     enCours: false,
@@ -473,7 +472,7 @@ window.addEventListener("DOMContentLoaded", function () {
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SAUTS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SAUTS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 
-  var sautDuPersonnage = function () {
+  /* var sautDuPersonnage = function () {
     hauteurDuPerso = parseFloat(divPersoPrincipal.style.bottom);
     // il vaudrait mieux une hauteur de sol de base?
     if (isNaN(hauteurDuPerso)) {
@@ -538,18 +537,70 @@ window.addEventListener("DOMContentLoaded", function () {
       gestionDuSaut.enCours = false;
       gestionDuSaut.monter = true;
     }
-  };
+  };*/
 
-  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
-  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
-  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
-  const gravite = function () {
-    if (parseFloat(divPersoPrincipal.style.bottom) > 25) {
-      const plateformes = document.querySelectorAll(".plateforme");
+  var forceDuSaut = 2;
+  var stopForce;
 
-      plateformes.forEach(function () {});
+  var sautDuPersonnage = function () {
+    if (!gestionDuSaut.enCours) {
+      stopForce = setInterval(function () {
+        hauteurDuPerso = parseFloat(divPersoPrincipal.style.bottom);
+
+        if (isNaN(hauteurDuPerso)) {
+          hauteurDuPerso = hauteurDuSol;
+        }
+
+        hauteurDuPerso = hauteurDuPerso + forceDuSaut;
+        divPersoPrincipal.style.bottom = hauteurDuPerso + "px";
+        gestionDuSaut.enCours = true;
+
+        if (hauteurDuPerso >= forceDuSaut * 30) {
+          clearInterval(stopForce);
+          gestionDuSaut.enCours = false;
+        }
+      }, 10);
+    } else {
+      clearInterval(stopForce);
+      gestionDuSaut.enCours = false;
     }
   };
+
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  const gravite = 1;
+  let toucherLeSol;
+  let hauteurDuSol = 25;
+  let forceEnAction = false;
+
+  const forceGravitationnelle = function () {
+    if (!forceEnAction) {
+      toucherLeSol = setInterval(function () {
+        let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
+
+        if (isNaN(maHauteur)) {
+          maHauteur = hauteurDuSol;
+        }
+
+        maHauteur = maHauteur - gravite;
+
+        divPersoPrincipal.style.bottom = maHauteur + "px";
+
+        if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
+          maHauteur = hauteurDuSol;
+          clearInterval(toucherLeSol);
+        }
+
+        forceEnAction = true;
+        console.log(maHauteur);
+      }, 25);
+    } else {
+      clearInterval(toucherLeSol);
+    }
+  };
+
+  forceGravitationnelle();
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SETINTERVAL MVMT MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   window.setInterval(function () {
@@ -665,7 +716,7 @@ window.addEventListener("DOMContentLoaded", function () {
       document.getElementsByClassName(nomDuFond)[2].style[
         "background-position-x"
       ];
-    if (parseFloat(positionDeAnne) >= 120) {
+    if (parseFloat(positionDeAnne) >= 120 && !direction.droite) {
       direction.gauche = false;
       afficherDialogue(dialogues.limite);
       dialogueVisible = true;
