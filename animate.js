@@ -53,19 +53,50 @@ window.addEventListener('DOMContentLoaded', function() {
         
     };
 
-    let obstacles = {
+    const panneaux = {
         limitegauche: {
             apparitionX: 0,
             div: document.querySelectorAll('.panneaux')[0]
         },
-        forest: {
+        sodexo: {
+            div: document.querySelectorAll('.panneaux')[1],
+            apparitionX: 1880,
+            apparitionY: 28,
+        },
+        datawords: {
+            div: document.querySelectorAll('.panneaux')[2],
+            apparitionX: 4000,
+            apparitionY: 28,
+        }
+    }
 
+    const plateformes = {
+        plat1: {
+            div: document.querySelectorAll('.plateforme')[0],
+            apparitionX: 2000,
+            apparitionY: 110,
+        },
+        plat2: {
+            div: document.querySelectorAll('.plateforme')[1],
+            apparitionX: 2500,
+            apparitionY: 200,
+        },
+        plat3: {
+            div: document.querySelectorAll('.plateforme')[2],
+            apparitionX: 4000,
+            apparitionY: 110,
+        },
+        plat4: {
+            div: document.querySelectorAll('.plateforme')[3],
+            apparitionX: 4000,
+            apparitionY: 200,
         }
     }
 
     let persoPrincipal = sprite.classique.reference;
     let dialogueEnCours;
-
+    let divScore = document.querySelector('.score');
+    let score = document.querySelector('.score').children[0].children[1];
   
     const dialogues = {
         limite: {
@@ -83,6 +114,12 @@ window.addEventListener('DOMContentLoaded', function() {
             perso: 'Anne',
             texte: `Wow, Paris. Quelle belle ville. J'ai hâte d'y avoir mes diplômes.`,
         },
+        diplome: {
+            positionVSparallax: '-255',
+            perso: 'Anne',
+            texte: `Parée pour entrer dans le monde du travail avec mes diplômes!`,
+            vu: false
+        },
     }
 
     let bonus = {
@@ -95,13 +132,18 @@ window.addEventListener('DOMContentLoaded', function() {
             div: document.querySelectorAll('.bonus')[0],
             apparitionX: 1000,
             apparitionY: 28,
-            message: {
-                perso: 'Bonus',
-                texte: `Vous recevez un <strong>Master d'Anglais</strong>!<br>
-                <em>Good work!</em>`,
-            },
-            visible: true,
         },
+        diplome2: {
+            div: document.querySelectorAll('.bonus')[1],
+            apparitionX: 1400,
+            apparitionY: 28
+        },
+        diplome3: {
+            div: document.querySelectorAll('.bonus')[2],
+            apparitionX: 3000,
+            apparitionY: 80
+        },
+
     }
 
 
@@ -115,8 +157,19 @@ window.addEventListener('DOMContentLoaded', function() {
             direction.idle = false;
         }
         if ('KeyD' === evenementSurevenu.code) {     
+            
+            let positionDeAnne = document.getElementsByClassName('bg')[2].style['background-position-x'];
+            if(parseFloat(positionDeAnne) >= 120) {
+                direction.gauche = false;
+                afficherDialogue(dialogues.limite);
+                dialogueVisible = true;
+                
+            } else {
             direction.gauche = true;
             direction.idle = false;
+
+            // prevision de la limite de droite pour afficher l'animation
+        }
         }
         if ('ShiftRight' === evenementSurevenu.code) {      
             if(!gestionDuSaut.enCours) {
@@ -156,8 +209,16 @@ var leMoteurPourLesAnimations = function() {
         checkPositionAnne('bg');
         incrementPosition = -10;
         deplacementDeLElementAvecFond(sprite.chien.div,sprite.chien.apparitionX);
-        deplacementDeLElementAvecFond(obstacles.limitegauche.div,obstacles.limitegauche.apparitionX);
+        deplacementDeLElementAvecFond(panneaux.limitegauche.div,panneaux.limitegauche.apparitionX);
+        deplacementDeLElementAvecFond(panneaux.sodexo.div,panneaux.sodexo.apparitionX);
+        deplacementDeLElementAvecFond(panneaux.datawords.div,panneaux.datawords.apparitionX);
         deplacementDeLElementAvecFond(bonus.diplome1.div,bonus.diplome1.apparitionX);
+        deplacementDeLElementAvecFond(bonus.diplome2.div,bonus.diplome2.apparitionX);
+        deplacementDeLElementAvecFond(bonus.diplome3.div,bonus.diplome3.apparitionX);
+        deplacementDeLElementAvecFond(plateformes.plat1.div,plateformes.plat1.apparitionX);
+        deplacementDeLElementAvecFond(plateformes.plat2.div,plateformes.plat2.apparitionX);
+        deplacementDeLElementAvecFond(plateformes.plat3.div,plateformes.plat3.apparitionX);
+        deplacementDeLElementAvecFond(plateformes.plat4.div,plateformes.plat4.apparitionX);
         recupererBonus();
 
         if(persoPrincipal == sprite.classique.reference) {
@@ -180,11 +241,18 @@ var leMoteurPourLesAnimations = function() {
     
     if(direction.gauche) {
         deplacementDuFond('bg','gauche');
-        checkPositionAnne('bg');
         incrementPosition = 10;
         deplacementDeLElementAvecFond(sprite.chien.div);
-        deplacementDeLElementAvecFond(obstacles.limitegauche.div);
+        deplacementDeLElementAvecFond(panneaux.limitegauche.div);
+        deplacementDeLElementAvecFond(panneaux.sodexo.div,panneaux.sodexo.apparitionX);
+        deplacementDeLElementAvecFond(panneaux.datawords.div,panneaux.datawords.apparitionX);
         deplacementDeLElementAvecFond(bonus.diplome1.div,bonus.diplome1.apparitionX);
+        deplacementDeLElementAvecFond(bonus.diplome2.div,bonus.diplome2.apparitionX);
+        deplacementDeLElementAvecFond(bonus.diplome3.div,bonus.diplome3.apparitionX);
+        deplacementDeLElementAvecFond(plateformes.plat1.div,plateformes.plat1.apparitionX);
+        deplacementDeLElementAvecFond(plateformes.plat2.div,plateformes.plat2.apparitionX);
+        deplacementDeLElementAvecFond(plateformes.plat3.div,plateformes.plat3.apparitionX);
+        deplacementDeLElementAvecFond(plateformes.plat4.div,plateformes.plat4.apparitionX);
         recupererBonus();
         
         if(persoPrincipal == sprite.classique.reference) {
@@ -388,11 +456,19 @@ var sautDuPersonnage = function() {
 
 
 
-const apparitionObstacle = function () {
+const gravite = function () {
+    if(parseFloat(divPersoPrincipal.style.bottom) > 25) {
+        const plateformes = document.querySelectorAll('.plateforme');
 
-}
+        plateformes.forEach( function() {
 
-var apparitionPNJ = function() {
+        });
+
+    };
+
+};
+
+const apparitionPNJ = function() {
     
 }
 
@@ -461,7 +537,7 @@ $('#launch').on('click', function() {
 
 
 // gestion des dialogues
-var afficherDialogue= function(objetTexte) {
+const afficherDialogue= function(objetTexte) {
     
     if(!dialogueVisible) {
     let dialogue = document.createElement('div');
@@ -497,8 +573,8 @@ var deplacementDeLElementAvecFond = function(objet,positionDepart) {
 
 // ajouter un  argument qui permet de donner la bonne position!
 
-    var checkPositionAnne = function(nomDuFond) {
-        let positionDeAnne = document.getElementsByClassName(nomDuFond)[2].style['background-position-x'];
+var checkPositionAnne = function(nomDuFond) {
+    let positionDeAnne = document.getElementsByClassName(nomDuFond)[2].style['background-position-x'];
         if(parseFloat(positionDeAnne) >= 120) {
             direction.gauche = false;
             afficherDialogue(dialogues.limite);
@@ -509,7 +585,16 @@ var deplacementDeLElementAvecFond = function(objet,positionDepart) {
             }
         }
 
-        
+        if(parseFloat(positionDeAnne) <= -1140 && parseFloat(positionDeAnne) >= -1200 && score.innerHTML >= 400 ) {
+            if(!dialogues.diplome.vu) {
+                direction.gauche = false;
+                direction.droite = false;
+                afficherDialogue(dialogues.diplome);
+                dialogueVisible = true;
+                dialogues.diplome.vu = true;
+
+            }
+        }
     };
 
 var recupererBonus = function () {
@@ -522,21 +607,24 @@ var recupererBonus = function () {
         let positionYBonus = parseFloat(element.style.bottom);
         let positionYPerso = parseFloat(divPersoPrincipal.style.bottom);
 
-        if(isNaN(positionYPerso)){
-            positionYPerso = 25;
-        }
+        if(element.style.display != 'none') {
 
-        if(isNaN(positionYBonus)){
-            positionYBonus = 40;
-        }
-
-
-        if( positionXBonus < 290 && positionXBonus > 230){
-            if(positionYPerso <=  positionYBonus+ 50) {
-
-                element.style.display = 'none';
+            if(isNaN(positionYPerso)){
+                positionYPerso = 25;
             }
-        }
+
+            if(isNaN(positionYBonus)){
+                positionYBonus = 40;
+            }
+
+
+            if( positionXBonus < 290 && positionXBonus > 230){
+                if(positionYPerso <=  positionYBonus+ 50) {
+                    score.innerHTML = parseFloat(score.innerHTML) + 200;
+                    element.remove();
+                }
+            }
+    }
     })
 
 }

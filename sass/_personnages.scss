@@ -45,8 +45,15 @@
         animation-timing-function: steps(2);
 
     }
+
 }
 
+#doggo01 {
+    width: 67px;
+    img {
+    transform: scalex(-1);
+    }
+}
 
 // ---------------------------------- Sprites de sorcier---------------------------------- //
 @keyframes animation_pnj_sorcier {

@@ -57,6 +57,10 @@
   left: -305px;
 }
 .panneaux img {
+  width: 120px;
+}
+
+#pann1 img {
   width: 80px;
 }
 
@@ -99,6 +103,13 @@
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-timing-function: steps(2);
+}
+
+#doggo01 {
+  width: 67px;
+}
+#doggo01 img {
+  transform: scalex(-1);
 }
 
 @keyframes animation_pnj_sorcier {
@@ -152,12 +163,43 @@
 
 .bonus {
   position: absolute;
+  width: 50px;
   z-index: 70;
   bottom: 40px;
   left: 800px;
+  text-align: center;
+  font-family: "minecraftiaregular";
+  color: white;
+  font-size: 10px;
+  text-shadow: 1px 1px 3px black, -1px -1px 3px black;
 }
 .bonus img {
   width: 40px;
+}
+
+.plateforme {
+  position: absolute;
+  z-index: 70;
+  bottom: 0px;
+  left: 0px;
+}
+
+#plat1 {
+  bottom: 110px;
+  width: 120px;
+}
+
+#plat2 {
+  bottom: 200px;
+  width: 400px;
+}
+
+#plat3 {
+  bottom: 110px;
+}
+
+#plat4 {
+  bottom: 200px;
 }
 
 @font-face {
