@@ -150,16 +150,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
     if (!dialogueVisible && !animationEnCours) {
       if ("KeyF" === evenementSurevenu.code) {
-        if (parseFloat(positionDeAnne) >= 120) {
-          direction.gauche = false;
-          afficherDialogue(dialogues.limite);
-          dialogueVisible = true;
-          direction.droite = true;
-          direction.idle = false;
-        } else {
-          direction.droite = true;
-          direction.idle = false;
-        }
+
+        direction.droite = true;
+        direction.idle = false;
+
       }
       if ("KeyD" === evenementSurevenu.code) {
         if (parseFloat(positionDeAnne) >= 120) {
@@ -385,17 +379,17 @@ window.addEventListener("DOMContentLoaded", function () {
 
     premierFond = parseFloat(
       document.getElementsByClassName(fondUtilise)[0].style[
-        "background-position-x"
+      "background-position-x"
       ]
     );
     deuxiemeFond = parseFloat(
       document.getElementsByClassName(fondUtilise)[1].style[
-        "background-position-x"
+      "background-position-x"
       ]
     );
     troisiemeFond = parseFloat(
       document.getElementsByClassName(fondUtilise)[2].style[
-        "background-position-x"
+      "background-position-x"
       ]
     );
 
@@ -448,9 +442,9 @@ window.addEventListener("DOMContentLoaded", function () {
   };
 
   // gestion
-  var hauteurDuPerso;
+  let hauteurDuPerso;
 
-  var gestionDuSaut = {
+  const gestionDuSaut = {
     enCours: false,
     debut: {
       limite: 45,
@@ -539,12 +533,13 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   };*/
 
-  var forceDuSaut = 2;
-  var stopForce;
+  let forceDuSaut = 23;
+  let stopForce;
 
   var sautDuPersonnage = function () {
-    if (!gestionDuSaut.enCours) {
-      stopForce = setInterval(function () {
+    stopForce = setInterval(function () {
+      if (!gestionDuSaut.enCours) {
+        gestionDuSaut.enCours = true;
         hauteurDuPerso = parseFloat(divPersoPrincipal.style.bottom);
 
         if (isNaN(hauteurDuPerso)) {
@@ -553,54 +548,62 @@ window.addEventListener("DOMContentLoaded", function () {
 
         hauteurDuPerso = hauteurDuPerso + forceDuSaut;
         divPersoPrincipal.style.bottom = hauteurDuPerso + "px";
-        gestionDuSaut.enCours = true;
-
-        if (hauteurDuPerso >= forceDuSaut * 30) {
-          clearInterval(stopForce);
-          gestionDuSaut.enCours = false;
-        }
-      }, 10);
-    } else {
-      clearInterval(stopForce);
-      gestionDuSaut.enCours = false;
-    }
-  };
-
-  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
-  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
-  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
-  const gravite = 1;
-  let toucherLeSol;
-  let hauteurDuSol = 25;
-  let forceEnAction = false;
-
-  const forceGravitationnelle = function () {
-    if (!forceEnAction) {
-      toucherLeSol = setInterval(function () {
-        let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
-
-        if (isNaN(maHauteur)) {
-          maHauteur = hauteurDuSol;
-        }
-
-        maHauteur = maHauteur - gravite;
-
-        divPersoPrincipal.style.bottom = maHauteur + "px";
 
         if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
-          maHauteur = hauteurDuSol;
-          clearInterval(toucherLeSol);
+          divPersoPrincipal.style.bottom = (hauteurDuSol + 1) + "px";
+          clearInterval(stopForce);
+          gestionDuSaut.enCours = false;
+          console.log('boucle stop, status: ' + gestionDuSaut.enCours);
+
+        } else {
+          forceDuSaut = forceDuSaut - 1;
+          console.log('ici');
+          console.log('boucle continue, status: ' + gestionDuSaut.enCours);
         }
 
-        forceEnAction = true;
-        console.log(maHauteur);
-      }, 25);
-    } else {
-      clearInterval(toucherLeSol);
-    }
+      }
+      else {
+        clearInterval(stopForce);
+        gestionDuSaut.enCours = false;
+      }
+    }, 10);
   };
 
-  forceGravitationnelle();
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  let hauteurDuSol = 25;
+  /*   const gravite = 1;
+    let toucherLeSol;
+    let forceEnAction = false;
+  
+    const forceGravitationnelle = function () {
+      if (!forceEnAction) {
+        toucherLeSol = setInterval(function () {
+          let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
+  
+          if (isNaN(maHauteur)) {
+            maHauteur = hauteurDuSol;
+          }
+  
+          maHauteur = maHauteur - gravite;
+  
+          divPersoPrincipal.style.bottom = maHauteur + "px";
+  
+          if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
+            maHauteur = hauteurDuSol;
+            clearInterval(toucherLeSol);
+          }
+  
+          forceEnAction = true;
+          console.log(maHauteur);
+        }, 25);
+      } else {
+        clearInterval(toucherLeSol);
+      }
+    };
+  
+    forceGravitationnelle(); */
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SETINTERVAL MVMT MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   window.setInterval(function () {
@@ -714,9 +717,9 @@ window.addEventListener("DOMContentLoaded", function () {
   var checkPositionAnne = function (nomDuFond) {
     let positionDeAnne =
       document.getElementsByClassName(nomDuFond)[2].style[
-        "background-position-x"
+      "background-position-x"
       ];
-    if (parseFloat(positionDeAnne) >= 120 && !direction.droite) {
+    if (parseFloat(positionDeAnne) >= 120 && direction.droite == false) {
       direction.gauche = false;
       afficherDialogue(dialogues.limite);
       dialogueVisible = true;
@@ -727,8 +730,8 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     if (
-      parseFloat(positionDeAnne) <= -1140 &&
       parseFloat(positionDeAnne) >= -1200 &&
+      parseFloat(positionDeAnne) <= -1140 &&
       score.innerHTML >= 400
     ) {
       if (!dialogues.diplome.vu) {
