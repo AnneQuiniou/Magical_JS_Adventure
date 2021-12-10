@@ -570,7 +570,7 @@ window.addEventListener("DOMContentLoaded", function () {
   // OOOOOOOOOOOOOOOO000OOOOOOOOOOOOOOOOOOO Intro OOOOOO000OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO //
   $("#getcv").on("click", function () {
     window.open(
-      "/docs/Anne Quiniou - Développeuse JS Fullstack.pdf",
+      "docs/Anne Quiniou - Développeuse JS Fullstack.pdf",
       "CV",
       "location=no,menubar=no"
     );
