@@ -54,14 +54,9 @@
   position: absolute;
   z-index: 70;
   bottom: 40px;
-  left: -305px;
 }
 .panneaux img {
   width: 120px;
-}
-
-#pann1 img {
-  width: 80px;
 }
 
 .perso_anne {
@@ -93,7 +88,6 @@
   width: 60px;
   overflow: hidden;
   bottom: 28px;
-  left: -280px;
 }
 .pnj_chien img {
   position: absolute;
@@ -105,10 +99,10 @@
   animation-timing-function: steps(2);
 }
 
-#doggo01 {
+#chien01 {
   width: 67px;
 }
-#doggo01 img {
+#chien01 img {
   transform: scalex(-1);
 }
 

@@ -54,20 +54,20 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const elementsJeux = {
     chiens: {
-      chien02: {
+      chien01: {
         apparitionX: 330,
         apparitionY: 28,
         width: 60,
-        id: 'doggo01',
+        id: 'chien01',
         class: 'pnj_chien',
         url: 'images/sprites/chien02.png',
         droite: false,
       },
-      chien03: {
+      chien02: {
         apparitionX: -600,
         apparitionY: 28,
         width: 60,
-        id: 'doggo03',
+        id: 'chien02',
         class: 'pnj_chien',
         url: 'images/sprites/chien03.png',
         droite: false,
@@ -79,7 +79,7 @@ window.addEventListener("DOMContentLoaded", function () {
         apparitionX: 500,
         apparitionY: 28,
         width: 140,
-        id: 'panneau',
+        id: 'limitegauche',
         class: 'panneaux',
         url: 'images/panneaux/panneaulimite.png',
         div: document.querySelectorAll(".panneaux")[0],
@@ -90,7 +90,7 @@ window.addEventListener("DOMContentLoaded", function () {
         apparitionX: -1880,
         apparitionY: 28,
         width: 120,
-        id: 'panneau',
+        id: 'sodexo',
         class: 'panneaux',
         url: 'images/panneaux/sodexo.png',
         droite: true,
@@ -100,7 +100,7 @@ window.addEventListener("DOMContentLoaded", function () {
         apparitionX: -4000,
         apparitionY: 28,
         width: 120,
-        id: 'panneau',
+        id: 'datawords',
         class: 'panneaux',
         url: 'images/panneaux/datawords.png',
         droite: true,
@@ -287,7 +287,7 @@ window.addEventListener("DOMContentLoaded", function () {
     if (direction.droite) {
       deplacementDuFond("bg", "droite");
       checkPositionAnne("bg");
-      faireApparaitreUnePlateforme('bg');
+      faireApparaitreLesElementsDuJeu('bg');
       incrementPosition = -10;
       checkerElementEtDeplacerAvecLeFond();
       recupererBonus();
@@ -318,7 +318,7 @@ window.addEventListener("DOMContentLoaded", function () {
       checkPositionAnne("bg");
       incrementPosition = 10;
       checkerElementEtDeplacerAvecLeFond();
-      faireApparaitreUnePlateforme('bg');
+      faireApparaitreLesElementsDuJeu('bg');
 
       recupererBonus();
 
@@ -712,10 +712,8 @@ window.addEventListener("DOMContentLoaded", function () {
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 
   var deplacementDeLElementAvecFond = function (objet, positionDepart) {
-    let elementChoisi = objet;
-    let positionClasse = elementChoisi.style.left;
 
-    var positionX = parseFloat(elementChoisi.style.left);
+    var positionX = parseFloat(objet.style.left);
 
     if (isNaN(positionX)) {
       positionX = positionDepart;
@@ -723,7 +721,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     positionX = positionX + incrementPosition;
 
-    elementChoisi.style.left = positionX + "px";
+    objet.style.left = positionX + "px";
   };
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM AFFICHER LES DIALOGUES MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -813,7 +811,7 @@ window.addEventListener("DOMContentLoaded", function () {
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CREER les plateformes, chiens, bonus... MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CREER les plateformes, chiens, bonus... MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 
-  const faireApparaitreUnePlateforme = function (nomDuFond) {
+  const faireApparaitreLesElementsDuJeu = function (nomDuFond) {
     let positionDeAnne = parseFloat(
       document.getElementsByClassName(nomDuFond)[2].style[
       "background-position-x"
@@ -825,11 +823,13 @@ window.addEventListener("DOMContentLoaded", function () {
 
       for (const element in elementsJeux[property]) {
 
-        if (!elementsJeux[property][element].gauche) {
-          decalageAffichage = -decalageAffichage;
+        if (elementsJeux[property][element].droite) {
+          decalageAffichage = 600;
+        } else {
+          decalageAffichage = -600;
         }
 
-        if (elementsJeux[property][element].apparitionX == positionDeAnne - decalageAffichage && !elementsJeux[property][element].visible) {
+        if (elementsJeux[property][element].apparitionX + decalageAffichage <= positionDeAnne && !elementsJeux[property][element].visible) {
           let nouvelleDiv = document.createElement('div');
           nouvelleDiv.id = elementsJeux[property][element].id;
           nouvelleDiv.className = elementsJeux[property][element].class;
@@ -905,7 +905,15 @@ window.addEventListener("DOMContentLoaded", function () {
 
     if (tousLesBonus) {
       tousLesBonus.forEach(function (element) {
-        deplacementDeLElementAvecFond(element, element.style.left);
+        let positionDeDepart = parseFloat(element.style.left);
+
+        if (isNaN(positionDeDepart)) {
+
+          let reference = String(element.id);
+
+          positionDeDepart = elementsJeux.bonus[reference]['apparitionX'];
+        }
+        deplacementDeLElementAvecFond(element, parseFloat(element.style.left));
       }
       );
     }
@@ -914,13 +922,26 @@ window.addEventListener("DOMContentLoaded", function () {
     //chiens
     let tousLesChiens = document.querySelectorAll('.pnj_chien');
     tousLesChiens.forEach(function (element) {
-      deplacementDeLElementAvecFond(element, element.style.left);
+      let positionDeDepart = parseFloat(element.style.left);
+
+      if (isNaN(positionDeDepart)) {
+        let reference = String(element.id);
+        positionDeDepart = elementsJeux.chiens[reference]['apparitionX'];
+      }
+
+      deplacementDeLElementAvecFond(element, positionDeDepart);
     }
     );
 
     //panneaux
     let tousLesPanneaux = document.querySelectorAll('.panneaux');
     tousLesPanneaux.forEach(function (element) {
+      let positionDeDepart = parseFloat(element.style.left);
+
+      if (isNaN(positionDeDepart)) {
+        let reference = String(element.id);
+        positionDeDepart = elementsJeux.panneaux[reference]['apparitionX'];
+      }
       deplacementDeLElementAvecFond(element, element.style.left);
     }
     );
@@ -928,6 +949,12 @@ window.addEventListener("DOMContentLoaded", function () {
     //plateformes
     let toutesLesPlateformes = document.querySelectorAll('.plateforme');
     toutesLesPlateformes.forEach(function (element) {
+      let positionDeDepart = parseFloat(element.style.left);
+
+      if (isNaN(positionDeDepart)) {
+        let reference = String(element.id);
+        positionDeDepart = elementsJeux.plateformes[reference]['apparitionX'];
+      }
       deplacementDeLElementAvecFond(element, element.style.left);
     }
     );
