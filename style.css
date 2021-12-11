@@ -174,34 +174,25 @@
 .plateforme {
   position: absolute;
   z-index: 70;
-  bottom: 0px;
   /*   left: 0px; */
 }
 
-/* #plat1 {
-  bottom: 110px;
-  img {
-    width: 70px;
-  }
+#plat1 img {
+  width: 70px;
 }
-#plat2 {
-  bottom: 200px;
-  img {
-    width: 190px;
-  }
+
+#plat2 img {
+  width: 190px;
 }
-#plat3 {
-  bottom: 110px;
-  img {
-    width: 70px;
-  }
+
+#plat3 img {
+  width: 70px;
 }
-#plat4 {
-  bottom: 200px;
-  img {
-    width: 190px;
-  } 
-}*/
+
+#plat4 img {
+  width: 190px;
+}
+
 .notplayable {
   display: none;
   text-align: center;

@@ -52,7 +52,7 @@ window.addEventListener("DOMContentLoaded", function () {
   };
 
 
-  const elementsJeux = {
+  const elementsJeu = {
     chiens: {
       chien01: {
         apparitionX: 330,
@@ -76,7 +76,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     panneaux: {
       limitegauche: {
-        apparitionX: 500,
+        apparitionX: 120,
         apparitionY: 40,
         width: 140,
         id: 'limitegauche',
@@ -87,7 +87,7 @@ window.addEventListener("DOMContentLoaded", function () {
       },
       sodexo: {
         div: document.querySelectorAll(".panneaux")[1],
-        apparitionX: -1880,
+        apparitionX: 1400,
         apparitionY: 40,
         width: 120,
         id: 'sodexo',
@@ -97,7 +97,7 @@ window.addEventListener("DOMContentLoaded", function () {
       },
       datawords: {
         div: document.querySelectorAll(".panneaux")[2],
-        apparitionX: -4000,
+        apparitionX: 2000,
         apparitionY: 40,
         width: 120,
         id: 'datawords',
@@ -109,8 +109,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
     plateformes: {
       plat1: {
-        div: document.querySelectorAll(".plateforme")[0],
-        apparitionX: -2200,
+        div: document.getElementById("plat1"),
+        apparitionX: 2200,
         apparitionY: 110,
         width: 70,
         url: 'images/platforms/city_small_clair.png',
@@ -120,8 +120,8 @@ window.addEventListener("DOMContentLoaded", function () {
         class: 'plateforme'
       },
       plat2: {
-        div: document.querySelectorAll(".plateforme")[1],
-        apparitionX: -2500,
+        div: document.getElementById("plat2"),
+        apparitionX: 2500,
         apparitionY: 200,
         width: 190,
         url: 'images/platforms/city_long_clair.png',
@@ -131,8 +131,8 @@ window.addEventListener("DOMContentLoaded", function () {
         class: 'plateforme'
       },
       plat3: {
-        div: document.querySelectorAll(".plateforme")[2],
-        apparitionX: -3000,
+        div: document.getElementById("plat3"),
+        apparitionX: 3000,
         apparitionY: 110,
         width: 70,
         url: 'images/platforms/city_small_clair.png',
@@ -142,7 +142,7 @@ window.addEventListener("DOMContentLoaded", function () {
         class: 'plateforme'
       },
       plat4: {
-        div: document.querySelectorAll(".plateforme")[3],
+        div: document.getElementById("plat4"),
         apparitionX: -3200,
         apparitionY: 200,
         width: 190,
@@ -154,44 +154,38 @@ window.addEventListener("DOMContentLoaded", function () {
       },
     },
     bonus: {
-      gateau: {
-        apparitionX: -200,
-        positionY: 28,
-        url: 'images/icones/diplome.png',
-        id: 'bonus1',
-        class: 'bonus',
-        visible: true,
-        droite: true,
-      },
       diplome1: {
         div: document.querySelectorAll(".bonus")[0],
-        apparitionX: -1000,
+        apparitionX: 1000,
         apparitionY: 28,
-        url: 'images/icones/diplome.png',
+        url: 'images/icones/diplome_1.png',
         id: 'bonus1',
         class: 'bonus',
-        visible: true,
+        visible: false,
         droite: true,
+        titre: `Master d'anglais`,
       },
       diplome2: {
         div: document.querySelectorAll(".bonus")[1],
-        apparitionX: -1400,
+        apparitionX: 1400,
         apparitionY: 28,
-        url: 'images/icones/diplome.png',
-        id: 'bonus1',
+        url: 'images/icones/diplome_2.png',
+        id: 'bonus2',
         class: 'bonus',
-        visible: true,
+        visible: false,
         droite: true,
+        titre: `Master d'allemand`,
       },
       diplome3: {
         div: document.querySelectorAll(".bonus")[2],
-        apparitionX: -3000,
+        apparitionX: 3000,
         apparitionY: 80,
-        url: 'images/icones/diplome.png',
-        id: 'bonus1',
+        url: 'images/icones/diplome_3.png',
+        id: 'bonus3',
         class: 'bonus',
-        visible: true,
+        visible: false,
         droite: true,
+        titre: `Gestion de projet`,
       },
     }
   };
@@ -819,82 +813,35 @@ window.addEventListener("DOMContentLoaded", function () {
     //vérifier et indiquer les éléments
     let decalageAffichage = 600;
 
-    for (const property in elementsJeux) {
+    for (const property in elementsJeu) {
 
-      for (const element in elementsJeux[property]) {
+      for (const element in elementsJeu[property]) {
 
-        /*         if (elementsJeux[property][element].droite) {
-                  decalageAffichage = 600;
-                } else {
-                  decalageAffichage = -600;
-                } */
-
-        /*         if (elementsJeux[property][element].apparitionX + decalageAffichage == positionDeAnne && !elementsJeux[property][element].visible) */
-        if (!elementsJeux[property][element].visible) {
+        if (!elementsJeu[property][element].visible) {
           let nouvelleDiv = document.createElement('div');
-          nouvelleDiv.id = elementsJeux[property][element].id;
-          nouvelleDiv.className = elementsJeux[property][element].class;
-          nouvelleDiv.style.bottom = elementsJeux[property][element].apparitionY;
-          nouvelleDiv.style.left = elementsJeux[property][element].apparitionX;
+          nouvelleDiv.id = elementsJeu[property][element].id;
+          nouvelleDiv.className = elementsJeu[property][element].class;
+          nouvelleDiv.style.bottom = elementsJeu[property][element].apparitionY + 'px';
+          nouvelleDiv.style.left = elementsJeu[property][element].apparitionX + 'px';
+
+          if (elementsJeu[property][element].titre) {
+            let p = document.createElement('p');
+            p.innerHTML = elementsJeu[property][element].titre;
+            nouvelleDiv.appendChild(p);
+          }
 
           let image = document.createElement('img');
-          image.src = elementsJeux[property][element].url;
-          image.style.width = elementsJeux[property][element].id;
+          image.src = elementsJeu[property][element].url;
+          image.style.width = elementsJeu[property][element].id + 'px';
           nouvelleDiv.appendChild(image);
           document.querySelector('content').appendChild(nouvelleDiv);
 
-          elementsJeux[property][element].visible = true;
+          elementsJeu[property][element].visible = true;
         }
       }
     }
+
   };
-
-  /*       for (const property in chiens) {
-  
-          if (!chiens[property].droite) {
-            decalageAffichage = - decalageAffichage;
-          }
-  
-          if (chiens[property].apparitionX + decalageAffichage == positionDeAnne && !chiens[property].visible) {
-            let nouvelleDiv = document.createElement('div');
-            nouvelleDiv.id = chiens[property].id;
-            nouvelleDiv.className = chiens[property].class;
-            nouvelleDiv.style.bottom = chiens[property].apparitionY;
-            nouvelleDiv.style.left = chiens[property].apparitionX;
-  
-            let image = document.createElement('img');
-            image.src = chiens[property].url;
-            image.style.width = chiens[property].id;
-            nouvelleDiv.appendChild(image);
-            document.querySelector('content').appendChild(nouvelleDiv);
-  
-            chiens[property].visible = true;
-          }
-  
-          for (const property in panneaux) {
-  
-            if (!panneaux[property].droite) {
-              decalageAffichage = - decalageAffichage;
-            }
-  
-            if (chiens[property].apparitionX + decalageAffichage == positionDeAnne && !chiens[property].visible) {
-              let nouvelleDiv = document.createElement('div');
-              nouvelleDiv.id = chiens[property].id;
-              nouvelleDiv.className = chiens[property].class;
-              nouvelleDiv.style.bottom = chiens[property].apparitionY;
-              nouvelleDiv.style.left = chiens[property].apparitionX;
-  
-              let image = document.createElement('img');
-              image.src = chiens[property].url;
-              image.style.width = chiens[property].id;
-              nouvelleDiv.appendChild(image);
-              document.querySelector('content').appendChild(nouvelleDiv);
-  
-              chiens[property].visible = true;
-            }
-   */
-
-
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CHEcker LES ELEMEnTS et leS dePlaCEr MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CHEcker LES ELEMEnTS et leS dePlaCEr MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -912,9 +859,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
           let reference = String(element.id);
 
-          positionDeDepart = elementsJeux.bonus[reference]['apparitionX'];
+          positionDeDepart = elementsJeu.bonus[reference]['apparitionX'];
         }
-        deplacementDeLElementAvecFond(element, parseFloat(element.style.left));
+        deplacementDeLElementAvecFond(element, positionDeDepart);
       }
       );
     }
@@ -927,7 +874,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
       if (isNaN(positionDeDepart)) {
         let reference = String(element.id);
-        positionDeDepart = elementsJeux.chiens[reference]['apparitionX'];
+        positionDeDepart = elementsJeu.chiens[reference]['apparitionX'];
       }
 
       deplacementDeLElementAvecFond(element, positionDeDepart);
@@ -941,10 +888,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
       if (isNaN(positionDeDepart)) {
         let reference = String(element.id);
-        positionDeDepart = elementsJeux.panneaux[reference]['apparitionX'];
+        positionDeDepart = elementsJeu.panneaux[reference]['apparitionX'];
         console.log('panneau: ' + positionDeDepart)
       }
-      deplacementDeLElementAvecFond(element, element.style.left);
+      deplacementDeLElementAvecFond(element, positionDeDepart);
     }
     );
 
@@ -955,9 +902,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
       if (isNaN(positionDeDepart)) {
         let reference = String(element.id);
-        positionDeDepart = elementsJeux.plateformes[reference]['apparitionX'];
+        positionDeDepart = elementsJeu.plateformes[reference]['apparitionX'];
       }
-      deplacementDeLElementAvecFond(element, element.style.left);
+      deplacementDeLElementAvecFond(element, positionDeDepart);
     }
     );
 
