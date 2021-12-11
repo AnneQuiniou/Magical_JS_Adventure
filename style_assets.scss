@@ -1,0 +1,134 @@
+@import "sass/_variables";
+@import "sass/_intro";
+@import "sass/_panneaux";
+@import "sass/_personnages";
+@import "sass/_messages";
+@import "sass/_bonus";
+@import "sass/platformes";
+@import "sass/_notplayable";
+
+@font-face {
+  font-family: "m3x6medium";
+  src: url("fonts/m3x6-webfont.woff2") format("woff2"),
+    url("fonts/m3x6-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "alagardmedium";
+  src: url("fonts/alagard-webfont.woff2") format("woff2"),
+    url("fonts/alagard-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "minecraftiaregular";
+  src: url("fonts/minecraftia-regular-webfont.woff2") format("woff2"),
+    url("fonts/minecraftia-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// ---------------------- Propriétés générales du body ----------------------  //
+body {
+  background-color: $purple;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-image: url("images/bg_mystery/background_1.png");
+  background-position: bottom right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+
+  // ----------- Mise en forme des polices-----------  //
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+
+  a {
+    color: white;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
+
+// ----------------------------- Propriétés NAV  ----------------------------  //
+nav {
+  height: 17%;
+  text-align: center;
+  width: 100%;
+
+  h1 {
+    display: inline-block;
+    font-family: "alagardmedium";
+    font-size: 4em;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px #110c2f;
+  }
+
+  ul {
+    display: inline-block;
+    list-style-type: none;
+    padding: none;
+
+    li {
+      display: inline-block;
+      width: 80px;
+    }
+
+    img {
+      width: 40px;
+      padding: 0 10px;
+    }
+
+    img:hover {
+      width: 50px;
+      transform: rotate(-10deg);
+      transition: all 0.2s ease-in-out;
+    }
+
+    img:first-of-type:hover::before {
+      content: "Mon CV";
+      color: white;
+      font-family: "alagardmedium";
+    }
+  }
+}
+
+// ----------------------------- Propriétés CONTENT  ----------------------------  //
+content {
+  position: relative;
+  z-index: 1;
+  height: 1000px;
+  z-index: 6;
+  h2 {
+    font-family: $font_titles;
+    font-size: 2.2em;
+  }
+}
+
+li {
+  list-style-type: "✦ ";
+}
+
+// ----------------------------- Propriétés FOOTER  ----------------------------  //
+footer {
+  background-color: $dark_purple;
+  height: 30px;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+
+  // ----------- Mise en forme des polices-----------  //
+  font-size: 0.8em;
+
+  @media (max-height: 700px) {
+    display: none;
+  }
+}

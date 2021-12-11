@@ -1,0 +1,349 @@
+@charset "UTF-8";
+.opening {
+  width: 800px;
+  height: 520px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  z-index: 120;
+  text-align: center;
+  padding-top: 10px;
+  font-family: "alagardmedium";
+  font-size: 3em;
+  background-image: url("images/bg_tiles/fond_intro.webp");
+  background-size: cover;
+  background-repeat: repeat;
+  animation: animation_bg_intro 100s linear infinite alternate;
+}
+.opening strong {
+  color: coral;
+}
+.opening img {
+  width: 40px;
+}
+.opening button {
+  background-color: #00555c;
+  font-family: "alagardmedium";
+  font-size: 0.5em;
+  color: white;
+  margin: 10px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  border-top: 4px solid #00b3c2;
+  border-left: 4px solid #00b3c2;
+  border-bottom: 4px solid black;
+  border-right: 4px solid black;
+}
+.opening button:hover {
+  background-color: coral;
+  border-bottom: 4px solid #ffcab6;
+  border-right: 4px solid #ffcab6;
+  border-top: 4px solid #e93f00;
+  border-left: 4px solid #e93f00;
+}
+@keyframes animation_bg_intro {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -2000px 2000px;
+  }
+}
+
+.panneaux {
+  position: absolute;
+  z-index: 70;
+  bottom: 40px;
+}
+.panneaux img {
+  width: 140px;
+}
+
+.perso_anne {
+  position: absolute;
+  height: 80px;
+  width: 60px;
+  overflow: hidden;
+  bottom: 25px;
+}
+.perso_anne img {
+  width: 1024px;
+  position: absolute;
+  z-index: 90;
+  left: -40px;
+  top: -26px;
+}
+
+@keyframes animation_pnj_chien {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -134px;
+  }
+}
+.pnj_chien {
+  position: absolute;
+  height: 80px;
+  width: 60px;
+  overflow: hidden;
+  bottom: 28px;
+}
+.pnj_chien img {
+  position: absolute;
+  z-index: 80;
+  left: 0px;
+  animation-name: animation_pnj_chien;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(2);
+}
+
+#chien01 {
+  width: 67px;
+}
+#chien01 img {
+  transform: scalex(-1);
+}
+
+@keyframes animation_pnj_sorcier {
+  from {
+    top: 0px;
+  }
+  to {
+    top: -576px;
+  }
+}
+.pnj_sorcier {
+  position: absolute;
+  height: 80px;
+  width: 60px;
+  overflow: hidden;
+  bottom: 40px;
+  right: 400px;
+  display: none;
+}
+.pnj_sorcier img {
+  position: absolute;
+  width: 380px;
+  z-index: 90;
+  left: -164px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  animation-name: animation_pnj_sorcier;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(6);
+}
+
+.dialogue {
+  background-color: rgba(245, 230, 211, 0.8);
+  border: 5px solid #00354e;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 300px;
+  position: absolute;
+  bottom: 270px;
+  left: 50px;
+  z-index: 200;
+  font-family: "minecraftiaregular";
+  color: #00354e;
+  font-size: 16px;
+  padding: 10px;
+}
+.dialogue p {
+  margin: 0;
+}
+
+.bonus {
+  position: absolute;
+  width: 50px;
+  z-index: 70;
+  bottom: 40px;
+  left: 800px;
+  text-align: center;
+  font-family: "minecraftiaregular";
+  color: white;
+  font-size: 12px;
+  text-shadow: 1px 1px 3px black, -1px -1px 3px black;
+}
+.bonus img {
+  width: 40px;
+}
+
+.plateforme {
+  position: absolute;
+  z-index: 70;
+  /*   left: 0px; */
+}
+
+#plat1 img {
+  width: 70px;
+}
+
+#plat2 img {
+  width: 190px;
+}
+
+#plat3 img {
+  width: 70px;
+}
+
+#plat4 img {
+  width: 190px;
+}
+
+.notplayable {
+  display: none;
+  text-align: center;
+  z-index: 9000;
+  background-image: url("images/bg_tiles/fond_intro.webp");
+  background-size: cover;
+  background-repeat: repeat;
+  animation: animation_bg_intro 100s linear infinite alternate;
+}
+@media (max-width: 800px) {
+  .notplayable {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+  }
+}
+@media (max-height: 607px) {
+  .notplayable {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+  }
+}
+.notplayable h2 {
+  font-family: "alagardmedium";
+  font-size: 4em;
+}
+.notplayable p {
+  font-family: "minecraftiaregular";
+  font-size: 1.5em;
+  padding: 20px;
+}
+.notplayable a {
+  color: coral;
+  font-style: normal;
+}
+.notplayable a:hover {
+  color: #5c5980;
+}
+
+@font-face {
+  font-family: "m3x6medium";
+  src: url("fonts/m3x6-webfont.woff2") format("woff2"), url("fonts/m3x6-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "alagardmedium";
+  src: url("fonts/alagard-webfont.woff2") format("woff2"), url("fonts/alagard-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "minecraftiaregular";
+  src: url("fonts/minecraftia-regular-webfont.woff2") format("woff2"), url("fonts/minecraftia-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  background-color: #5c5980;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-image: url("images/bg_mystery/background_1.png");
+  background-position: bottom right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+}
+body a {
+  color: white;
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+nav {
+  height: 17%;
+  text-align: center;
+  width: 100%;
+}
+nav h1 {
+  display: inline-block;
+  font-family: "alagardmedium";
+  font-size: 4em;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px #110c2f;
+}
+nav ul {
+  display: inline-block;
+  list-style-type: none;
+  padding: none;
+}
+nav ul li {
+  display: inline-block;
+  width: 80px;
+}
+nav ul img {
+  width: 40px;
+  padding: 0 10px;
+}
+nav ul img:hover {
+  width: 50px;
+  transform: rotate(-10deg);
+  transition: all 0.2s ease-in-out;
+}
+nav ul img:first-of-type:hover::before {
+  content: "Mon CV";
+  color: white;
+  font-family: "alagardmedium";
+}
+
+content {
+  position: relative;
+  z-index: 1;
+  height: 1000px;
+  z-index: 6;
+}
+content h2 {
+  font-family: "alagardmedium";
+  font-size: 2.2em;
+}
+
+li {
+  list-style-type: "✦ ";
+}
+
+footer {
+  background-color: #2b2a35;
+  height: 30px;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  font-size: 0.8em;
+}
+@media (max-height: 700px) {
+  footer {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=style_assets.css.map */

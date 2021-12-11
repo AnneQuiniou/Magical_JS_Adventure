@@ -471,73 +471,6 @@ window.addEventListener("DOMContentLoaded", function () {
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SAUTS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SAUTS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 
-  /* var sautDuPersonnage = function () {
-    hauteurDuPerso = parseFloat(divPersoPrincipal.style.bottom);
-    // il vaudrait mieux une hauteur de sol de base?
-    if (isNaN(hauteurDuPerso)) {
-      gestionDuSaut.hauteurDeBase = 25;
-      hauteurDuPerso = gestionDuSaut.hauteurDeBase + 1;
-    }
- 
-    let pallierDebut = gestionDuSaut.hauteurDeBase + gestionDuSaut.debut.limite;
-    let pallierMilieu =
-      gestionDuSaut.hauteurDeBase + gestionDuSaut.milieu.limite;
-    let pallierFin = gestionDuSaut.hauteurDeBase + gestionDuSaut.fin.limite;
- 
-    let incrementDebut = gestionDuSaut.debut.incrementDeSaut;
-    let incrementMilieu = gestionDuSaut.milieu.incrementDeSaut;
-    let incrementFin = gestionDuSaut.fin.incrementDeSaut;
- 
-    if (hauteurDuPerso >= pallierFin) {
-      gestionDuSaut.monter = false;
-    } else {
-      if (hauteurDuPerso <= gestionDuSaut.hauteurDeBase) {
-        gestionDuSaut.monter = true;
-      }
-    }
- 
-    if (
-      hauteurDuPerso >= gestionDuSaut.hauteurDeBase &&
-      hauteurDuPerso <= pallierDebut
-    ) {
-      if (gestionDuSaut.monter) {
-        hauteurDuPerso = hauteurDuPerso + incrementDebut;
-      } else {
-        hauteurDuPerso = hauteurDuPerso - incrementDebut;
-      }
-    }
- 
-    if (hauteurDuPerso >= pallierDebut && hauteurDuPerso <= pallierMilieu) {
-      if (gestionDuSaut.monter) {
-        hauteurDuPerso = hauteurDuPerso + incrementMilieu;
-      } else {
-        hauteurDuPerso = hauteurDuPerso - incrementMilieu;
-      }
-    }
- 
-    if (hauteurDuPerso >= pallierMilieu) {
-      if (gestionDuSaut.monter) {
-        hauteurDuPerso = hauteurDuPerso + incrementFin;
-      } else {
-        hauteurDuPerso = hauteurDuPerso - incrementFin;
-      }
-    }
- 
-    if (hauteurDuPerso < gestionDuSaut.hauteurDeBase) {
-      hauteurDuPerso = gestionDuSaut.hauteurDeBase;
-    }
- 
-    divPersoPrincipal.style.bottom = hauteurDuPerso + "px";
- 
-    gestionDuSaut.enCours = true;
- 
-    if (hauteurDuPerso <= gestionDuSaut.hauteurDeBase) {
-      clearInterval(finDuSaut);
-      gestionDuSaut.enCours = false;
-      gestionDuSaut.monter = true;
-    }
-  };*/
-
   let forceDuSaut = 23;
   let stopForce;
 
@@ -555,11 +488,9 @@ window.addEventListener("DOMContentLoaded", function () {
         divPersoPrincipal.style.bottom = hauteurDuPerso + "px";
 
         let elementPlateformes = document.querySelectorAll('.plateforme');
+
         elementPlateformes.forEach(function (element) {
           let positionXplateforme = parseFloat(element.style.left);
-          if (isNaN(positionXplateforme)) {
-            GeolocationPosition
-          }
           let taillePlateforme = parseFloat(element.style.width);
           let hauteurPlateforme = parseFloat(element.style.bottom) + 20;
 
@@ -587,9 +518,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
       }
       else {
-        clearInterval(stopForce);
         gestionDuSaut.enCours = false;
         console.log(forceDuSaut);
+        clearInterval(stopForce);
       }
     }, 10);
   };
