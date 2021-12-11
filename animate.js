@@ -48,47 +48,152 @@ window.addEventListener("DOMContentLoaded", function () {
       directionDesImages: "left",
       nombreDeFrames: 2,
       apparitionX: 210,
-    },
+    }
   };
 
-  const panneaux = {
-    limitegauche: {
-      apparitionX: 0,
-      div: document.querySelectorAll(".panneaux")[0],
-    },
-    sodexo: {
-      div: document.querySelectorAll(".panneaux")[1],
-      apparitionX: 1880,
-      apparitionY: 28,
-    },
-    datawords: {
-      div: document.querySelectorAll(".panneaux")[2],
-      apparitionX: 4000,
-      apparitionY: 28,
-    },
-  };
 
-  const plateformes = {
-    plat1: {
-      div: document.querySelectorAll(".plateforme")[0],
-      apparitionX: 2200,
-      apparitionY: 110,
+  const elementsJeux = {
+    chiens: {
+      chien02: {
+        apparitionX: 330,
+        apparitionY: 28,
+        width: 60,
+        id: 'doggo01',
+        class: 'pnj_chien',
+        url: 'images/sprites/chien02.png',
+        droite: false,
+      },
+      chien03: {
+        apparitionX: -600,
+        apparitionY: 28,
+        width: 60,
+        id: 'doggo03',
+        class: 'pnj_chien',
+        url: 'images/sprites/chien03.png',
+        droite: false,
+      },
     },
-    plat2: {
-      div: document.querySelectorAll(".plateforme")[1],
-      apparitionX: 2500,
-      apparitionY: 200,
+
+    panneaux: {
+      limitegauche: {
+        apparitionX: 500,
+        apparitionY: 28,
+        width: 140,
+        id: 'panneau',
+        class: 'panneaux',
+        url: 'images/panneaux/panneaulimite.png',
+        div: document.querySelectorAll(".panneaux")[0],
+        droite: false,
+      },
+      sodexo: {
+        div: document.querySelectorAll(".panneaux")[1],
+        apparitionX: -1880,
+        apparitionY: 28,
+        width: 120,
+        id: 'panneau',
+        class: 'panneaux',
+        url: 'images/panneaux/sodexo.png',
+        droite: true,
+      },
+      datawords: {
+        div: document.querySelectorAll(".panneaux")[2],
+        apparitionX: -4000,
+        apparitionY: 28,
+        width: 120,
+        id: 'panneau',
+        class: 'panneaux',
+        url: 'images/panneaux/datawords.png',
+        droite: true,
+      },
     },
-    plat3: {
-      div: document.querySelectorAll(".plateforme")[2],
-      apparitionX: 4000,
-      apparitionY: 110,
+
+    plateformes: {
+      plat1: {
+        div: document.querySelectorAll(".plateforme")[0],
+        apparitionX: -2200,
+        apparitionY: 110,
+        width: 70,
+        url: 'images/platforms/city_small_clair.png',
+        id: "plat1",
+        visible: false,
+        droite: true,
+        class: 'plateforme'
+      },
+      plat2: {
+        div: document.querySelectorAll(".plateforme")[1],
+        apparitionX: -2500,
+        apparitionY: 200,
+        width: 190,
+        url: 'images/platforms/city_long_clair.png',
+        id: "plat2",
+        visible: false,
+        droite: true,
+        class: 'plateforme'
+      },
+      plat3: {
+        div: document.querySelectorAll(".plateforme")[2],
+        apparitionX: -3000,
+        apparitionY: 110,
+        width: 70,
+        url: 'images/platforms/city_small_clair.png',
+        id: "plat3",
+        visible: false,
+        droite: true,
+        class: 'plateforme'
+      },
+      plat4: {
+        div: document.querySelectorAll(".plateforme")[3],
+        apparitionX: -3200,
+        apparitionY: 200,
+        width: 190,
+        url: 'images/platforms/city_small02.png',
+        id: "plat4",
+        visible: false,
+        droite: true,
+        class: 'plateforme'
+      },
     },
-    plat4: {
-      div: document.querySelectorAll(".plateforme")[3],
-      apparitionX: 4000,
-      apparitionY: 200,
-    },
+    bonus: {
+      gateau: {
+        apparitionX: -200,
+        positionY: 28,
+        url: 'images/icones/diplome.png',
+        id: 'bonus1',
+        class: 'bonus',
+        visible: true,
+        droite: true,
+      },
+      diplome1: {
+        div: document.querySelectorAll(".bonus")[0],
+        apparitionX: -1000,
+        apparitionY: 28,
+        url: 'images/icones/diplome.png',
+        id: 'bonus1',
+        class: 'bonus',
+        visible: true,
+        droite: true,
+      },
+      diplome2: {
+        div: document.querySelectorAll(".bonus")[1],
+        apparitionX: -1400,
+        apparitionY: 28,
+        url: 'images/icones/diplome.png',
+        id: 'bonus1',
+        class: 'bonus',
+        visible: true,
+        droite: true,
+      },
+      diplome3: {
+        div: document.querySelectorAll(".bonus")[2],
+        apparitionX: -3000,
+        apparitionY: 80,
+        url: 'images/icones/diplome.png',
+        id: 'bonus1',
+        class: 'bonus',
+        visible: true,
+        droite: true,
+      },
+    }
   };
 
   let persoPrincipal = sprite.classique.reference;
@@ -121,28 +226,7 @@ window.addEventListener("DOMContentLoaded", function () {
     },
   };
 
-  let bonus = {
-    gateau: {
-      apparitionX: -200,
-      positionY: 23,
-      sprite: `url('images/icones/pie.png')`,
-    },
-    diplome1: {
-      div: document.querySelectorAll(".bonus")[0],
-      apparitionX: 1000,
-      apparitionY: 28,
-    },
-    diplome2: {
-      div: document.querySelectorAll(".bonus")[1],
-      apparitionX: 1400,
-      apparitionY: 28,
-    },
-    diplome3: {
-      div: document.querySelectorAll(".bonus")[2],
-      apparitionX: 3000,
-      apparitionY: 80,
-    },
-  };
+
 
   window.addEventListener("keydown", function (evenementSurevenu) {
     let positionDeAnne =
@@ -150,7 +234,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
     if (!dialogueVisible && !animationEnCours) {
       if ("KeyF" === evenementSurevenu.code) {
-
         direction.droite = true;
         direction.idle = false;
 
@@ -188,6 +271,7 @@ window.addEventListener("DOMContentLoaded", function () {
       // yoda condition > voir wiki
       direction.droite = false;
       direction.idle = true;
+
     }
     if ("KeyD" === evenementSurevenu.code) {
       // yoda condition > voir wiki
@@ -203,48 +287,9 @@ window.addEventListener("DOMContentLoaded", function () {
     if (direction.droite) {
       deplacementDuFond("bg", "droite");
       checkPositionAnne("bg");
+      faireApparaitreUnePlateforme('bg');
       incrementPosition = -10;
-      deplacementDeLElementAvecFond(sprite.chien.div, sprite.chien.apparitionX);
-      deplacementDeLElementAvecFond(
-        panneaux.limitegauche.div,
-        panneaux.limitegauche.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        panneaux.sodexo.div,
-        panneaux.sodexo.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        panneaux.datawords.div,
-        panneaux.datawords.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        bonus.diplome1.div,
-        bonus.diplome1.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        bonus.diplome2.div,
-        bonus.diplome2.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        bonus.diplome3.div,
-        bonus.diplome3.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        plateformes.plat1.div,
-        plateformes.plat1.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        plateformes.plat2.div,
-        plateformes.plat2.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        plateformes.plat3.div,
-        plateformes.plat3.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        plateformes.plat4.div,
-        plateformes.plat4.apparitionX
-      );
+      checkerElementEtDeplacerAvecLeFond();
       recupererBonus();
 
       if (persoPrincipal == sprite.classique.reference) {
@@ -270,45 +315,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
     if (direction.gauche) {
       deplacementDuFond("bg", "gauche");
+      checkPositionAnne("bg");
       incrementPosition = 10;
-      deplacementDeLElementAvecFond(sprite.chien.div);
-      deplacementDeLElementAvecFond(panneaux.limitegauche.div);
-      deplacementDeLElementAvecFond(
-        panneaux.sodexo.div,
-        panneaux.sodexo.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        panneaux.datawords.div,
-        panneaux.datawords.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        bonus.diplome1.div,
-        bonus.diplome1.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        bonus.diplome2.div,
-        bonus.diplome2.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        bonus.diplome3.div,
-        bonus.diplome3.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        plateformes.plat1.div,
-        plateformes.plat1.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        plateformes.plat2.div,
-        plateformes.plat2.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        plateformes.plat3.div,
-        plateformes.plat3.apparitionX
-      );
-      deplacementDeLElementAvecFond(
-        plateformes.plat4.div,
-        plateformes.plat4.apparitionX
-      );
+      checkerElementEtDeplacerAvecLeFond();
+      faireApparaitreUnePlateforme('bg');
+
       recupererBonus();
 
       if (persoPrincipal == sprite.classique.reference) {
@@ -473,16 +484,16 @@ window.addEventListener("DOMContentLoaded", function () {
       gestionDuSaut.hauteurDeBase = 25;
       hauteurDuPerso = gestionDuSaut.hauteurDeBase + 1;
     }
-
+ 
     let pallierDebut = gestionDuSaut.hauteurDeBase + gestionDuSaut.debut.limite;
     let pallierMilieu =
       gestionDuSaut.hauteurDeBase + gestionDuSaut.milieu.limite;
     let pallierFin = gestionDuSaut.hauteurDeBase + gestionDuSaut.fin.limite;
-
+ 
     let incrementDebut = gestionDuSaut.debut.incrementDeSaut;
     let incrementMilieu = gestionDuSaut.milieu.incrementDeSaut;
     let incrementFin = gestionDuSaut.fin.incrementDeSaut;
-
+ 
     if (hauteurDuPerso >= pallierFin) {
       gestionDuSaut.monter = false;
     } else {
@@ -490,7 +501,7 @@ window.addEventListener("DOMContentLoaded", function () {
         gestionDuSaut.monter = true;
       }
     }
-
+ 
     if (
       hauteurDuPerso >= gestionDuSaut.hauteurDeBase &&
       hauteurDuPerso <= pallierDebut
@@ -501,7 +512,7 @@ window.addEventListener("DOMContentLoaded", function () {
         hauteurDuPerso = hauteurDuPerso - incrementDebut;
       }
     }
-
+ 
     if (hauteurDuPerso >= pallierDebut && hauteurDuPerso <= pallierMilieu) {
       if (gestionDuSaut.monter) {
         hauteurDuPerso = hauteurDuPerso + incrementMilieu;
@@ -509,7 +520,7 @@ window.addEventListener("DOMContentLoaded", function () {
         hauteurDuPerso = hauteurDuPerso - incrementMilieu;
       }
     }
-
+ 
     if (hauteurDuPerso >= pallierMilieu) {
       if (gestionDuSaut.monter) {
         hauteurDuPerso = hauteurDuPerso + incrementFin;
@@ -517,15 +528,15 @@ window.addEventListener("DOMContentLoaded", function () {
         hauteurDuPerso = hauteurDuPerso - incrementFin;
       }
     }
-
+ 
     if (hauteurDuPerso < gestionDuSaut.hauteurDeBase) {
       hauteurDuPerso = gestionDuSaut.hauteurDeBase;
     }
-
+ 
     divPersoPrincipal.style.bottom = hauteurDuPerso + "px";
-
+ 
     gestionDuSaut.enCours = true;
-
+ 
     if (hauteurDuPerso <= gestionDuSaut.hauteurDeBase) {
       clearInterval(finDuSaut);
       gestionDuSaut.enCours = false;
@@ -549,6 +560,25 @@ window.addEventListener("DOMContentLoaded", function () {
         hauteurDuPerso = hauteurDuPerso + forceDuSaut;
         divPersoPrincipal.style.bottom = hauteurDuPerso + "px";
 
+        let elementPlateformes = document.querySelectorAll('.plateforme');
+        elementPlateformes.forEach(function (element) {
+          let positionXplateforme = parseFloat(element.style.left);
+          if (isNaN(positionXplateforme)) {
+            GeolocationPosition
+          }
+          let taillePlateforme = parseFloat(element.style.width);
+          let hauteurPlateforme = parseFloat(element.style.bottom) + 20;
+
+          if (positionXplateforme < 290 || positionXplateforme + taillePlateforme > 240 || (positionXplateforme > 240 && positionXplateforme + taillePlateforme < 290)) {
+            if (divPersoPrincipal.style.bottom > hauteurPlateforme) {
+              hauteurDuSol = hauteurPlateforme;
+            }
+
+          }
+        }
+        )
+
+
         if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
           divPersoPrincipal.style.bottom = (hauteurDuSol + 1) + "px";
           clearInterval(stopForce);
@@ -565,9 +595,11 @@ window.addEventListener("DOMContentLoaded", function () {
       else {
         clearInterval(stopForce);
         gestionDuSaut.enCours = false;
+        console.log(forceDuSaut);
       }
     }, 10);
   };
+
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -775,4 +807,131 @@ window.addEventListener("DOMContentLoaded", function () {
       }
     });
   };
+
+
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CREER les plateformes, chiens, bonus... MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CREER les plateformes, chiens, bonus... MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CREER les plateformes, chiens, bonus... MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+
+  const faireApparaitreUnePlateforme = function (nomDuFond) {
+    let positionDeAnne = parseFloat(
+      document.getElementsByClassName(nomDuFond)[2].style[
+      "background-position-x"
+      ]);
+    //vérifier et indiquer les éléments
+    let decalageAffichage = 600;
+
+    for (const property in elementsJeux) {
+
+      for (const element in elementsJeux[property]) {
+
+        if (!elementsJeux[property][element].gauche) {
+          decalageAffichage = -decalageAffichage;
+        }
+
+        if (elementsJeux[property][element].apparitionX == positionDeAnne - decalageAffichage && !elementsJeux[property][element].visible) {
+          let nouvelleDiv = document.createElement('div');
+          nouvelleDiv.id = elementsJeux[property][element].id;
+          nouvelleDiv.className = elementsJeux[property][element].class;
+          nouvelleDiv.style.bottom = elementsJeux[property][element].apparitionY;
+          nouvelleDiv.style.left = elementsJeux[property][element].apparitionX;
+
+          let image = document.createElement('img');
+          image.src = elementsJeux[property][element].url;
+          image.style.width = elementsJeux[property][element].id;
+          nouvelleDiv.appendChild(image);
+          document.querySelector('content').appendChild(nouvelleDiv);
+
+          elementsJeux[property][element].visible = true;
+        }
+      }
+    }
+  };
+
+  /*       for (const property in chiens) {
+  
+          if (!chiens[property].droite) {
+            decalageAffichage = - decalageAffichage;
+          }
+  
+          if (chiens[property].apparitionX + decalageAffichage == positionDeAnne && !chiens[property].visible) {
+            let nouvelleDiv = document.createElement('div');
+            nouvelleDiv.id = chiens[property].id;
+            nouvelleDiv.className = chiens[property].class;
+            nouvelleDiv.style.bottom = chiens[property].apparitionY;
+            nouvelleDiv.style.left = chiens[property].apparitionX;
+  
+            let image = document.createElement('img');
+            image.src = chiens[property].url;
+            image.style.width = chiens[property].id;
+            nouvelleDiv.appendChild(image);
+            document.querySelector('content').appendChild(nouvelleDiv);
+  
+            chiens[property].visible = true;
+          }
+  
+          for (const property in panneaux) {
+  
+            if (!panneaux[property].droite) {
+              decalageAffichage = - decalageAffichage;
+            }
+  
+            if (chiens[property].apparitionX + decalageAffichage == positionDeAnne && !chiens[property].visible) {
+              let nouvelleDiv = document.createElement('div');
+              nouvelleDiv.id = chiens[property].id;
+              nouvelleDiv.className = chiens[property].class;
+              nouvelleDiv.style.bottom = chiens[property].apparitionY;
+              nouvelleDiv.style.left = chiens[property].apparitionX;
+  
+              let image = document.createElement('img');
+              image.src = chiens[property].url;
+              image.style.width = chiens[property].id;
+              nouvelleDiv.appendChild(image);
+              document.querySelector('content').appendChild(nouvelleDiv);
+  
+              chiens[property].visible = true;
+            }
+   */
+
+
+
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CHEcker LES ELEMEnTS et leS dePlaCEr MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CHEcker LES ELEMEnTS et leS dePlaCEr MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CHEcker LES ELEMEnTS et leS dePlaCEr MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+
+  const checkerElementEtDeplacerAvecLeFond = function () {
+    //bonus
+    let tousLesBonus = document.querySelectorAll('.bonus');
+
+    if (tousLesBonus) {
+      tousLesBonus.forEach(function (element) {
+        deplacementDeLElementAvecFond(element, element.style.left);
+      }
+      );
+    }
+
+
+    //chiens
+    let tousLesChiens = document.querySelectorAll('.pnj_chien');
+    tousLesChiens.forEach(function (element) {
+      deplacementDeLElementAvecFond(element, element.style.left);
+    }
+    );
+
+    //panneaux
+    let tousLesPanneaux = document.querySelectorAll('.panneaux');
+    tousLesPanneaux.forEach(function (element) {
+      deplacementDeLElementAvecFond(element, element.style.left);
+    }
+    );
+
+    //plateformes
+    let toutesLesPlateformes = document.querySelectorAll('.plateforme');
+    toutesLesPlateformes.forEach(function (element) {
+      deplacementDeLElementAvecFond(element, element.style.left);
+    }
+    );
+
+  }
+
 });
