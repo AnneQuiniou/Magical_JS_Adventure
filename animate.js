@@ -77,7 +77,7 @@ window.addEventListener("DOMContentLoaded", function () {
     panneaux: {
       limitegauche: {
         apparitionX: 500,
-        apparitionY: 28,
+        apparitionY: 40,
         width: 140,
         id: 'limitegauche',
         class: 'panneaux',
@@ -88,7 +88,7 @@ window.addEventListener("DOMContentLoaded", function () {
       sodexo: {
         div: document.querySelectorAll(".panneaux")[1],
         apparitionX: -1880,
-        apparitionY: 28,
+        apparitionY: 40,
         width: 120,
         id: 'sodexo',
         class: 'panneaux',
@@ -98,7 +98,7 @@ window.addEventListener("DOMContentLoaded", function () {
       datawords: {
         div: document.querySelectorAll(".panneaux")[2],
         apparitionX: -4000,
-        apparitionY: 28,
+        apparitionY: 40,
         width: 120,
         id: 'datawords',
         class: 'panneaux',
@@ -823,13 +823,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
       for (const element in elementsJeux[property]) {
 
-        if (elementsJeux[property][element].droite) {
-          decalageAffichage = 600;
-        } else {
-          decalageAffichage = -600;
-        }
+        /*         if (elementsJeux[property][element].droite) {
+                  decalageAffichage = 600;
+                } else {
+                  decalageAffichage = -600;
+                } */
 
-        if (elementsJeux[property][element].apparitionX + decalageAffichage <= positionDeAnne && !elementsJeux[property][element].visible) {
+        /*         if (elementsJeux[property][element].apparitionX + decalageAffichage == positionDeAnne && !elementsJeux[property][element].visible) */
+        if (!elementsJeux[property][element].visible) {
           let nouvelleDiv = document.createElement('div');
           nouvelleDiv.id = elementsJeux[property][element].id;
           nouvelleDiv.className = elementsJeux[property][element].class;
@@ -941,6 +942,7 @@ window.addEventListener("DOMContentLoaded", function () {
       if (isNaN(positionDeDepart)) {
         let reference = String(element.id);
         positionDeDepart = elementsJeux.panneaux[reference]['apparitionX'];
+        console.log('panneau: ' + positionDeDepart)
       }
       deplacementDeLElementAvecFond(element, element.style.left);
     }

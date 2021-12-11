@@ -10,7 +10,14 @@ $lightturquoise: #00555c;
 $darkturquoise: #00354e;
 $highlight: coral;
 
-
 // MMMMMMMMMMMMMMMMMMMMMMMMMMMM FONTS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM //
-$font_titles: 'alagardmedium';
-$font_dialogue: 'minecraftiaregular';
+$font_titles: "alagardmedium";
+$font_dialogue: "minecraftiaregular";
+
+// MMMMMMMMMMMMMMMMMMMMMMMMMMMM WINDOW SIZES MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM //
+$min_width: 825;
+$min_height: 700;
+
+$med_width: 1100;
+
+$super_width: 1400;
