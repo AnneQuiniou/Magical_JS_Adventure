@@ -286,6 +286,9 @@ nav {
   text-align: center;
   width: 100%;
 }
+nav a {
+  font-style: normal;
+}
 nav h1 {
   display: inline-block;
   font-family: "alagardmedium";

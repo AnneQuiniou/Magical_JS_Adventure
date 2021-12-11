@@ -317,7 +317,15 @@ nav ul img:first-of-type:hover::before {
     display: none;
   }
 }
-@media (max-height: 800px) {
+@media (max-height: 690px) {
+  nav {
+    height: 80px;
+  }
+  nav h1 {
+    font-size: 2em;
+  }
+}
+@media (max-width: 1200px) {
   nav {
     height: 80px;
   }

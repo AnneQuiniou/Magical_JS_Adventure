@@ -100,7 +100,15 @@ nav {
   @media (max-height: 700px) {
     display: none;
   }
-  @media (max-height: 800px) {
+
+  @media (max-height: 690px) {
+    height: 80px;
+    h1 {
+      font-size: 2em;
+    }
+  }
+
+  @media (max-width: 1200px) {
     height: 80px;
     h1 {
       font-size: 2em;
