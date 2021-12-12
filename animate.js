@@ -257,7 +257,7 @@ window.addEventListener("DOMContentLoaded", function () {
       }
       if ("ShiftRight" === evenementSurevenu.code) {
         if (!gestionDuSaut.enCours) {
-          sauter();
+          lancerLeSaut(); // HELLOOOOOOOOOOOOOOOOOOOOOOOOO C'EST ICI 
         }
       }
       if ("Enter" === evenementSurevenu.code) {
@@ -459,6 +459,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // gestion
   let hauteurDuPerso;
+  let positionYPerso;
 
   const gestionDuSaut = {
     enCours: false,
@@ -482,96 +483,145 @@ window.addEventListener("DOMContentLoaded", function () {
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SAUTS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SAUTS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 
+  /*   let forceDuSaut = 23;
+    let stopForce;
+  
+    var sautDuPersonnage = function () {
+      stopForce = setInterval(function () {
+        if (!gestionDuSaut.enCours) {
+          gestionDuSaut.enCours = true;
+          hauteurDuPerso = parseFloat(divPersoPrincipal.style.bottom);
+  
+          if (isNaN(hauteurDuPerso)) {
+            hauteurDuPerso = hauteurDuSol;
+          }
+  
+          hauteurDuPerso = hauteurDuPerso + forceDuSaut;
+          divPersoPrincipal.style.bottom = hauteurDuPerso + "px";
+  
+          let elementPlateformes = document.querySelectorAll('.plateforme');
+  
+          elementPlateformes.forEach(function (element) {
+            let positionXplateforme = parseFloat(element.style.left);
+            let taillePlateforme = parseFloat(element.style.width);
+            let hauteurPlateforme = parseFloat(element.style.bottom) + 20;
+  
+            if (positionXplateforme < 290 || positionXplateforme + taillePlateforme > 240 || (positionXplateforme > 240 && positionXplateforme + taillePlateforme < 290)) {
+              if (divPersoPrincipal.style.bottom > hauteurPlateforme) {
+                hauteurDuSol = hauteurPlateforme;
+              }
+  
+            }
+          }
+          )
+  
+  
+          if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
+            divPersoPrincipal.style.bottom = (hauteurDuSol + 1) + "px";
+            clearInterval(stopForce);
+            gestionDuSaut.enCours = false;
+            console.log('boucle stop, status: ' + gestionDuSaut.enCours);
+  
+          } else {
+            forceDuSaut = forceDuSaut - 1;
+            console.log('ici');
+            console.log('boucle continue, status: ' + gestionDuSaut.enCours);
+          }
+  
+        }
+        else {
+          gestionDuSaut.enCours = false;
+          console.log(forceDuSaut);
+          clearInterval(stopForce);
+        }
+      }, 10);
+    }; */
+
   let forceDuSaut = 23;
   let stopForce;
 
   var sautDuPersonnage = function () {
-    stopForce = setInterval(function () {
-      if (!gestionDuSaut.enCours) {
-        gestionDuSaut.enCours = true;
-        hauteurDuPerso = parseFloat(divPersoPrincipal.style.bottom);
+    console.log("saut lancé");
+    gestionDuSaut.enCours = true;
+    positionYPerso = parseFloat(divPersoPrincipal.style.bottom);
 
-        if (isNaN(hauteurDuPerso)) {
-          hauteurDuPerso = hauteurDuSol;
-        }
+    if (isNaN(positionYPerso)) {
+      positionYPerso = hauteurDuSol;
+    }
 
-        hauteurDuPerso = hauteurDuPerso + forceDuSaut;
-        divPersoPrincipal.style.bottom = hauteurDuPerso + "px";
-
-        let elementPlateformes = document.querySelectorAll('.plateforme');
-
-        elementPlateformes.forEach(function (element) {
-          let positionXplateforme = parseFloat(element.style.left);
-          let taillePlateforme = parseFloat(element.style.width);
-          let hauteurPlateforme = parseFloat(element.style.bottom) + 20;
-
-          if (positionXplateforme < 290 || positionXplateforme + taillePlateforme > 240 || (positionXplateforme > 240 && positionXplateforme + taillePlateforme < 290)) {
-            if (divPersoPrincipal.style.bottom > hauteurPlateforme) {
-              hauteurDuSol = hauteurPlateforme;
-            }
-
-          }
-        }
-        )
+    positionYPerso = positionYPerso + forceDuSaut;
+    divPersoPrincipal.style.bottom = positionYPerso + "px";
 
 
-        if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
-          divPersoPrincipal.style.bottom = (hauteurDuSol + 1) + "px";
-          clearInterval(stopForce);
-          gestionDuSaut.enCours = false;
-          console.log('boucle stop, status: ' + gestionDuSaut.enCours);
+    /*           let elementPlateformes = document.querySelectorAll('.plateforme');
+      
+              elementPlateformes.forEach(function (element) {
+                let positionXplateforme = parseFloat(element.style.left);
+                let taillePlateforme = parseFloat(element.style.width);
+                let hauteurPlateforme = parseFloat(element.style.bottom) + 20;
+      
+                if (positionXplateforme < 290 || positionXplateforme + taillePlateforme > 240 || (positionXplateforme > 240 && positionXplateforme + taillePlateforme < 290)) {
+                  if (divPersoPrincipal.style.bottom > hauteurPlateforme) {
+                    hauteurDuSol = hauteurPlateforme;
+                  }
+      
+                }
+              }
+              )
+       */
 
-        } else {
-          forceDuSaut = forceDuSaut - 1;
-          console.log('ici');
-          console.log('boucle continue, status: ' + gestionDuSaut.enCours);
-        }
+    if (gestionDuSaut.enCours && parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
+      divPersoPrincipal.style.bottom = (hauteurDuSol + 1) + "px";
+      gestionDuSaut.enCours = false;
+      forceDuSaut = 23;
+      clearInterval(stopForce);
 
-      }
-      else {
-        gestionDuSaut.enCours = false;
-        console.log(forceDuSaut);
-        clearInterval(stopForce);
-      }
-    }, 10);
+    } else {
+      forceDuSaut = forceDuSaut - 1;
+    }
+
+  }
+
+  const lancerLeSaut = function () {
+    stopForce = setInterval(sautDuPersonnage, 25);
   };
 
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
-  let hauteurDuSol = 25;
-  /*   const gravite = 1;
-    let toucherLeSol;
-    let forceEnAction = false;
-  
-    const forceGravitationnelle = function () {
-      if (!forceEnAction) {
-        toucherLeSol = setInterval(function () {
-          let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
-  
-          if (isNaN(maHauteur)) {
-            maHauteur = hauteurDuSol;
-          }
-  
-          maHauteur = maHauteur - gravite;
-  
-          divPersoPrincipal.style.bottom = maHauteur + "px";
-  
-          if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
-            maHauteur = hauteurDuSol;
-            clearInterval(toucherLeSol);
-          }
-  
-          forceEnAction = true;
-          console.log(maHauteur);
-        }, 25);
-      } else {
-        clearInterval(toucherLeSol);
-      }
-    };
-  
-    forceGravitationnelle(); */
+  let hauteurDuSol = 24;
+  const gravite = 1;
+  let toucherLeSol;
+  let forceEnAction = false;
+
+  const forceGravitationnelle = function () {
+    if (!forceEnAction) {
+      toucherLeSol = setInterval(function () {
+        let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
+
+        if (isNaN(maHauteur)) {
+          maHauteur = hauteurDuSol;
+        }
+
+        maHauteur = maHauteur - gravite;
+
+        divPersoPrincipal.style.bottom = maHauteur + "px";
+
+        if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
+          maHauteur = hauteurDuSol;
+          clearInterval(toucherLeSol);
+        }
+
+        forceEnAction = true;
+        console.log(maHauteur);
+      }, 25);
+    } else {
+      clearInterval(toucherLeSol);
+    }
+  };
+
+  forceGravitationnelle();
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SETINTERVAL MVMT MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   window.setInterval(function () {
