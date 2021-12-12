@@ -189,7 +189,7 @@ window.addEventListener("DOMContentLoaded", function () {
       },
       explorateur: {
         div: document.querySelectorAll(".bonus")[3],
-        apparitionX: 180,
+        apparitionX: 130,
         apparitionY: 100,
         url: 'images/icones/bonus_explo.png',
         id: 'explorateur',
@@ -552,23 +552,7 @@ window.addEventListener("DOMContentLoaded", function () {
     positionYPerso = positionYPerso + forceDuSaut;
     divPersoPrincipal.style.bottom = positionYPerso + "px";
 
-
-    /*           let elementPlateformes = document.querySelectorAll('.plateforme');
-      
-              elementPlateformes.forEach(function (element) {
-                let positionXplateforme = parseFloat(element.style.left);
-                let taillePlateforme = parseFloat(element.style.width);
-                let hauteurPlateforme = parseFloat(element.style.bottom) + 20;
-      
-                if (positionXplateforme < 290 || positionXplateforme + taillePlateforme > 240 || (positionXplateforme > 240 && positionXplateforme + taillePlateforme < 290)) {
-                  if (divPersoPrincipal.style.bottom > hauteurPlateforme) {
-                    hauteurDuSol = hauteurPlateforme;
-                  }
-      
-                }
-              }
-              )
-       */
+    verifierSiPlateforme();
 
     if (gestionDuSaut.enCours && parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
       divPersoPrincipal.style.bottom = (hauteurDuSol + 1) + "px";
@@ -583,8 +567,33 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   const lancerLeSaut = function () {
-    stopForce = setInterval(sautDuPersonnage, 25);
+    stopForce = setInterval(sautDuPersonnage, 15);
   };
+
+
+  const verifierSiPlateforme = function () {
+    let elementPlateformes = document.querySelectorAll('.plateforme');
+
+    elementPlateformes.forEach(function (element) {
+      let limiteGauchePlateforme = parseFloat(element.style.left);
+      let nomElement = String(element.id);
+      let taillePlateforme = elementsJeu.plateformes[nomElement].width; //NaN il faut initialiser la valeur
+      let hauteurPlateforme = parseFloat(element.style.bottom) + 20;
+
+      // selecteur pété ici il faut que je revoie comment vérifier ça car ça buggue
+      if (limiteGauchePlateforme < 300 || limiteGauchePlateforme + taillePlateforme > 200 || (limiteGauchePlateforme > 200 && limiteGauchePlateforme + taillePlateforme < 300)) {
+        if (parseFloat(divPersoPrincipal.style.bottom) > hauteurPlateforme) {
+          hauteurDuSol = hauteurPlateforme;
+          console.log(hauteurDuSol);
+        } else {
+          hauteurDuSol = 24;
+        }
+
+      }
+    }
+    )
+  };
+  // fin de cette fonction 
 
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -615,7 +624,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
         forceEnAction = true;
         console.log(maHauteur);
-      }, 25);
+      }, 15);
     } else {
       clearInterval(toucherLeSol);
     }
