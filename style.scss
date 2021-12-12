@@ -97,7 +97,7 @@ nav {
     }
   }
 
-  @media (max-height: 700px) {
+  @media (max-height: $min_height) {
     display: none;
   }
 
@@ -108,7 +108,7 @@ nav {
     }
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: $med_width) {
     height: 80px;
     h1 {
       font-size: 2em;

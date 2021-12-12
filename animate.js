@@ -187,6 +187,17 @@ window.addEventListener("DOMContentLoaded", function () {
         droite: true,
         titre: `Gestion de projet`,
       },
+      explorateur: {
+        div: document.querySelectorAll(".bonus")[3],
+        apparitionX: 180,
+        apparitionY: 100,
+        url: 'images/icones/bonus_explo.png',
+        id: 'explorateur',
+        class: 'bonus',
+        visible: false,
+        droite: false,
+        titre: `Bonus Explorateur`,
+      },
     }
   };
 
@@ -687,7 +698,8 @@ window.addEventListener("DOMContentLoaded", function () {
     if (
       parseFloat(positionDeAnne) >= -1200 &&
       parseFloat(positionDeAnne) <= -1140 &&
-      score.innerHTML >= 400
+      !document.getElementById('bonus1') &&
+      !document.getElementById('bonus2')
     ) {
       if (!dialogues.diplome.vu) {
         direction.gauche = false;
