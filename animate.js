@@ -131,7 +131,7 @@ window.addEventListener("DOMContentLoaded", function () {
       },
       plat3: {
         div: document.getElementById("plat3"),
-        apparitionX: 3000,
+        apparitionX: 2920,
         apparitionY: 110,
         width: 100,
         url: "images/platforms/city_small_clair.png",
@@ -254,7 +254,6 @@ window.addEventListener("DOMContentLoaded", function () {
       }
       if ("ShiftRight" === evenementSurevenu.code) {
         if (!gestionDuSaut.enCours) {
-          lancerLaVerificationPlateforme();
           lancerLeSaut();
         }
       }
@@ -291,7 +290,7 @@ window.addEventListener("DOMContentLoaded", function () {
       incrementPosition = -10;
       checkerElementEtDeplacerAvecLeFond();
       recupererBonus();
-      verifierSiPlateforme();
+      lancerLaVerificationPlateforme();
 
       if (persoPrincipal == sprite.classique.reference) {
         mouvementDuPerso = parseFloat(persoPrincipal.style.top);
@@ -321,7 +320,7 @@ window.addEventListener("DOMContentLoaded", function () {
       checkerElementEtDeplacerAvecLeFond();
       faireApparaitreLesElementsDuJeu("bg");
       recupererBonus();
-      verifierSiPlateforme();
+      lancerLaVerificationPlateforme();
 
       if (persoPrincipal == sprite.classique.reference) {
         mouvementDuPerso = parseFloat(persoPrincipal.style.top);
@@ -502,8 +501,37 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const verifierSiPlateforme = function () {
     let elementPlateformes = document.querySelectorAll(".plateforme");
+    console.log(elementPlateformes);
 
-    elementPlateformes.forEach(function (element) {
+    let start = true;
+    for (let i = 0; start || i == elementPlateformes.length; i++) {
+      let limiteGauchePlateforme = parseFloat(elementPlateformes[i].style.left);
+      let nomElement = elementPlateformes[i].id;
+      console.log(nomElement);
+      let limiteDroitePlateforme =
+        limiteGauchePlateforme +
+        parseFloat(elementsJeu.plateformes[nomElement].width);
+      let hauteurPlateforme =
+        parseFloat(elementPlateformes[i].style.bottom) + 20;
+
+      let limiteHitboxGauche = 300;
+      let limiteHitboxDroite = 200;
+      if (
+        (limiteGauchePlateforme > limiteHitboxDroite &&
+          limiteGauchePlateforme < limiteHitboxGauche) ||
+        (limiteDroitePlateforme > limiteHitboxDroite &&
+          limiteDroitePlateforme < limiteHitboxGauche) ||
+        (limiteGauchePlateforme > limiteHitboxGauche &&
+          limiteDroitePlateforme < limiteHitboxDroite)
+      ) {
+        hauteurDuSol = hauteurPlateforme;
+        start = false;
+      } else {
+        hauteurDuSol = hauteurDeLaTerre;
+      }
+    }
+
+    /*elementPlateformes.forEach(function (element) {
       let limiteGauchePlateforme = parseFloat(element.style.left);
       let nomElement = String(element.id);
       let limiteDroitePlateforme =
@@ -525,7 +553,7 @@ window.addEventListener("DOMContentLoaded", function () {
         hauteurDuSol = hauteurPlateforme;
         console.log("je suis en train de donner la bonne hauteur");
       }
-    });
+    });*/
   };
 
   const lancerLaVerificationPlateforme = function () {
