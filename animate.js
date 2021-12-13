@@ -48,9 +48,8 @@ window.addEventListener("DOMContentLoaded", function () {
       directionDesImages: "left",
       nombreDeFrames: 2,
       apparitionX: 210,
-    }
+    },
   };
-
 
   const elementsJeu = {
     chiens: {
@@ -58,18 +57,18 @@ window.addEventListener("DOMContentLoaded", function () {
         apparitionX: 330,
         apparitionY: 28,
         width: 60,
-        id: 'chien01',
-        class: 'pnj_chien',
-        url: 'images/sprites/chien02.png',
+        id: "chien01",
+        class: "pnj_chien",
+        url: "images/sprites/chien02.png",
         droite: false,
       },
       chien02: {
         apparitionX: -600,
         apparitionY: 28,
         width: 60,
-        id: 'chien02',
-        class: 'pnj_chien',
-        url: 'images/sprites/chien03.png',
+        id: "chien02",
+        class: "pnj_chien",
+        url: "images/sprites/chien03.png",
         droite: false,
       },
     },
@@ -79,9 +78,9 @@ window.addEventListener("DOMContentLoaded", function () {
         apparitionX: 120,
         apparitionY: 40,
         width: 140,
-        id: 'limitegauche',
-        class: 'panneaux',
-        url: 'images/panneaux/panneaulimite.png',
+        id: "limitegauche",
+        class: "panneaux",
+        url: "images/panneaux/panneaulimite.png",
         div: document.querySelectorAll(".panneaux")[0],
         droite: false,
       },
@@ -90,9 +89,9 @@ window.addEventListener("DOMContentLoaded", function () {
         apparitionX: 1400,
         apparitionY: 40,
         width: 120,
-        id: 'sodexo',
-        class: 'panneaux',
-        url: 'images/panneaux/sodexo.png',
+        id: "sodexo",
+        class: "panneaux",
+        url: "images/panneaux/sodexo.png",
         droite: true,
       },
       datawords: {
@@ -100,9 +99,9 @@ window.addEventListener("DOMContentLoaded", function () {
         apparitionX: 2000,
         apparitionY: 40,
         width: 120,
-        id: 'datawords',
-        class: 'panneaux',
-        url: 'images/panneaux/datawords.png',
+        id: "datawords",
+        class: "panneaux",
+        url: "images/panneaux/datawords.png",
         droite: true,
       },
     },
@@ -112,45 +111,45 @@ window.addEventListener("DOMContentLoaded", function () {
         div: document.getElementById("plat1"),
         apparitionX: 2200,
         apparitionY: 110,
-        width: 70,
-        url: 'images/platforms/city_small_clair.png',
+        width: 100,
+        url: "images/platforms/city_small_clair.png",
         id: "plat1",
         visible: false,
         droite: true,
-        class: 'plateforme'
+        class: "plateforme",
       },
       plat2: {
         div: document.getElementById("plat2"),
         apparitionX: 2500,
         apparitionY: 200,
         width: 190,
-        url: 'images/platforms/city_long_clair.png',
+        url: "images/platforms/city_long_clair.png",
         id: "plat2",
         visible: false,
         droite: true,
-        class: 'plateforme'
+        class: "plateforme",
       },
       plat3: {
         div: document.getElementById("plat3"),
         apparitionX: 3000,
         apparitionY: 110,
-        width: 70,
-        url: 'images/platforms/city_small_clair.png',
+        width: 100,
+        url: "images/platforms/city_small_clair.png",
         id: "plat3",
         visible: false,
         droite: true,
-        class: 'plateforme'
+        class: "plateforme",
       },
       plat4: {
         div: document.getElementById("plat4"),
         apparitionX: -3200,
         apparitionY: 200,
         width: 190,
-        url: 'images/platforms/city_small02.png',
+        url: "images/platforms/city_small02.png",
         id: "plat4",
         visible: false,
         droite: true,
-        class: 'plateforme'
+        class: "plateforme",
       },
     },
     bonus: {
@@ -158,9 +157,9 @@ window.addEventListener("DOMContentLoaded", function () {
         div: document.querySelectorAll(".bonus")[0],
         apparitionX: 1000,
         apparitionY: 28,
-        url: 'images/icones/diplome_1.png',
-        id: 'bonus1',
-        class: 'bonus',
+        url: "images/icones/diplome_1.png",
+        id: "bonus1",
+        class: "bonus",
         visible: false,
         droite: true,
         titre: `Master d'anglais`,
@@ -169,9 +168,9 @@ window.addEventListener("DOMContentLoaded", function () {
         div: document.querySelectorAll(".bonus")[1],
         apparitionX: 1400,
         apparitionY: 28,
-        url: 'images/icones/diplome_2.png',
-        id: 'bonus2',
-        class: 'bonus',
+        url: "images/icones/diplome_2.png",
+        id: "bonus2",
+        class: "bonus",
         visible: false,
         droite: true,
         titre: `Master d'allemand`,
@@ -180,9 +179,9 @@ window.addEventListener("DOMContentLoaded", function () {
         div: document.querySelectorAll(".bonus")[2],
         apparitionX: 3000,
         apparitionY: 80,
-        url: 'images/icones/diplome_3.png',
-        id: 'bonus3',
-        class: 'bonus',
+        url: "images/icones/diplome_3.png",
+        id: "bonus3",
+        class: "bonus",
         visible: false,
         droite: true,
         titre: `Gestion de projet`,
@@ -191,16 +190,16 @@ window.addEventListener("DOMContentLoaded", function () {
         div: document.querySelectorAll(".bonus")[3],
         apparitionX: 130,
         apparitionY: 100,
-        url: 'images/icones/bonus_explo.png',
-        id: 'explorateur',
-        class: 'bonus',
+        url: "images/icones/bonus_explo.png",
+        id: "explorateur",
+        class: "bonus",
         visible: false,
         droite: false,
         titre: `Bonus Explorateur`,
       },
-    }
+    },
   };
-
+  let hauteurDeLaTerre = 24;
   let persoPrincipal = sprite.classique.reference;
   let dialogueEnCours;
   let divScore = document.querySelector(".score");
@@ -231,8 +230,6 @@ window.addEventListener("DOMContentLoaded", function () {
     },
   };
 
-
-
   window.addEventListener("keydown", function (evenementSurevenu) {
     let positionDeAnne =
       document.getElementsByClassName("bg")[2].style["background-position-x"];
@@ -241,8 +238,8 @@ window.addEventListener("DOMContentLoaded", function () {
       if ("KeyF" === evenementSurevenu.code) {
         direction.droite = true;
         direction.idle = false;
-
       }
+
       if ("KeyD" === evenementSurevenu.code) {
         if (parseFloat(positionDeAnne) >= 120) {
           direction.gauche = false;
@@ -257,7 +254,8 @@ window.addEventListener("DOMContentLoaded", function () {
       }
       if ("ShiftRight" === evenementSurevenu.code) {
         if (!gestionDuSaut.enCours) {
-          lancerLeSaut(); // HELLOOOOOOOOOOOOOOOOOOOOOOOOO C'EST ICI 
+          lancerLaVerificationPlateforme();
+          lancerLeSaut();
         }
       }
       if ("Enter" === evenementSurevenu.code) {
@@ -273,13 +271,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("keyup", function (evenementSurevenu) {
     if ("KeyF" === evenementSurevenu.code) {
-      // yoda condition > voir wiki
       direction.droite = false;
       direction.idle = true;
-
     }
     if ("KeyD" === evenementSurevenu.code) {
-      // yoda condition > voir wiki
       direction.gauche = false;
       direction.idle = true;
     }
@@ -292,10 +287,11 @@ window.addEventListener("DOMContentLoaded", function () {
     if (direction.droite) {
       deplacementDuFond("bg", "droite");
       checkPositionAnne("bg");
-      faireApparaitreLesElementsDuJeu('bg');
+      faireApparaitreLesElementsDuJeu("bg");
       incrementPosition = -10;
       checkerElementEtDeplacerAvecLeFond();
       recupererBonus();
+      verifierSiPlateforme();
 
       if (persoPrincipal == sprite.classique.reference) {
         mouvementDuPerso = parseFloat(persoPrincipal.style.top);
@@ -323,9 +319,9 @@ window.addEventListener("DOMContentLoaded", function () {
       checkPositionAnne("bg");
       incrementPosition = 10;
       checkerElementEtDeplacerAvecLeFond();
-      faireApparaitreLesElementsDuJeu('bg');
-
+      faireApparaitreLesElementsDuJeu("bg");
       recupererBonus();
+      verifierSiPlateforme();
 
       if (persoPrincipal == sprite.classique.reference) {
         mouvementDuPerso = parseFloat(persoPrincipal.style.top);
@@ -395,17 +391,17 @@ window.addEventListener("DOMContentLoaded", function () {
 
     premierFond = parseFloat(
       document.getElementsByClassName(fondUtilise)[0].style[
-      "background-position-x"
+        "background-position-x"
       ]
     );
     deuxiemeFond = parseFloat(
       document.getElementsByClassName(fondUtilise)[1].style[
-      "background-position-x"
+        "background-position-x"
       ]
     );
     troisiemeFond = parseFloat(
       document.getElementsByClassName(fondUtilise)[2].style[
-      "background-position-x"
+        "background-position-x"
       ]
     );
 
@@ -463,18 +459,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const gestionDuSaut = {
     enCours: false,
-    debut: {
-      limite: 45,
-      incrementDeSaut: 10,
-    },
-    milieu: {
-      limite: 140,
-      incrementDeSaut: 5,
-    },
-    fin: {
-      limite: 180,
-      incrementDeSaut: 4,
-    },
     monter: true,
     hauteurDeBase: parseFloat(divPersoPrincipal.style.bottom),
   };
@@ -483,65 +467,10 @@ window.addEventListener("DOMContentLoaded", function () {
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SAUTS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SAUTS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 
-  /*   let forceDuSaut = 23;
-    let stopForce;
-  
-    var sautDuPersonnage = function () {
-      stopForce = setInterval(function () {
-        if (!gestionDuSaut.enCours) {
-          gestionDuSaut.enCours = true;
-          hauteurDuPerso = parseFloat(divPersoPrincipal.style.bottom);
-  
-          if (isNaN(hauteurDuPerso)) {
-            hauteurDuPerso = hauteurDuSol;
-          }
-  
-          hauteurDuPerso = hauteurDuPerso + forceDuSaut;
-          divPersoPrincipal.style.bottom = hauteurDuPerso + "px";
-  
-          let elementPlateformes = document.querySelectorAll('.plateforme');
-  
-          elementPlateformes.forEach(function (element) {
-            let positionXplateforme = parseFloat(element.style.left);
-            let taillePlateforme = parseFloat(element.style.width);
-            let hauteurPlateforme = parseFloat(element.style.bottom) + 20;
-  
-            if (positionXplateforme < 290 || positionXplateforme + taillePlateforme > 240 || (positionXplateforme > 240 && positionXplateforme + taillePlateforme < 290)) {
-              if (divPersoPrincipal.style.bottom > hauteurPlateforme) {
-                hauteurDuSol = hauteurPlateforme;
-              }
-  
-            }
-          }
-          )
-  
-  
-          if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
-            divPersoPrincipal.style.bottom = (hauteurDuSol + 1) + "px";
-            clearInterval(stopForce);
-            gestionDuSaut.enCours = false;
-            console.log('boucle stop, status: ' + gestionDuSaut.enCours);
-  
-          } else {
-            forceDuSaut = forceDuSaut - 1;
-            console.log('ici');
-            console.log('boucle continue, status: ' + gestionDuSaut.enCours);
-          }
-  
-        }
-        else {
-          gestionDuSaut.enCours = false;
-          console.log(forceDuSaut);
-          clearInterval(stopForce);
-        }
-      }, 10);
-    }; */
-
   let forceDuSaut = 23;
   let stopForce;
 
   var sautDuPersonnage = function () {
-    console.log("saut lancé");
     gestionDuSaut.enCours = true;
     positionYPerso = parseFloat(divPersoPrincipal.style.bottom);
 
@@ -552,85 +481,92 @@ window.addEventListener("DOMContentLoaded", function () {
     positionYPerso = positionYPerso + forceDuSaut;
     divPersoPrincipal.style.bottom = positionYPerso + "px";
 
-    verifierSiPlateforme();
-
-    if (gestionDuSaut.enCours && parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
-      divPersoPrincipal.style.bottom = (hauteurDuSol + 1) + "px";
+    if (
+      gestionDuSaut.enCours &&
+      parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol
+    ) {
+      divPersoPrincipal.style.bottom = hauteurDuSol + 1 + "px";
       gestionDuSaut.enCours = false;
       forceDuSaut = 23;
       clearInterval(stopForce);
-
     } else {
       forceDuSaut = forceDuSaut - 1;
     }
-
-  }
+  };
 
   const lancerLeSaut = function () {
     stopForce = setInterval(sautDuPersonnage, 15);
   };
 
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM VERIFIER SI PLATEFORMES MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 
   const verifierSiPlateforme = function () {
-    let elementPlateformes = document.querySelectorAll('.plateforme');
+    let elementPlateformes = document.querySelectorAll(".plateforme");
 
     elementPlateformes.forEach(function (element) {
       let limiteGauchePlateforme = parseFloat(element.style.left);
       let nomElement = String(element.id);
-      let taillePlateforme = elementsJeu.plateformes[nomElement].width; //NaN il faut initialiser la valeur
+      let limiteDroitePlateforme =
+        limiteGauchePlateforme +
+        parseFloat(elementsJeu.plateformes[nomElement].width);
       let hauteurPlateforme = parseFloat(element.style.bottom) + 20;
 
-      // selecteur pété ici il faut que je revoie comment vérifier ça car ça buggue
-      if (limiteGauchePlateforme < 300 || limiteGauchePlateforme + taillePlateforme > 200 || (limiteGauchePlateforme > 200 && limiteGauchePlateforme + taillePlateforme < 300)) {
-        if (parseFloat(divPersoPrincipal.style.bottom) > hauteurPlateforme) {
-          hauteurDuSol = hauteurPlateforme;
-          console.log(hauteurDuSol);
-        } else {
-          hauteurDuSol = 24;
-        }
-
+      let limiteHitboxGauche = 300;
+      let limiteHitboxDroite = 200;
+      console.log(element.id);
+      if (
+        (limiteGauchePlateforme > limiteHitboxDroite &&
+          limiteGauchePlateforme < limiteHitboxGauche) ||
+        (limiteDroitePlateforme > limiteHitboxDroite &&
+          limiteDroitePlateforme < limiteHitboxGauche) ||
+        (limiteGauchePlateforme > limiteHitboxGauche &&
+          limiteDroitePlateforme < limiteHitboxDroite)
+      ) {
+        hauteurDuSol = hauteurPlateforme;
+        console.log("je suis en train de donner la bonne hauteur");
       }
-    }
-    )
+    });
   };
-  // fin de cette fonction 
 
+  const lancerLaVerificationPlateforme = function () {
+    requestAnimationFrame(verifierSiPlateforme);
+  };
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   let hauteurDuSol = 24;
-  const gravite = 1;
-  let toucherLeSol;
+  let gravite = 23;
   let forceEnAction = false;
 
   const forceGravitationnelle = function () {
-    if (!forceEnAction) {
-      toucherLeSol = setInterval(function () {
-        let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
+    hauteurDuSol = 24;
+    let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
+    forceEnAction = true;
 
-        if (isNaN(maHauteur)) {
-          maHauteur = hauteurDuSol;
-        }
+    if (isNaN(maHauteur)) {
+      maHauteur = hauteurDuSol;
+    }
 
-        maHauteur = maHauteur - gravite;
+    maHauteur = maHauteur - gravite;
+    gravite = gravite - 1;
 
-        divPersoPrincipal.style.bottom = maHauteur + "px";
+    divPersoPrincipal.style.bottom = maHauteur + "px";
 
-        if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
-          maHauteur = hauteurDuSol;
-          clearInterval(toucherLeSol);
-        }
+    if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
+      maHauteur = hauteurDuSol;
+      forceEnAction = false;
+      gravite = 23;
+    }
 
-        forceEnAction = true;
-        console.log(maHauteur);
-      }, 15);
-    } else {
-      clearInterval(toucherLeSol);
+    if (forceEnAction) {
+      requestAnimationFrame(forceGravitationnelle);
     }
   };
 
-  forceGravitationnelle();
+  const lancerLaGravitation = function () {
+    requestAnimationFrame(forceGravitationnelle);
+  };
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SETINTERVAL MVMT MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   window.setInterval(function () {
@@ -680,6 +616,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
       opacityIntro = opacityIntro - reduceOpacity;
       divIntro.style.opacity = opacityIntro;
+      divPersoPrincipal.style.bottom = "25px";
 
       let deplacement = parseFloat(divPersoPrincipal.style.left);
       if (isNaN(deplacement)) {
@@ -707,7 +644,6 @@ window.addEventListener("DOMContentLoaded", function () {
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 
   var deplacementDeLElementAvecFond = function (objet, positionDepart) {
-
     var positionX = parseFloat(objet.style.left);
 
     if (isNaN(positionX)) {
@@ -742,7 +678,7 @@ window.addEventListener("DOMContentLoaded", function () {
   var checkPositionAnne = function (nomDuFond) {
     let positionDeAnne =
       document.getElementsByClassName(nomDuFond)[2].style[
-      "background-position-x"
+        "background-position-x"
       ];
     if (parseFloat(positionDeAnne) >= 120 && direction.droite == false) {
       direction.gauche = false;
@@ -757,8 +693,8 @@ window.addEventListener("DOMContentLoaded", function () {
     if (
       parseFloat(positionDeAnne) >= -1200 &&
       parseFloat(positionDeAnne) <= -1140 &&
-      !document.getElementById('bonus1') &&
-      !document.getElementById('bonus2')
+      !document.getElementById("bonus1") &&
+      !document.getElementById("bonus2")
     ) {
       if (!dialogues.diplome.vu) {
         direction.gauche = false;
@@ -785,15 +721,16 @@ window.addEventListener("DOMContentLoaded", function () {
 
       if (element.style.display != "none") {
         if (isNaN(positionYPerso)) {
-          positionYPerso = 25;
+          positionYPerso = hauteurDuSol + 1;
         }
 
         if (isNaN(positionYBonus)) {
-          positionYBonus = 40;
+          positionYBonus = elementJeu.bonus[string(element.id)].apparitionY;
         }
 
         if (positionXBonus < 290 && positionXBonus > 230) {
           if (positionYPerso <= positionYBonus + 50) {
+            //revoir les éléments de détection des bonus
             score.innerHTML = parseFloat(score.innerHTML) + 200;
             element.remove();
           }
@@ -802,7 +739,6 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   };
 
-
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CREER les plateformes, chiens, bonus... MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CREER les plateformes, chiens, bonus... MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CREER les plateformes, chiens, bonus... MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -810,39 +746,39 @@ window.addEventListener("DOMContentLoaded", function () {
   const faireApparaitreLesElementsDuJeu = function (nomDuFond) {
     let positionDeAnne = parseFloat(
       document.getElementsByClassName(nomDuFond)[2].style[
-      "background-position-x"
-      ]);
+        "background-position-x"
+      ]
+    );
     //vérifier et indiquer les éléments
     let decalageAffichage = 600;
 
     for (const property in elementsJeu) {
-
       for (const element in elementsJeu[property]) {
-
         if (!elementsJeu[property][element].visible) {
-          let nouvelleDiv = document.createElement('div');
+          let nouvelleDiv = document.createElement("div");
           nouvelleDiv.id = elementsJeu[property][element].id;
           nouvelleDiv.className = elementsJeu[property][element].class;
-          nouvelleDiv.style.bottom = elementsJeu[property][element].apparitionY + 'px';
-          nouvelleDiv.style.left = elementsJeu[property][element].apparitionX + 'px';
+          nouvelleDiv.style.bottom =
+            elementsJeu[property][element].apparitionY + "px";
+          nouvelleDiv.style.left =
+            elementsJeu[property][element].apparitionX + "px";
 
           if (elementsJeu[property][element].titre) {
-            let p = document.createElement('p');
+            let p = document.createElement("p");
             p.innerHTML = elementsJeu[property][element].titre;
             nouvelleDiv.appendChild(p);
           }
 
-          let image = document.createElement('img');
+          let image = document.createElement("img");
           image.src = elementsJeu[property][element].url;
-          image.style.width = elementsJeu[property][element].id + 'px';
+          image.style.width = elementsJeu[property][element].id + "px";
           nouvelleDiv.appendChild(image);
-          document.querySelector('content').appendChild(nouvelleDiv);
+          document.querySelector("content").appendChild(nouvelleDiv);
 
           elementsJeu[property][element].visible = true;
         }
       }
     }
-
   };
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM CHEcker LES ELEMEnTS et leS dePlaCEr MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -851,65 +787,57 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const checkerElementEtDeplacerAvecLeFond = function () {
     //bonus
-    let tousLesBonus = document.querySelectorAll('.bonus');
+    let tousLesBonus = document.querySelectorAll(".bonus");
 
     if (tousLesBonus) {
       tousLesBonus.forEach(function (element) {
         let positionDeDepart = parseFloat(element.style.left);
 
         if (isNaN(positionDeDepart)) {
-
           let reference = String(element.id);
 
-          positionDeDepart = elementsJeu.bonus[reference]['apparitionX'];
+          positionDeDepart = elementsJeu.bonus[reference]["apparitionX"];
         }
         deplacementDeLElementAvecFond(element, positionDeDepart);
-      }
-      );
+      });
     }
 
-
     //chiens
-    let tousLesChiens = document.querySelectorAll('.pnj_chien');
+    let tousLesChiens = document.querySelectorAll(".pnj_chien");
     tousLesChiens.forEach(function (element) {
       let positionDeDepart = parseFloat(element.style.left);
 
       if (isNaN(positionDeDepart)) {
         let reference = String(element.id);
-        positionDeDepart = elementsJeu.chiens[reference]['apparitionX'];
+        positionDeDepart = elementsJeu.chiens[reference]["apparitionX"];
       }
 
       deplacementDeLElementAvecFond(element, positionDeDepart);
-    }
-    );
+    });
 
     //panneaux
-    let tousLesPanneaux = document.querySelectorAll('.panneaux');
+    let tousLesPanneaux = document.querySelectorAll(".panneaux");
     tousLesPanneaux.forEach(function (element) {
       let positionDeDepart = parseFloat(element.style.left);
 
       if (isNaN(positionDeDepart)) {
         let reference = String(element.id);
-        positionDeDepart = elementsJeu.panneaux[reference]['apparitionX'];
-        console.log('panneau: ' + positionDeDepart)
+        positionDeDepart = elementsJeu.panneaux[reference]["apparitionX"];
+        console.log("panneau: " + positionDeDepart);
       }
       deplacementDeLElementAvecFond(element, positionDeDepart);
-    }
-    );
+    });
 
     //plateformes
-    let toutesLesPlateformes = document.querySelectorAll('.plateforme');
+    let toutesLesPlateformes = document.querySelectorAll(".plateforme");
     toutesLesPlateformes.forEach(function (element) {
       let positionDeDepart = parseFloat(element.style.left);
 
       if (isNaN(positionDeDepart)) {
         let reference = String(element.id);
-        positionDeDepart = elementsJeu.plateformes[reference]['apparitionX'];
+        positionDeDepart = elementsJeu.plateformes[reference]["apparitionX"];
       }
       deplacementDeLElementAvecFond(element, positionDeDepart);
-    }
-    );
-
-  }
-
+    });
+  };
 });
