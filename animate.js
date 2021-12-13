@@ -498,62 +498,58 @@ window.addEventListener("DOMContentLoaded", function () {
   };
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM VERIFIER SI PLATEFORMES MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
-
+  let hauteurDuSol = 24;
+  let surPlateforme = false;
   const verifierSiPlateforme = function () {
     let elementPlateformes = document.querySelectorAll(".plateforme");
-    console.log(elementPlateformes);
 
     let start = true;
-    for (let i = 0; start || i == elementPlateformes.length; i++) {
+    for (let i = 0; start; i++) {
       let limiteGauchePlateforme = parseFloat(elementPlateformes[i].style.left);
       let nomElement = elementPlateformes[i].id;
-      console.log(nomElement);
       let limiteDroitePlateforme =
-        limiteGauchePlateforme +
+        limiteGauchePlateforme -
         parseFloat(elementsJeu.plateformes[nomElement].width);
+      let taillePlateforme = parseFloat(
+        elementsJeu.plateformes[nomElement].width
+      );
       let hauteurPlateforme =
         parseFloat(elementPlateformes[i].style.bottom) + 20;
 
+      console.log("limiteDroitePlateforme" + limiteDroitePlateforme);
       let limiteHitboxGauche = 300;
       let limiteHitboxDroite = 200;
-      if (
-        (limiteGauchePlateforme > limiteHitboxDroite &&
-          limiteGauchePlateforme < limiteHitboxGauche) ||
-        (limiteDroitePlateforme > limiteHitboxDroite &&
-          limiteDroitePlateforme < limiteHitboxGauche) ||
-        (limiteGauchePlateforme > limiteHitboxGauche &&
-          limiteDroitePlateforme < limiteHitboxDroite)
-      ) {
+
+      let test1 =
+        limiteGauchePlateforme > limiteHitboxDroite && //teste si bout gauche dans hitbox
+        limiteGauchePlateforme < limiteHitboxGauche;
+
+      let test2 =
+        limiteDroitePlateforme > limiteHitboxDroite && //test si bout droite dans hitbox
+        limiteDroitePlateforme < limiteHitboxGauche;
+
+      let test3 =
+        limiteGauchePlateforme > limiteHitboxGauche && //test si centre dans hitbox
+        limiteDroitePlateforme < limiteHitboxDroite;
+
+      console.log(test1);
+      console.log(test2);
+      console.log(test3);
+
+      if (test1 || test2 || test3) {
         hauteurDuSol = hauteurPlateforme;
+        surPlateforme = true;
         start = false;
       } else {
         hauteurDuSol = hauteurDeLaTerre;
+        surPlateforme = false;
+        rejoindreLeSol();
+      }
+
+      if (i + 1 == elementPlateformes.length) {
+        start = false;
       }
     }
-
-    /*elementPlateformes.forEach(function (element) {
-      let limiteGauchePlateforme = parseFloat(element.style.left);
-      let nomElement = String(element.id);
-      let limiteDroitePlateforme =
-        limiteGauchePlateforme +
-        parseFloat(elementsJeu.plateformes[nomElement].width);
-      let hauteurPlateforme = parseFloat(element.style.bottom) + 20;
-
-      let limiteHitboxGauche = 300;
-      let limiteHitboxDroite = 200;
-      console.log(element.id);
-      if (
-        (limiteGauchePlateforme > limiteHitboxDroite &&
-          limiteGauchePlateforme < limiteHitboxGauche) ||
-        (limiteDroitePlateforme > limiteHitboxDroite &&
-          limiteDroitePlateforme < limiteHitboxGauche) ||
-        (limiteGauchePlateforme > limiteHitboxGauche &&
-          limiteDroitePlateforme < limiteHitboxDroite)
-      ) {
-        hauteurDuSol = hauteurPlateforme;
-        console.log("je suis en train de donner la bonne hauteur");
-      }
-    });*/
   };
 
   const lancerLaVerificationPlateforme = function () {
@@ -563,29 +559,28 @@ window.addEventListener("DOMContentLoaded", function () {
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
-  let hauteurDuSol = 24;
   let gravite = 23;
   let forceEnAction = false;
 
-  const forceGravitationnelle = function () {
+  /*  const forceGravitationnelle = function () {
     hauteurDuSol = 24;
     let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
     forceEnAction = true;
 
     if (isNaN(maHauteur)) {
-      maHauteur = hauteurDuSol;
+      maHauteur = hauteurDuSol + 1;
     }
 
     maHauteur = maHauteur - gravite;
     gravite = gravite - 1;
-
-    divPersoPrincipal.style.bottom = maHauteur + "px";
 
     if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
       maHauteur = hauteurDuSol;
       forceEnAction = false;
       gravite = 23;
     }
+
+    divPersoPrincipal.style.bottom = maHauteur + "px";
 
     if (forceEnAction) {
       requestAnimationFrame(forceGravitationnelle);
@@ -594,6 +589,44 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const lancerLaGravitation = function () {
     requestAnimationFrame(forceGravitationnelle);
+  }; */
+  let stopDescente;
+  let graviteDescente = 1;
+
+  const rejoindreLeSol = function () {
+    let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
+    console.log("rejoindre le sol : ici");
+    if (!gestionDuSaut.enCours && maHauteur > hauteurDeLaTerre + 10) {
+      if (!surPlateforme) {
+        forceEnAction = true;
+        console.log("rejoindre le sol : là");
+        forceGravitionnelle();
+      }
+    }
+  };
+
+  const forceGravitionnelle = function () {
+    requestAnimationFrame(function () {
+      let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
+      maHauteur = maHauteur - graviteDescente;
+      console.log("rejoindre le sol : dans la boucle");
+      graviteDescente = graviteDescente + 1;
+
+      if (graviteDescente > 23) {
+        graviteDescente = 23;
+      }
+
+      divPersoPrincipal.style.bottom = maHauteur + "px";
+
+      if (maHauteur <= hauteurDeLaTerre) {
+        forceEnAction = false;
+        divPersoPrincipal.style.bottom = hauteurDeLaTerre + 1 + "px";
+      }
+
+      if (maHauteur > hauteurDeLaTerre) {
+        requestAnimationFrame(forceGravitionnelle);
+      }
+    });
   };
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM SETINTERVAL MVMT MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
