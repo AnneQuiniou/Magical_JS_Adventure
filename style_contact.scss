@@ -43,6 +43,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 0;
+  height: 100vh;
   width: 100%;
 
   // ----------- Mise en forme des polices-----------  //
@@ -105,19 +106,76 @@ nav {
 
 // ----------------------------- Propriétés CONTENT  ----------------------------  //
 content {
-  position: relative;
   z-index: 1;
-  height: 1000px;
+  flex: 1;
   z-index: 6;
+
   h2 {
     font-family: $font_titles;
     font-size: 2.2em;
     letter-spacing: 0.1em;
   }
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+
+    li {
+      list-style-type: "✦ ";
+      text-transform: lowercase;
+      list-style-type: none;
+      letter-spacing: 0.1em;
+      padding: 0px 40px;
+      img {
+        width: 20px;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      color: $highlight;
+    }
+  }
 }
 
-li {
-  list-style-type: "✦ ";
+#container_animation {
+  position: absolute;
+  overflow: hidden;
+  width: 220px;
+  height: 330px;
+  z-index: 10;
+}
+
+#contenu_animation {
+  position: absolute;
+  margin-left: 0;
+  margin-top: -60px;
+  z-index: 10;
+  animation-name: anne-imation;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(4);
+}
+
+#description {
+  position: relative;
+  margin-top: 50px;
+  left: 20%;
+  min-width: 600px;
+  width: 60%;
+}
+
+@keyframes anne-imation {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -893px;
+  }
 }
 
 // ----------------------------- Propriétés FOOTER  ----------------------------  //

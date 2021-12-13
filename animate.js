@@ -516,6 +516,7 @@ window.addEventListener("DOMContentLoaded", function () {
       let hauteurPlateforme =
         parseFloat(elementPlateformes[i].style.bottom) + 20;
 
+      // UTILISER GETBOUDING CLIENT RECT
       console.log("limiteDroitePlateforme" + limiteDroitePlateforme);
       let limiteHitboxGauche = 300;
       let limiteHitboxDroite = 200;
