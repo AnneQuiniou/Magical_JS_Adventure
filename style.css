@@ -117,8 +117,8 @@
   position: absolute;
   height: 80px;
   width: 60px;
+  bottom: 39px;
   overflow: hidden;
-  display: none;
 }
 .pnj_sorcier img {
   position: absolute;

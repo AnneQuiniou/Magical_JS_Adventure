@@ -118,10 +118,8 @@
   position: absolute;
   height: 80px;
   width: 60px;
+  bottom: 39px;
   overflow: hidden;
-  bottom: 40px;
-  right: 400px;
-  display: none;
 }
 .pnj_sorcier img {
   position: absolute;
@@ -179,20 +177,16 @@
   /*   left: 0px; */
 }
 
-#plat1 img {
+.plat-small img {
   width: 70px;
 }
 
-#plat2 img {
+.plat-med img {
   width: 190px;
 }
 
-#plat3 img {
-  width: 70px;
-}
-
-#plat4 img {
-  width: 190px;
+.plat-long img {
+  width: 290px;
 }
 
 .notplayable {
@@ -263,7 +257,7 @@ body {
   background-color: #5c5980;
   background-size: 80%;
   background-repeat: no-repeat;
-  background-image: url("images/bg_mystery/background_1.png");
+  background-image: url("images/bg_mystery/background_1_large_trans.png");
   background-position: bottom right;
   display: flex;
   flex-direction: column;

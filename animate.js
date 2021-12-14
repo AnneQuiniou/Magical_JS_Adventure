@@ -63,7 +63,7 @@ window.addEventListener("DOMContentLoaded", function () {
         droite: false,
       },
       chien02: {
-        apparitionX: 3290,
+        apparitionX: 3330,
         apparitionY: 28,
         width: 60,
         id: "chien02",
@@ -359,7 +359,7 @@ window.addEventListener("DOMContentLoaded", function () {
       },
       commercial: {
         apparitionX: 5000,
-        apparitionY: 320,
+        apparitionY: 350,
         url: "images/icones/commercial.png",
         id: "estomac",
         class: "bonus",
@@ -472,42 +472,69 @@ window.addEventListener("DOMContentLoaded", function () {
       perso: "Anne",
       texte:
         "Gif-sur-DotNet ?<br> Mais non, je veux aller à Paris ! Allez, hop, demi-tour !",
+      nom: 'limite',
     },
     intro0: {
       perso: "<strong>Guide</strong>",
       texte: `Utilisez <strong>D et F</strong> pour aller à gauche et à droite.<br>
             Utilisez <strong>Maj</strong> pour sauter et <strong>Entrée</strong> pour dialoguer.`,
-      next: this.intro1,
+      nom: 'intro0',
     },
     intro1: {
       positionVSparallax: "-255",
       perso: "Anne",
       texte: `Wow, Paris. Quelle belle ville. J'ai hâte d'y avoir mes diplômes.`,
+      nom: 'intro1',
     },
     diplome: {
       positionVSparallax: "-255",
       perso: "Anne",
       texte: `Parée pour entrer dans le monde du travail avec mes diplômes!`,
       vu: false,
+      nom: 'diplome',
     },
     sodexo: {
       positionVSparallax: "-255",
       perso: "Anne",
       texte: `C'était cool chez Sodexo mais j'ai envie de projets plus courts et concrets. Peut être en changeant d'environnement?`,
       vu: false,
+      nom: 'sodexo',
     },
     reflexion: {
       positionVSparallax: '-255',
       perso: "Anne",
-      texte: "Ca fait bizarre toutes ces années. Même Paris n'est plus la même, on a genre 4 sortes de pigeons bicolores maintenant. Et moi, j'ai l'impression d'avoir fait le tour de la gestion de projet...",
+      texte: "Ca fait bizarre toutes ces années. Même Paris n'est plus la même, on a 4 sortes de pigeons bicolores maintenant. Et moi, j'ai l'impression d'avoir fait le tour de la gestion de projet...",
       vu: false,
+      nom: 'reflexion',
     },
     surprise: {
       positionVSparallax: '-255',
       perso: "Anne",
       texte: "???",
       vu: false,
-    }
+      nom: 'surprise',
+    },
+    challenge: {
+      positionVSparallax: '-255',
+      perso: "????",
+      texte: "Oseras-tu...<br>Tester tes limites...<br>Risquer de casser ton clavier...<br>Pour devenir...<br> Magicienne du JavaScript??",
+      vu: false,
+      nom: 'challenge',
+    },
+    challenge2: {
+      positionVSparallax: '-255',
+      perso: "Anne",
+      texte: "Gandalf ????",
+      vu: false,
+      nom: 'challenge2',
+    },
+    challenge3: {
+      positionVSparallax: '-255',
+      perso: "Anne du futur",
+      texte: "Oulà malheureuse, tu veux qu'on se fasse poursuivre par les héritiers de JRR Tolkien? Non, je suis toi du futur! Viens avec moi et deviens plus puissante que tu n'imaginais!",
+      vu: false,
+      nom: 'challenge3',
+    },
   };
 
   window.addEventListener("keydown", function (evenementSurevenu) {
@@ -997,6 +1024,7 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     lancerLesNuages();
+
     let sorcier = document.createElement('div');
     sorcier.className = 'pnj_sorcier';
     sorcier.style = '{bottom: 350px; left: 750px;}';
@@ -1006,7 +1034,11 @@ window.addEventListener("DOMContentLoaded", function () {
     sorcier.appendChild(image);
 
     document.querySelector('content').appendChild(sorcier);
+    lancerLeSorcier();
 
+    if (document.querySelector('.pnj_sorcier').style.left == stopSorcier) {
+      afficherDialogue(dialogues.challenge);
+    };
 
 
 
@@ -1022,13 +1054,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
   let stopDeplacementNuage;
   let premierStopNuage = 260;
+  let positionXNuage;
 
   const deplacerNuages = function () {
     let fondsNuage = document.querySelectorAll('.bg_nuages');
-    let increment = 10;
+    let increment = 5;
 
     fondsNuage.forEach(function (element) {
-      let positionXNuage = parseFloat(element.style.left);
+      positionXNuage = parseFloat(element.style.left);
       if (isNaN(positionXNuage)) {
         positionXNuage = 750;
       }
@@ -1044,6 +1077,37 @@ window.addEventListener("DOMContentLoaded", function () {
   const lancerLesNuages = function () {
     stopDeplacementNuage = setInterval(deplacerNuages, 25);
   };
+
+
+  let stopDeplacementSorcier;
+  let positionXSorcier;
+  let stopSorcier = 340;
+  let positionOKpourDialogue = false;
+
+  const lancerLeSorcier = function () {
+    stopDeplacementSorcier = setInterval(deplacerSorcier, 25);
+  };
+  const deplacerSorcier = function () {
+    let sorcier = document.querySelector('.pnj_sorcier');
+    let increment = 10;
+
+    positionXSorcier = parseFloat(sorcier.style.left);
+    if (isNaN(positionXSorcier)) {
+      positionXSorcier = 750;
+    }
+    positionXSorcier = positionXSorcier - increment;
+    sorcier.style.left = positionXSorcier + 'px';
+
+    if (positionXSorcier == stopSorcier) {
+      clearInterval(stopDeplacementSorcier);
+      positionOKpourDialogue = true;
+    };
+  }
+
+
+  // ne marche pas, à finir
+
+
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -1068,6 +1132,7 @@ window.addEventListener("DOMContentLoaded", function () {
     if (!dialogueVisible) {
       let dialogue = document.createElement("div");
       dialogue.className = "dialogue";
+      dialogue.id = objetTexte.nom;
       dialogue.innerHTML = `
       <p>${objetTexte.perso} :<br>
       ${objetTexte.texte}</p>`;
