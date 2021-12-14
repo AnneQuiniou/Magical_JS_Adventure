@@ -204,7 +204,7 @@ window.addEventListener("DOMContentLoaded", function () {
         titre: `Bonus Explorateur`,
       },
       estomac: {
-        apparitionX: 3200,
+        apparitionX: 32000,
         apparitionY: 300,
         url: "images/icones/estomac.png",
         id: "estomac",
@@ -264,7 +264,7 @@ window.addEventListener("DOMContentLoaded", function () {
         titre: `Esprit d'équipe`,
       },
       plante: {
-        apparitionX: 48000,
+        apparitionX: 4800,
         apparitionY: 300,
         url: "images/icones/plante.png",
         id: "plante",
@@ -681,11 +681,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
         }
       } else {
-
         compte++;
-        console.log('compte' + compte)
       }
-      console.log('test longueur' + compte == plateformes.length);
 
       if (compte == plateformes.length) {
         hauteurDuSol = hauteurDeLaTerre;
@@ -717,8 +714,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
       let hauteurPlateforme =
         parseFloat(document.querySelectorAll(".plateforme")[i].style.bottom) + 20;
-
-      let siBottomPersoSurPlateforme = parseInt(informationsPerso.bottom) == parseInt(informationsPlateforme.bottom) + 20;
 
       let siDroitePersoSurPlateforme = parseInt(informationsPerso.right - 20) > parseInt(informationsPlateforme.left) && parseInt(informationsPerso.right - 20) < parseInt(informationsPlateforme.right);
 
@@ -937,11 +932,14 @@ window.addEventListener("DOMContentLoaded", function () {
     lesBonus.forEach(function (element) {
       let positionXBonus = parseFloat(element.style.left);
       let positionYBonus = parseFloat(element.style.bottom);
-      let positionYPerso = parseFloat(divPersoPrincipal.style.bottom);
+      let topBonus = parseInt(element.children[1].getBoundingClientRect().top);
+      let bottomBonus = parseInt(element.children[1].getBoundingClientRect().bottom);
+      let topPerso = parseInt(divPersoPrincipal.getBoundingClientRect().top);
+      let bottomPerso = parseInt(divPersoPrincipal.getBoundingClientRect().bottom);
 
       if (element.style.display != "none") {
-        if (isNaN(positionYPerso)) {
-          positionYPerso = hauteurDuSol + 1;
+        if (isNaN(bottomPerso)) {
+          bottomPerso = hauteurDuSol + 1;
         }
 
         if (isNaN(positionYBonus)) {
@@ -949,7 +947,15 @@ window.addEventListener("DOMContentLoaded", function () {
         }
 
         if (positionXBonus < 290 && positionXBonus > 230) {
-          if (positionYPerso <= positionYBonus + 50) {
+          let topBonusDansHitBoxPerso = topBonus > topPerso && topBonus < bottomPerso;
+          let bottomBonusDansHitBoxPerso = bottomBonus < bottomPerso && bottomBonus > topPerso;
+          let BonusDansHitBoxPerso = topBonus > topPerso && bottomBonus < bottomPerso;
+          console.log('top bonus: ' + topBonus);
+          console.log('bottom bonus: ' + bottomBonus);
+          console.log('top perso: ' + topPerso);
+          console.log('bottom pser: ' + bottomPerso);
+
+          if (topBonusDansHitBoxPerso || bottomBonusDansHitBoxPerso || BonusDansHitBoxPerso) {
             //revoir les éléments de détection des bonus
             score.innerHTML = parseFloat(score.innerHTML) + 200;
             element.remove();
@@ -1043,7 +1049,6 @@ window.addEventListener("DOMContentLoaded", function () {
       if (isNaN(positionDeDepart)) {
         let reference = String(element.id);
         positionDeDepart = elementsJeu.panneaux[reference]["apparitionX"];
-        console.log("panneau: " + positionDeDepart);
       }
       deplacementDeLElementAvecFond(element, positionDeDepart);
     });
