@@ -63,7 +63,7 @@ window.addEventListener("DOMContentLoaded", function () {
         droite: false,
       },
       chien02: {
-        apparitionX: -600,
+        apparitionX: 3290,
         apparitionY: 28,
         width: 60,
         id: "chien02",
@@ -96,7 +96,7 @@ window.addEventListener("DOMContentLoaded", function () {
       },
       datawords: {
         div: document.querySelectorAll(".panneaux")[2],
-        apparitionX: 2800,
+        apparitionX: 3600,
         apparitionY: 40,
         width: 120,
         id: "datawords",
@@ -117,6 +117,17 @@ window.addEventListener("DOMContentLoaded", function () {
     },
 
     plateformes: {
+      plat0: {
+        div: document.getElementById("plat0"),
+        apparitionX: 1700,
+        apparitionY: 140,
+        width: 290,
+        url: "images/platforms/city_verylong_clair.png",
+        id: "plat0",
+        visible: false,
+        droite: true,
+        class: "plateforme plat-long",
+      },
       plat1: {
         div: document.getElementById("plat1"),
         apparitionX: 2200,
@@ -126,7 +137,7 @@ window.addEventListener("DOMContentLoaded", function () {
         id: "plat1",
         visible: false,
         droite: true,
-        class: "plateforme",
+        class: "plateforme plat-small",
       },
       plat2: {
         div: document.getElementById("plat2"),
@@ -137,32 +148,75 @@ window.addEventListener("DOMContentLoaded", function () {
         id: "plat2",
         visible: false,
         droite: true,
-        class: "plateforme",
+        class: "plateforme plat-med",
+      },
+      plat2a: {
+        div: document.getElementById("plat2"),
+        apparitionX: 2800,
+        apparitionY: 100,
+        width: 290,
+        url: "images/platforms/city_verylong_clair.png",
+        id: "plat2a",
+        visible: false,
+        droite: true,
+        class: "plateforme plat-long",
       },
       plat3: {
         div: document.getElementById("plat3"),
-        apparitionX: 2920,
+        apparitionX: 3920,
         apparitionY: 110,
         width: 100,
         url: "images/platforms/city_small_clair.png",
         id: "plat3",
         visible: false,
         droite: true,
-        class: "plateforme",
+        class: "plateforme plat-small",
       },
       plat4: {
         div: document.getElementById("plat4"),
-        apparitionX: -3200,
-        apparitionY: 200,
-        width: 190,
-        url: "images/platforms/city_small02.png",
+        apparitionX: 4200,
+        apparitionY: 110,
+        width: 100,
+        url: "images/platforms/city_small_clair.png",
         id: "plat4",
         visible: false,
         droite: true,
-        class: "plateforme",
+        class: "plateforme plat-small",
+      },
+      plat5: {
+        div: document.getElementById("plat5"),
+        apparitionX: 4600,
+        apparitionY: 140,
+        width: 290,
+        url: "images/platforms/city_verylong_clair.png",
+        id: "plat5",
+        visible: false,
+        droite: true,
+        class: "plateforme plat-long",
+      },
+      plat6: {
+        div: document.getElementById("plat6"),
+        apparitionX: 5000,
+        apparitionY: 300,
+        width: 190,
+        url: "images/platforms/city_long_clair.png",
+        id: "plat6",
+        visible: false,
+        droite: true,
+        class: "plateforme plat-med",
       },
     },
     bonus: {
+      explorateur: {
+        apparitionX: 145,
+        apparitionY: 220,
+        url: "images/icones/bonus_explo.png",
+        id: "explorateur",
+        class: "bonus",
+        visible: false,
+        droite: false,
+        titre: `Bonus Explorateur`,
+      },
       diplome1: {
         apparitionX: 1000,
         apparitionY: 28,
@@ -183,58 +237,8 @@ window.addEventListener("DOMContentLoaded", function () {
         droite: true,
         titre: `Master d'allemand`,
       },
-      diplome3: {
-        apparitionX: 3000,
-        apparitionY: 80,
-        url: "images/icones/diplome_3.png",
-        id: "bonus3",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Gestion de projet`,
-      },
-      explorateur: {
-        apparitionX: 130,
-        apparitionY: 100,
-        url: "images/icones/bonus_explo.png",
-        id: "explorateur",
-        class: "bonus",
-        visible: false,
-        droite: false,
-        titre: `Bonus Explorateur`,
-      },
-      estomac: {
-        apparitionX: 32000,
-        apparitionY: 300,
-        url: "images/icones/estomac.png",
-        id: "estomac",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Estomac bien accroché`,
-      },
-      budget: {
-        apparitionX: 4000,
-        apparitionY: 300,
-        url: "images/icones/budget.png",
-        id: "budget",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Gestion des budgets`,
-      },
-      entraide: {
-        apparitionX: 3500,
-        apparitionY: 30,
-        url: "images/icones/entraide.png",
-        id: "entraide",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Esprit d'entraide`,
-      },
       defendre: {
-        apparitionX: 3200,
+        apparitionX: 1800,
         apparitionY: 300,
         url: "images/icones/defendre.png",
         id: "defendre",
@@ -243,9 +247,129 @@ window.addEventListener("DOMContentLoaded", function () {
         droite: true,
         titre: `Défendre ses idées`,
       },
-      coeur: {
-        apparitionX: 4500,
+      lourd: {
+        apparitionX: 2000,
+        apparitionY: 380,
+        url: "images/icones/lourd.png",
+        id: "lourd",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Forger le caractère`,
+      },
+      stratego: {
+        apparitionX: 2450,
+        apparitionY: 350,
+        url: "images/icones/strategie.png",
+        id: "stratego",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Planning stratégique`,
+      },
+      marketing: {
+        apparitionX: 2200,
+        apparitionY: 310,
+        url: "images/icones/marketing.png",
+        id: "marketing",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Marketing`,
+      },
+      entraide: {
+        apparitionX: 2400,
+        apparitionY: 30,
+        url: "images/icones/entraide.png",
+        id: "entraide",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Esprit d'entraide`,
+      },
+      planning: {
+        apparitionX: 2800,
+        apparitionY: 260,
+        url: "images/icones/planning.png",
+        id: "planning",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Gérer les plannings`,
+      },
+      multilingue: {
+        apparitionX: 3050,
+        apparitionY: 200,
+        url: "images/icones/multilingue.png",
+        id: "multilingue",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Equipes multilingues`,
+      },
+      vba: {
+        apparitionX: 3250,
+        apparitionY: 200,
+        url: "images/icones/vba.png",
+        id: "vba",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Programmation VBA`,
+      },
+      diplome3: {
+        apparitionX: 4030,
         apparitionY: 300,
+        url: "images/icones/diplome_3.png",
+        id: "bonus3",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Gestion de projet`,
+      },
+      estomac: {
+        apparitionX: 4200,
+        apparitionY: 300,
+        url: "images/icones/estomac.png",
+        id: "estomac",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Estomac bien accroché`,
+      },
+      seo: {
+        apparitionX: 4400,
+        apparitionY: 30,
+        url: "images/icones/seo.png",
+        id: "seo",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `SEO`,
+      },
+      budget: {
+        apparitionX: 4510,
+        apparitionY: 320,
+        url: "images/icones/budget.png",
+        id: "budget",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Gestion des budgets`,
+      },
+      commercial: {
+        apparitionX: 5000,
+        apparitionY: 320,
+        url: "images/icones/commercial.png",
+        id: "estomac",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Présenter aux clients`,
+      },
+      coeur: {
+        apparitionX: 4700,
+        apparitionY: 380,
         url: "images/icones/coeur.png",
         id: "coeur",
         class: "bonus",
@@ -253,19 +377,9 @@ window.addEventListener("DOMContentLoaded", function () {
         droite: true,
         titre: `Résister au stress`,
       },
-      gateau: {
-        apparitionX: 5000,
-        apparitionY: 300,
-        url: "images/icones/gateau.png",
-        id: "gateau",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Esprit d'équipe`,
-      },
       plante: {
-        apparitionX: 4800,
-        apparitionY: 300,
+        apparitionX: 5080,
+        apparitionY: 30,
         url: "images/icones/plante.png",
         id: "plante",
         class: "bonus",
@@ -273,16 +387,17 @@ window.addEventListener("DOMContentLoaded", function () {
         droite: true,
         titre: `Main verte`,
       },
-      lourd: {
-        apparitionX: 3200,
+      equipe: {
+        apparitionX: 5200,
         apparitionY: 300,
-        url: "images/icones/lourd.png",
-        id: "lourd",
+        url: "images/icones/partage.png",
+        id: "equipe",
         class: "bonus",
         visible: false,
         droite: true,
-        titre: `Envoyer du lourd`,
+        titre: `Esprit d'équipe`,
       },
+
       javascript: {
         apparitionX: 400,
         apparitionY: 300,
@@ -375,6 +490,24 @@ window.addEventListener("DOMContentLoaded", function () {
       texte: `Parée pour entrer dans le monde du travail avec mes diplômes!`,
       vu: false,
     },
+    sodexo: {
+      positionVSparallax: "-255",
+      perso: "Anne",
+      texte: `C'était cool chez Sodexo mais j'ai envie de projets plus courts et concrets. Peut être en changeant d'environnement?`,
+      vu: false,
+    },
+    reflexion: {
+      positionVSparallax: '-255',
+      perso: "Anne",
+      texte: "Ca fait bizarre toutes ces années. Même Paris n'est plus la même, on a genre 4 sortes de pigeons bicolores maintenant. Et moi, j'ai l'impression d'avoir fait le tour de la gestion de projet...",
+      vu: false,
+    },
+    surprise: {
+      positionVSparallax: '-255',
+      perso: "Anne",
+      texte: "???",
+      vu: false,
+    }
   };
 
   window.addEventListener("keydown", function (evenementSurevenu) {
@@ -433,7 +566,7 @@ window.addEventListener("DOMContentLoaded", function () {
   var leMoteurPourLesAnimations = function () {
     if (direction.droite) {
       deplacementDuFond("bg", "droite");
-      checkPositionAnne("bg");
+      checkPositionAnnePourDialogue("bg");
       faireApparaitreLesElementsDuJeu("bg");
       incrementPosition = -10;
       checkerElementEtDeplacerAvecLeFond();
@@ -463,7 +596,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     if (direction.gauche) {
       deplacementDuFond("bg", "gauche");
-      checkPositionAnne("bg");
+      checkPositionAnnePourDialogue("bg");
       incrementPosition = 10;
       checkerElementEtDeplacerAvecLeFond();
       faireApparaitreLesElementsDuJeu("bg");
@@ -620,7 +753,7 @@ window.addEventListener("DOMContentLoaded", function () {
   var sautDuPersonnage = function () {
     gestionDuSaut.enCours = true;
     positionYPerso = parseFloat(divPersoPrincipal.style.bottom);
-
+    recupererBonus();
     if (isNaN(positionYPerso)) {
       positionYPerso = hauteurDuSol;
     }
@@ -854,6 +987,64 @@ window.addEventListener("DOMContentLoaded", function () {
     }, 2000);
   });
 
+  // MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM animation numero 2 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM //
+
+  const animationDeux = function () {
+    let fondsNuage = document.querySelectorAll('.bg_nuages');
+    fondsNuage.forEach(function (element) {
+      element.style.left = '750px';
+      element.style.display = 'inline';
+    });
+
+    lancerLesNuages();
+    let sorcier = document.createElement('div');
+    sorcier.className = 'pnj_sorcier';
+    sorcier.style = '{bottom: 350px; left: 750px;}';
+
+    let image = document.createElement('img');
+    image.src = 'images/sprites/whitewitch.png';
+    sorcier.appendChild(image);
+
+    document.querySelector('content').appendChild(sorcier);
+
+
+
+
+
+
+
+
+
+
+
+    gestionDuSaut.enCours = false;
+  };
+
+  let stopDeplacementNuage;
+  let premierStopNuage = 260;
+
+  const deplacerNuages = function () {
+    let fondsNuage = document.querySelectorAll('.bg_nuages');
+    let increment = 10;
+
+    fondsNuage.forEach(function (element) {
+      let positionXNuage = parseFloat(element.style.left);
+      if (isNaN(positionXNuage)) {
+        positionXNuage = 750;
+      }
+      positionXNuage = positionXNuage - increment;
+      element.style.left = positionXNuage + 'px';
+    });
+
+    if (positionXNuage == premierStopNuage) {
+      clearInterval(stopDeplacementNuage);
+    }
+  };
+
+  const lancerLesNuages = function () {
+    stopDeplacementNuage = setInterval(deplacerNuages, 25);
+  };
+
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -890,7 +1081,7 @@ window.addEventListener("DOMContentLoaded", function () {
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM VERIFIER POSITION POUR DIALOGUES MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM VERIFIER POSITION POUR DIALOGUES MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
 
-  var checkPositionAnne = function (nomDuFond) {
+  var checkPositionAnnePourDialogue = function (nomDuFond) {
     let positionDeAnne =
       document.getElementsByClassName(nomDuFond)[2].style[
       "background-position-x"
@@ -919,6 +1110,58 @@ window.addEventListener("DOMContentLoaded", function () {
         dialogues.diplome.vu = true;
       }
     }
+
+
+
+    if (
+      parseFloat(positionDeAnne) >= -3100 &&
+      parseFloat(positionDeAnne) <= -3000
+    ) {
+      if (!dialogues.sodexo.vu) {
+        direction.gauche = false;
+        direction.droite = false;
+        afficherDialogue(dialogues.sodexo);
+        dialogueVisible = true;
+        dialogues.sodexo.vu = true;
+      }
+    }
+
+
+    if (
+      parseFloat(positionDeAnne) >= -5200 &&
+      parseFloat(positionDeAnne) <= -5100
+    ) {
+      if (!dialogues.reflexion.vu) {
+        direction.gauche = false;
+        direction.droite = false;
+        afficherDialogue(dialogues.reflexion);
+        dialogueVisible = true;
+        dialogues.reflexion.vu = true;
+      }
+    }
+
+    if (
+      parseFloat(positionDeAnne) >= -5600 &&
+      parseFloat(positionDeAnne) <= -5500
+    ) {
+      if (!dialogues.surprise.vu) {
+        direction.gauche = false;
+        direction.droite = false;
+        afficherDialogue(dialogues.surprise);
+        dialogueVisible = true;
+        dialogues.surprise.vu = true;
+      }
+    }
+
+    if (
+      parseFloat(positionDeAnne) >= -5900 &&
+      parseFloat(positionDeAnne) <= -5800
+    ) {
+      direction.droite = false;
+      direction.gauche = false;
+      animationEnCours = true;
+      animationDeux();
+    }
   };
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM RECUPER LES BONUS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -946,7 +1189,7 @@ window.addEventListener("DOMContentLoaded", function () {
           positionYBonus = elementJeu.bonus[string(element.id)].apparitionY;
         }
 
-        if (positionXBonus < 290 && positionXBonus > 230) {
+        if (positionXBonus < 300 && positionXBonus > 220) {
           let topBonusDansHitBoxPerso = topBonus > topPerso && topBonus < bottomPerso;
           let bottomBonusDansHitBoxPerso = bottomBonus < bottomPerso && bottomBonus > topPerso;
           let BonusDansHitBoxPerso = topBonus > topPerso && bottomBonus < bottomPerso;

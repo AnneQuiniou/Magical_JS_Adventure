@@ -118,8 +118,6 @@
   height: 80px;
   width: 60px;
   overflow: hidden;
-  bottom: 40px;
-  right: 400px;
   display: none;
 }
 .pnj_sorcier img {
@@ -178,20 +176,16 @@
   /*   left: 0px; */
 }
 
-#plat1 img {
+.plat-small img {
   width: 70px;
 }
 
-#plat2 img {
+.plat-med img {
   width: 190px;
 }
 
-#plat3 img {
-  width: 70px;
-}
-
-#plat4 img {
-  width: 190px;
+.plat-long img {
+  width: 290px;
 }
 
 .notplayable {
