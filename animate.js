@@ -96,12 +96,22 @@ window.addEventListener("DOMContentLoaded", function () {
       },
       datawords: {
         div: document.querySelectorAll(".panneaux")[2],
-        apparitionX: 2000,
+        apparitionX: 2800,
         apparitionY: 40,
         width: 120,
         id: "datawords",
         class: "panneaux",
         url: "images/panneaux/datawords.png",
+        droite: true,
+      },
+      ifocop: {
+        div: document.querySelectorAll(".panneaux")[3],
+        apparitionX: 10000,
+        apparitionY: 40,
+        width: 120,
+        id: "ifocop",
+        class: "panneaux",
+        url: "images/panneaux/ifocop.png",
         droite: true,
       },
     },
@@ -154,7 +164,6 @@ window.addEventListener("DOMContentLoaded", function () {
     },
     bonus: {
       diplome1: {
-        div: document.querySelectorAll(".bonus")[0],
         apparitionX: 1000,
         apparitionY: 28,
         url: "images/icones/diplome_1.png",
@@ -165,7 +174,6 @@ window.addEventListener("DOMContentLoaded", function () {
         titre: `Master d'anglais`,
       },
       diplome2: {
-        div: document.querySelectorAll(".bonus")[1],
         apparitionX: 1400,
         apparitionY: 28,
         url: "images/icones/diplome_2.png",
@@ -176,7 +184,6 @@ window.addEventListener("DOMContentLoaded", function () {
         titre: `Master d'allemand`,
       },
       diplome3: {
-        div: document.querySelectorAll(".bonus")[2],
         apparitionX: 3000,
         apparitionY: 80,
         url: "images/icones/diplome_3.png",
@@ -187,7 +194,6 @@ window.addEventListener("DOMContentLoaded", function () {
         titre: `Gestion de projet`,
       },
       explorateur: {
-        div: document.querySelectorAll(".bonus")[3],
         apparitionX: 130,
         apparitionY: 100,
         url: "images/icones/bonus_explo.png",
@@ -197,6 +203,146 @@ window.addEventListener("DOMContentLoaded", function () {
         droite: false,
         titre: `Bonus Explorateur`,
       },
+      estomac: {
+        apparitionX: 3200,
+        apparitionY: 300,
+        url: "images/icones/estomac.png",
+        id: "estomac",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Estomac bien accroché`,
+      },
+      budget: {
+        apparitionX: 4000,
+        apparitionY: 300,
+        url: "images/icones/budget.png",
+        id: "budget",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Gestion des budgets`,
+      },
+      entraide: {
+        apparitionX: 3500,
+        apparitionY: 30,
+        url: "images/icones/entraide.png",
+        id: "entraide",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Esprit d'entraide`,
+      },
+      defendre: {
+        apparitionX: 3200,
+        apparitionY: 300,
+        url: "images/icones/defendre.png",
+        id: "defendre",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Défendre ses idées`,
+      },
+      coeur: {
+        apparitionX: 4500,
+        apparitionY: 300,
+        url: "images/icones/coeur.png",
+        id: "coeur",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Résister au stress`,
+      },
+      gateau: {
+        apparitionX: 5000,
+        apparitionY: 300,
+        url: "images/icones/gateau.png",
+        id: "gateau",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Esprit d'équipe`,
+      },
+      plante: {
+        apparitionX: 48000,
+        apparitionY: 300,
+        url: "images/icones/plante.png",
+        id: "plante",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Main verte`,
+      },
+      lourd: {
+        apparitionX: 3200,
+        apparitionY: 300,
+        url: "images/icones/lourd.png",
+        id: "lourd",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Envoyer du lourd`,
+      },
+      javascript: {
+        apparitionX: 400,
+        apparitionY: 300,
+        url: "images/icones/javascript.png",
+        id: "javascript",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Vanilla JS`,
+      },
+      jquery: {
+        apparitionX: 400,
+        apparitionY: 300,
+        url: "images/icones/jquery.png",
+        id: "jquery",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `jquery`,
+      },
+      meteor: {
+        apparitionX: 400,
+        apparitionY: 300,
+        url: "images/icones/meteor.png",
+        id: "meteor",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `meteor`,
+      },
+      mongo: {
+        apparitionX: 400,
+        apparitionY: 300,
+        url: "images/icones/mongo.png",
+        id: "mongo",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `mongo`,
+      },
+      expressjs: {
+        apparitionX: 400,
+        apparitionY: 300,
+        url: "images/icones/expressjs.png",
+        id: "expressjs",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `expressJS`,
+      },
+      angular: {
+        apparitionX: 400,
+        apparitionY: 300,
+        url: "images/icones/angular.png",
+        id: "angular",
+        class: "bonus",
+        visible: false,
+        droite: true,
+        titre: `Angular JS`,
+      },
     },
   };
   let hauteurDeLaTerre = 24;
@@ -204,6 +350,7 @@ window.addEventListener("DOMContentLoaded", function () {
   let dialogueEnCours;
   let divScore = document.querySelector(".score");
   let score = document.querySelector(".score").children[0].children[1];
+  score.innerHTML = '0';
 
   const dialogues = {
     limite: {
@@ -254,6 +401,7 @@ window.addEventListener("DOMContentLoaded", function () {
       }
       if ("ShiftRight" === evenementSurevenu.code) {
         if (!gestionDuSaut.enCours) {
+
           lancerLeSaut();
         }
       }
@@ -390,17 +538,17 @@ window.addEventListener("DOMContentLoaded", function () {
 
     premierFond = parseFloat(
       document.getElementsByClassName(fondUtilise)[0].style[
-        "background-position-x"
+      "background-position-x"
       ]
     );
     deuxiemeFond = parseFloat(
       document.getElementsByClassName(fondUtilise)[1].style[
-        "background-position-x"
+      "background-position-x"
       ]
     );
     troisiemeFond = parseFloat(
       document.getElementsByClassName(fondUtilise)[2].style[
-        "background-position-x"
+      "background-position-x"
       ]
     );
 
@@ -490,6 +638,10 @@ window.addEventListener("DOMContentLoaded", function () {
       clearInterval(stopForce);
     } else {
       forceDuSaut = forceDuSaut - 1;
+      if (forceDuSaut <= 0) {
+        detecterSiPlateformeEnSaut();
+      }
+
     }
   };
 
@@ -499,118 +651,124 @@ window.addEventListener("DOMContentLoaded", function () {
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM VERIFIER SI PLATEFORMES MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   let hauteurDuSol = 24;
-  let surPlateforme = false;
-  const verifierSiPlateforme = function () {
-    let elementPlateformes = document.querySelectorAll(".plateforme");
+  let surPlateforme;
+
+
+  const verifierSiPlateformeEnMarche = function () {
+    let plateformes = document.querySelectorAll(".plateforme");
+    let informationsPerso = document.querySelector('.perso_anne').getBoundingClientRect();
+    hauteurDuPerso = parseInt(document.querySelector('.perso_anne').style.bottom);
 
     let start = true;
+    let compte = 1;
     for (let i = 0; start; i++) {
-      let limiteGauchePlateforme = parseFloat(elementPlateformes[i].style.left);
-      let nomElement = elementPlateformes[i].id;
-      let limiteDroitePlateforme =
-        limiteGauchePlateforme -
-        parseFloat(elementsJeu.plateformes[nomElement].width);
-      let taillePlateforme = parseFloat(
-        elementsJeu.plateformes[nomElement].width
-      );
+      let informationsPlateforme = plateformes[i].getBoundingClientRect();
+
       let hauteurPlateforme =
-        parseFloat(elementPlateformes[i].style.bottom) + 20;
+        parseFloat(document.querySelectorAll(".plateforme")[i].style.bottom) + 20;
 
-      // UTILISER GETBOUDING CLIENT RECT
-      console.log("limiteDroitePlateforme" + limiteDroitePlateforme);
-      let limiteHitboxGauche = 300;
-      let limiteHitboxDroite = 200;
+      let siDroitePersoSurPlateforme = parseInt(informationsPerso.right - 20) > parseInt(informationsPlateforme.left) && parseInt(informationsPerso.right - 20) < parseInt(informationsPlateforme.right);
 
-      let test1 =
-        limiteGauchePlateforme > limiteHitboxDroite && //teste si bout gauche dans hitbox
-        limiteGauchePlateforme < limiteHitboxGauche;
+      let siGauchePersoSurPlateforme = parseInt(informationsPerso.left + 5) > parseInt(informationsPlateforme.left) && parseInt(informationsPerso.left + 5) < parseInt(informationsPlateforme.right);
 
-      let test2 =
-        limiteDroitePlateforme > limiteHitboxDroite && //test si bout droite dans hitbox
-        limiteDroitePlateforme < limiteHitboxGauche;
+      let siPersoSurPlateforme = parseInt(informationsPerso.left + 5) > parseInt(informationsPlateforme.left) && parseInt(informationsPerso.right - 20) < parseInt(informationsPlateforme.right);
 
-      let test3 =
-        limiteGauchePlateforme > limiteHitboxGauche && //test si centre dans hitbox
-        limiteDroitePlateforme < limiteHitboxDroite;
+      if (siGauchePersoSurPlateforme || siDroitePersoSurPlateforme || siPersoSurPlateforme) {
+        if (hauteurDuPerso >= hauteurPlateforme) {
+          hauteurDuSol = hauteurPlateforme;
+          surPlateforme = true;
+          start = false;
 
-      console.log(test1);
-      console.log(test2);
-      console.log(test3);
-
-      if (test1 || test2 || test3) {
-        hauteurDuSol = hauteurPlateforme;
-        surPlateforme = true;
-        start = false;
+        }
       } else {
+
+        compte++;
+        console.log('compte' + compte)
+      }
+      console.log('test longueur' + compte == plateformes.length);
+
+      if (compte == plateformes.length) {
         hauteurDuSol = hauteurDeLaTerre;
         surPlateforme = false;
+
         rejoindreLeSol();
       }
 
-      if (i + 1 == elementPlateformes.length) {
+
+      if (i + 1 == plateformes.length) {
         start = false;
+
       }
     }
+
   };
 
   const lancerLaVerificationPlateforme = function () {
-    requestAnimationFrame(verifierSiPlateforme);
+    requestAnimationFrame(verifierSiPlateformeEnMarche);
   };
+
+  const detecterSiPlateformeEnSaut = function () {
+    let plateformes = document.querySelectorAll(".plateforme");
+    let informationsPerso = document.querySelector('.perso_anne').getBoundingClientRect();
+
+    let start = true;
+    for (let i = 0; start; i++) {
+      let informationsPlateforme = plateformes[i].getBoundingClientRect();
+
+      let hauteurPlateforme =
+        parseFloat(document.querySelectorAll(".plateforme")[i].style.bottom) + 20;
+
+      let siBottomPersoSurPlateforme = parseInt(informationsPerso.bottom) == parseInt(informationsPlateforme.bottom) + 20;
+
+      let siDroitePersoSurPlateforme = parseInt(informationsPerso.right - 20) > parseInt(informationsPlateforme.left) && parseInt(informationsPerso.right - 20) < parseInt(informationsPlateforme.right);
+
+      let siGauchePersoSurPlateforme = parseInt(informationsPerso.left + 5) > parseInt(informationsPlateforme.left) && parseInt(informationsPerso.left + 5) < parseInt(informationsPlateforme.right);
+
+      let siPersoSurPlateforme = parseInt(informationsPerso.left + 5) > parseInt(informationsPlateforme.left) && parseInt(informationsPerso.right - 20) < parseInt(informationsPlateforme.right);
+
+      if ((siGauchePersoSurPlateforme || siDroitePersoSurPlateforme || siPersoSurPlateforme)) {
+        surPlateforme = true;
+        hauteurDuSol = hauteurPlateforme;
+        start = false;
+
+      } else {
+        hauteurDuSol = hauteurDeLaTerre;
+        surPlateforme = false;
+        if (i + 1 == plateformes.length) {
+          start = false;
+        }
+
+
+      }
+    };
+  };
+
+
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM GRAVITE? MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   let gravite = 23;
   let forceEnAction = false;
-
-  /*  const forceGravitationnelle = function () {
-    hauteurDuSol = 24;
-    let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
-    forceEnAction = true;
-
-    if (isNaN(maHauteur)) {
-      maHauteur = hauteurDuSol + 1;
-    }
-
-    maHauteur = maHauteur - gravite;
-    gravite = gravite - 1;
-
-    if (parseFloat(divPersoPrincipal.style.bottom) <= hauteurDuSol) {
-      maHauteur = hauteurDuSol;
-      forceEnAction = false;
-      gravite = 23;
-    }
-
-    divPersoPrincipal.style.bottom = maHauteur + "px";
-
-    if (forceEnAction) {
-      requestAnimationFrame(forceGravitationnelle);
-    }
-  };
-
-  const lancerLaGravitation = function () {
-    requestAnimationFrame(forceGravitationnelle);
-  }; */
   let stopDescente;
   let graviteDescente = 1;
 
   const rejoindreLeSol = function () {
     let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
-    console.log("rejoindre le sol : ici");
+
     if (!gestionDuSaut.enCours && maHauteur > hauteurDeLaTerre + 10) {
       if (!surPlateforme) {
         forceEnAction = true;
-        console.log("rejoindre le sol : là");
-        forceGravitionnelle();
+        activerForceGravitionnelle();
       }
     }
   };
 
-  const forceGravitionnelle = function () {
+  const activerForceGravitionnelle = function () {
     requestAnimationFrame(function () {
       let maHauteur = parseFloat(divPersoPrincipal.style.bottom);
       maHauteur = maHauteur - graviteDescente;
-      console.log("rejoindre le sol : dans la boucle");
+
       graviteDescente = graviteDescente + 1;
 
       if (graviteDescente > 23) {
@@ -625,7 +783,7 @@ window.addEventListener("DOMContentLoaded", function () {
       }
 
       if (maHauteur > hauteurDeLaTerre) {
-        requestAnimationFrame(forceGravitionnelle);
+        requestAnimationFrame(activerForceGravitionnelle);
       }
     });
   };
@@ -740,7 +898,7 @@ window.addEventListener("DOMContentLoaded", function () {
   var checkPositionAnne = function (nomDuFond) {
     let positionDeAnne =
       document.getElementsByClassName(nomDuFond)[2].style[
-        "background-position-x"
+      "background-position-x"
       ];
     if (parseFloat(positionDeAnne) >= 120 && direction.droite == false) {
       direction.gauche = false;
@@ -808,7 +966,7 @@ window.addEventListener("DOMContentLoaded", function () {
   const faireApparaitreLesElementsDuJeu = function (nomDuFond) {
     let positionDeAnne = parseFloat(
       document.getElementsByClassName(nomDuFond)[2].style[
-        "background-position-x"
+      "background-position-x"
       ]
     );
     //vérifier et indiquer les éléments
