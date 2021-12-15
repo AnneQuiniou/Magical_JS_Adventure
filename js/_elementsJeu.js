@@ -78,11 +78,9 @@ const elementsJeu = {
             id: "limitegauche",
             class: "panneaux",
             url: "images/panneaux/panneaulimite.png",
-            div: document.querySelectorAll(".panneaux")[0],
             droite: false,
         },
         sodexo: {
-            div: document.querySelectorAll(".panneaux")[1],
             apparitionX: 1400,
             apparitionY: 40,
             width: 120,
@@ -92,7 +90,6 @@ const elementsJeu = {
             droite: true,
         },
         datawords: {
-            div: document.querySelectorAll(".panneaux")[2],
             apparitionX: 3600,
             apparitionY: 40,
             width: 120,
@@ -102,7 +99,6 @@ const elementsJeu = {
             droite: true,
         },
         ifocop: {
-            div: document.querySelectorAll(".panneaux")[3],
             apparitionX: 9800,
             apparitionY: 40,
             width: 120,
@@ -141,7 +137,6 @@ const elementsJeu = {
     // MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM //
     plateformes: {
         plat0: {
-            div: document.getElementById("plat0"),
             apparitionX: 1700,
             apparitionY: 140,
             width: 290,
@@ -152,7 +147,6 @@ const elementsJeu = {
             class: "plateforme plat-long",
         },
         plat1: {
-            div: document.getElementById("plat1"),
             apparitionX: 2200,
             apparitionY: 110,
             width: 100,
@@ -163,7 +157,6 @@ const elementsJeu = {
             class: "plateforme plat-small",
         },
         plat2: {
-            div: document.getElementById("plat2"),
             apparitionX: 2500,
             apparitionY: 200,
             width: 190,
@@ -174,7 +167,6 @@ const elementsJeu = {
             class: "plateforme plat-med",
         },
         plat2a: {
-            div: document.getElementById("plat2"),
             apparitionX: 2800,
             apparitionY: 100,
             width: 290,
@@ -185,7 +177,6 @@ const elementsJeu = {
             class: "plateforme plat-long",
         },
         plat3: {
-            div: document.getElementById("plat3"),
             apparitionX: 3920,
             apparitionY: 110,
             width: 100,
@@ -196,7 +187,6 @@ const elementsJeu = {
             class: "plateforme plat-small",
         },
         plat4: {
-            div: document.getElementById("plat4"),
             apparitionX: 4200,
             apparitionY: 110,
             width: 100,
@@ -207,7 +197,6 @@ const elementsJeu = {
             class: "plateforme plat-small",
         },
         plat5: {
-            div: document.getElementById("plat5"),
             apparitionX: 4600,
             apparitionY: 140,
             width: 290,
@@ -218,7 +207,6 @@ const elementsJeu = {
             class: "plateforme plat-long",
         },
         plat6: {
-            div: document.getElementById("plat6"),
             apparitionX: 5000,
             apparitionY: 300,
             width: 190,
@@ -229,7 +217,6 @@ const elementsJeu = {
             class: "plateforme plat-med",
         },
         plat7: {
-            div: document.getElementById("plat7"),
             apparitionX: 6400,
             apparitionY: 100,
             width: 190,
@@ -240,7 +227,6 @@ const elementsJeu = {
             class: "plateforme forest-med",
         },
         plat8: {
-            div: document.getElementById("plat8"),
             apparitionX: 6700,
             apparitionY: 300,
             width: 190,
@@ -251,7 +237,6 @@ const elementsJeu = {
             class: "plateforme forest-med-tree",
         },
         plat9: {
-            div: document.getElementById("plat9"),
             apparitionX: 7000,
             apparitionY: 100,
             width: 290,
@@ -262,7 +247,6 @@ const elementsJeu = {
             class: "plateforme forest-long",
         },
         plat10: {
-            div: document.getElementById("plat10"),
             apparitionX: 7300,
             apparitionY: 150,
             width: 100,
@@ -273,7 +257,6 @@ const elementsJeu = {
             class: "plateforme forest-small",
         },
         plat11: {
-            div: document.getElementById("plat11"),
             apparitionX: 7600,
             apparitionY: 300,
             width: 190,
@@ -284,7 +267,6 @@ const elementsJeu = {
             class: "plateforme forest-med-tree",
         },
         plat12: {
-            div: document.getElementById("plat12"),
             apparitionX: 7900,
             apparitionY: 130,
             width: 100,
@@ -295,7 +277,6 @@ const elementsJeu = {
             class: "plateforme forest-small",
         },
         plat13: {
-            div: document.getElementById("plat13"),
             apparitionX: 71000,
             apparitionY: 130,
             width: 100,
@@ -634,4 +615,3 @@ const elementsJeu = {
         },
     },
 };
-
