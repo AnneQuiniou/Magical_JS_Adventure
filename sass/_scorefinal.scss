@@ -1,0 +1,51 @@
+.scorefinal {
+  position: absolute;
+  border: 5px solid rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 52, 77, 0.5);
+  border-radius: 20px;
+  width: 600px;
+  z-index: 9000;
+  left: 100px;
+  top: 20px;
+  text-align: center;
+  display: none;
+
+  //gestion  des éléments polices //
+
+  font-family: $font_dialogue;
+  font-size: 1em;
+
+  #decorate {
+    color: white;
+    font-family: $font_titles;
+    font-size: 3em;
+    span {
+      color: $highlight;
+    }
+  }
+  h2 {
+    font-family: $font_titles;
+  }
+
+  button {
+    background-color: $light_blue;
+    font-family: $font_titles;
+    font-size: 1em;
+    color: white;
+    margin: 10px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    border-top: 4px solid lighten($light_blue, 20%);
+    border-left: 4px solid lighten($light_blue, 20%);
+    border-bottom: 4px solid darken($light_blue, 20%);
+    border-right: 4px solid darken($light_blue, 20%);
+  }
+
+  button:hover {
+    background-color: $highlight;
+    border-bottom: 4px solid lighten($highlight, 20%);
+    border-right: 4px solid lighten($highlight, 20%);
+    border-top: 4px solid darken($highlight, 20%);
+    border-left: 4px solid darken($highlight, 20%);
+  }
+}

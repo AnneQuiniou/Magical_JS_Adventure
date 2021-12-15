@@ -1,3 +1,20 @@
+const sprite = {
+    reference: document.querySelectorAll(".perso_anne > img")[0],
+    frameX: -128,
+    idle: {
+        placement: -20,
+        nombreDeFrames: 4,
+    },
+    marcherADroite: {
+        placement: -789,
+        nombreDeFrames: 8,
+    },
+    marcherAGauche: {
+        placement: -916,
+        nombreDeFrames: 8,
+    },
+    directionDesImages: "left",
+};
 
 const elementsJeu = {
     ///MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM //
@@ -86,12 +103,36 @@ const elementsJeu = {
         },
         ifocop: {
             div: document.querySelectorAll(".panneaux")[3],
-            apparitionX: 10000,
+            apparitionX: 9800,
             apparitionY: 40,
             width: 120,
             id: "ifocop",
             class: "panneaux",
             url: "images/panneaux/ifocop.png",
+            droite: true,
+        },
+        fin: {
+            apparitionX: 8600,
+            apparitionY: 40,
+            id: "fin",
+            class: "panneaux",
+            url: "images/panneaux/fin.png",
+            droite: true,
+        },
+        fin2: {
+            apparitionX: 8700,
+            apparitionY: 40,
+            id: "fin2",
+            class: "panneaux",
+            url: "images/panneaux/fin.png",
+            droite: true,
+        },
+        rocher: {
+            apparitionX: 9200,
+            apparitionY: 36,
+            id: "rocher",
+            class: "panneaux",
+            url: "images/panneaux/rocher.png",
             droite: true,
         },
     },
@@ -450,8 +491,8 @@ const elementsJeu = {
             titre: `Main verte`,
         },
         equipe: {
-            apparitionX: 5200,
-            apparitionY: 300,
+            apparitionX: 5300,
+            apparitionY: 250,
             url: "images/icones/partage.png",
             id: "equipe",
             class: "bonus",
@@ -531,6 +572,16 @@ const elementsJeu = {
             droite: true,
             titre: `expressJS`,
         },
+        node: {
+            apparitionX: 7810,
+            apparitionY: 360,
+            url: "images/icones/node.png",
+            id: "node",
+            class: "bonus",
+            visible: false,
+            droite: true,
+            titre: `Node.JS`,
+        },
         websockets: {
             apparitionX: 7900,
             apparitionY: 170,
@@ -572,14 +623,15 @@ const elementsJeu = {
             titre: `Sens de l'humour`,
         },
         diplomeifocop: {
-            apparitionX: 8700,
-            apparitionY: 50,
+            apparitionX: 9200,
+            apparitionY: 150,
             url: "images/icones/diplomeifocop.png",
             id: "diplomeifocop",
             class: "bonus",
             visible: false,
             droite: true,
-            titre: `Diplôme de Développeur`,
+            titre: ` `,
         },
     },
 };
+

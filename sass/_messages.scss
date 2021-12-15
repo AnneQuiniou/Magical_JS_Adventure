@@ -25,7 +25,7 @@
 }
 
 #reflexion {
-  bottom: 130px;
+  bottom: 150px;
   left: 80px;
 }
 
@@ -33,9 +33,20 @@
   width: 500px;
   bottom: 240px;
   left: 217px;
-  border: 5px solid white;
+  border: 5px solid $light_purple;
 
   //---------------------------------gestion des polices ------------------------///
   background-color: rgba(38, 24, 39, 0.8);
-  color: white;
+  color: $light_purple;
+}
+
+#dialoguefin {
+  width: 400px;
+  bottom: 300px;
+  left: 80px;
+  border: 5px solid $light_purple;
+
+  //---------------------------------gestion des polices ------------------------///
+  background-color: rgba(38, 24, 39, 0.8);
+  color: $light_purple;
 }

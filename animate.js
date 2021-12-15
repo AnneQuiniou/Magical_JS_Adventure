@@ -12,51 +12,14 @@ window.addEventListener("DOMContentLoaded", function () {
   let dialogueVisible = false;
   let divPersoPrincipal = document.getElementsByClassName("perso_anne")[0];
 
-  let finDuSaut;
-
   // stockages des informations pour les différents sprites utilisés
-  const sprite = {
-    classique: {
-      reference: document.querySelectorAll(".perso_anne > img")[0],
-      frameX: -128,
-      idle: {
-        placement: -20,
-        nombreDeFrames: 4,
-      },
-      marcherADroite: {
-        placement: -789,
-        nombreDeFrames: 8,
-      },
-      marcherAGauche: {
-        placement: -916,
-        nombreDeFrames: 8,
-      },
-      directionDesImages: "left",
-    },
 
-    sorcier: {
-      referenceAnne: document,
-      frameX: 12,
-      frameY: 12,
-      directionDesImages: "top",
-    },
-
-    chien: {
-      reference: document.querySelectorAll(".pnj_chien > img")[0],
-      div: document.querySelectorAll(".pnj_chien")[0],
-      frameX: "67px",
-      directionDesImages: "left",
-      nombreDeFrames: 2,
-      apparitionX: 210,
-    },
-  };
 
   let fondEnCours = 'bg';
 
   let hauteurDeLaTerre = 24;
-  let persoPrincipal = sprite.classique.reference;
+  let persoPrincipal = sprite.reference;
   let dialogueEnCours;
-  let divScore = document.querySelector(".score");
   let score = document.querySelector(".score").children[0].children[1];
   score.innerHTML = '0';
 
@@ -93,6 +56,16 @@ window.addEventListener("DOMContentLoaded", function () {
     } else {
       if ("Enter" === evenementSurevenu.code) {
         dialogueEnCours = document.querySelector(".dialogue");
+        if (dialogueEnCours.id == "challenge") {
+          dialogueEnCours.remove();
+          dialogueVisible = false;
+          animationDeux();
+        }
+
+        if (dialogueEnCours.id == 'dialoguefin') {
+          afficherResultat();
+        };
+
         dialogueEnCours.remove();
         dialogueVisible = false;
       }
@@ -122,26 +95,22 @@ window.addEventListener("DOMContentLoaded", function () {
       checkerElementEtDeplacerAvecLeFond();
       recupererBonus();
       lancerLaVerificationPlateforme();
+      mouvementDuPerso = parseFloat(persoPrincipal.style.top);
 
-      if (persoPrincipal == sprite.classique.reference) {
-        mouvementDuPerso = parseFloat(persoPrincipal.style.top);
-
-        if (isNaN(mouvementDuPerso)) {
-          mouvementDuPerso = sprite.classique.marcherADroite.placement;
-        }
-
-        mouvementDuPerso = sprite.classique.marcherADroite.placement;
-
-        persoPrincipal.style.top = mouvementDuPerso + "px";
-
-        marcheDuPersonnage(
-          sprite.classique.marcherADroite.nombreDeFrames,
-          sprite.classique.frameX,
-          sprite.classique.directionDesImages
-        );
-      } else {
-        console.log("tbd");
+      if (isNaN(mouvementDuPerso)) {
+        mouvementDuPerso = sprite.marcherADroite.placement;
       }
+
+      mouvementDuPerso = sprite.marcherADroite.placement;
+
+      persoPrincipal.style.top = mouvementDuPerso + "px";
+
+      marcheDuPersonnage(
+        sprite.marcherADroite.nombreDeFrames,
+        sprite.frameX,
+        sprite.directionDesImages
+      );
+
     }
 
     if (direction.gauche) {
@@ -153,48 +122,42 @@ window.addEventListener("DOMContentLoaded", function () {
       recupererBonus();
       lancerLaVerificationPlateforme();
 
-      if (persoPrincipal == sprite.classique.reference) {
-        mouvementDuPerso = parseFloat(persoPrincipal.style.top);
 
-        if (isNaN(mouvementDuPerso)) {
-          mouvementDuPerso = sprite.classique.marcherAGauche.placement;
-        }
+      mouvementDuPerso = parseFloat(persoPrincipal.style.top);
 
-        mouvementDuPerso = sprite.classique.marcherAGauche.placement;
-        persoPrincipal.style.top = mouvementDuPerso + "px";
-
-        marcheDuPersonnage(
-          sprite.classique.marcherAGauche.nombreDeFrames,
-          sprite.classique.frameX,
-          sprite.classique.directionDesImages
-        );
-      } else {
-        console.log("tbd");
+      if (isNaN(mouvementDuPerso)) {
+        mouvementDuPerso = sprite.marcherAGauche.placement;
       }
+
+      mouvementDuPerso = sprite.marcherAGauche.placement;
+      persoPrincipal.style.top = mouvementDuPerso + "px";
+
+      marcheDuPersonnage(
+        sprite.marcherAGauche.nombreDeFrames,
+        sprite.frameX,
+        sprite.directionDesImages
+      );
+
     }
   };
 
   var leMoteurPourLIdle = function () {
     //IDLE UNIQUEMENT DU PERSO PRINCIPAL SELON SPRITE UTILISE
     if (direction.idle) {
-      if (persoPrincipal == sprite.classique.reference) {
-        mouvementDuPerso = parseFloat(persoPrincipal.style.top);
+      mouvementDuPerso = parseFloat(persoPrincipal.style.top);
 
-        if (isNaN(mouvementDuPerso)) {
-          mouvementDuPerso = sprite.classique.idle.placement;
-        }
-
-        mouvementDuPerso = sprite.classique.idle.placement;
-        persoPrincipal.style.top = mouvementDuPerso + "px";
-
-        marcheDuPersonnage(
-          sprite.classique.idle.nombreDeFrames,
-          sprite.classique.frameX,
-          sprite.classique.directionDesImages
-        );
-      } else {
-        console.log("tbd");
+      if (isNaN(mouvementDuPerso)) {
+        mouvementDuPerso = sprite.idle.placement;
       }
+
+      mouvementDuPerso = sprite.idle.placement;
+      persoPrincipal.style.top = mouvementDuPerso + "px";
+
+      marcheDuPersonnage(
+        sprite.idle.nombreDeFrames,
+        sprite.frameX,
+        sprite.directionDesImages
+      );
     }
   };
 
@@ -492,17 +455,18 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 
   let reduceOpacity = 0.017;
+  let musiqueFond = new Audio('musique/Pegan Hill - Moments.mp3');
 
   $("#launch").on("click", function () {
     animationEnCours = true;
 
-    let musiqueFond = new Audio('musique/Pegan Hill - Moments.mp3');
     musiqueFond.volume = 0.6;
     musiqueFond.loop = true;
     musiqueFond.play();
 
     const divIntro = document.querySelector(".opening");
     divIntro.innerHTML = "";
+    $('.masque').fadeOut();
 
     let intro = setInterval(function () {
       direction.droite = true;
@@ -547,43 +511,84 @@ window.addEventListener("DOMContentLoaded", function () {
   let animation2vue = false;
 
   const animationDeux = function () {
-
-    const fondsNuage = document.querySelectorAll('.bg_nuages');
-
-    afficherDialogue(dialogues.challenge);
+    animationEnCours = true;
+    dialogueVisible = true;
 
 
+    $('.masque').fadeIn('slow').delay(1000).fadeOut('slow');
 
     let fondsUtilises = document.querySelectorAll('.bg');
 
-    fondsUtilises.forEach(function (element) {
-      element.className = 'bg_forest';
-    })
+    setTimeout(function () {
+      fondsUtilises.forEach(function (element) {
+        element.className = 'bg_forest';
+      })
 
-    document.querySelector('.pnj_sorcier').remove();
-    document.querySelector('#ifocop').style.left = '220px';
-    document.querySelector('.score').style.color = '#9dc8f5';
-    fondEnCours = 'bg_forest';
+      $('.pnj_sorcier').hide();
+      document.querySelector('#ifocop').style.left = '220px';
+      document.querySelector('.score').style.color = '#9dc8f5';
+      fondEnCours = 'bg_forest';
 
-    fondsNuage.forEach(function (element) {
-      element.remove();
-    });
+      document.getElementsByClassName('bg_nuages')[1].remove();
+      document.getElementsByClassName('bg_nuages')[0].remove();
 
-    document.querySelector
-
-
-
-
+    }, 1000);
 
     gestionDuSaut.enCours = false;
     animationEnCours = false;
     animation2vue = true;
+    dialogueVisible = false;
   };
 
 
+  // MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM animation numero 3 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM //
 
 
 
+  const animationFin = function () {
+    animationEnCours = true;
+    musiqueFond.pause();
+    let musiqueFin = new Audio('musique/cyberending.mp3');
+    musiqueFin.volume = 0.5;
+    musiqueFin.loop = true;
+    musiqueFin.play();
+
+    $('.masque').fadeIn('slow').delay(1000).fadeOut('slow');
+
+    setTimeout(function () {
+
+      $('#diplomeifocop').remove;
+
+      divPersoPrincipal.style.display = 'none';
+      document.querySelectorAll('.bg_forest')[2].style.display = 'none';
+      document.querySelectorAll('.bg_forest')[1].style.display = 'none';
+      document.querySelector('#rocher').style.display = 'none';
+      document.querySelector('.score').style.display = 'none';
+
+
+      let $magicienne = $('.pnj_sorcier');
+      $magicienne.show();
+
+      $magicienne.css('left', '400px');
+      $magicienne.css('bottom', '100px');
+
+      setTimeout(function () {
+        let felicitations = new Audio('sons/cheers.mp3');
+        felicitations.volume = 0.5;
+        felicitations.play();
+        afficherDialogue(dialogues.dialoguefin);
+      }, 700);
+
+    }, 800);
+  };
+
+  $("#getcvagain").on("click", function () {
+    window.open(
+      "docs/Anne Quiniou - Développeuse JS Fullstack.pdf",
+      "CV",
+      "location=no,menubar=no"
+    );
+  });
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -605,6 +610,9 @@ window.addEventListener("DOMContentLoaded", function () {
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM AFFICHER LES DIALOGUES MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM AFFICHER LES DIALOGUES MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   const afficherDialogue = function (objetTexte) {
+    const sonDialogue = new Audio('sons/dialogue3.mp3');
+    sonDialogue.volume = 0.2;
+
     if (!dialogueVisible) {
       let dialogue = document.createElement("div");
       dialogue.className = "dialogue";
@@ -614,8 +622,33 @@ window.addEventListener("DOMContentLoaded", function () {
       ${objetTexte.texte}</p>`;
 
       document.querySelector("content").append(dialogue);
+      sonDialogue.play();
       dialogueVisible = true;
     }
+  };
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM AFFICHER score et FIN MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM AFFICHER score et FIN MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM AFFICHER score et FIN MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
+  const afficherResultat = function () {
+
+    let messageFin = document.querySelector('.scorefinal');
+    let scoreTotal = score.innerHTML;
+    let messageTotal = document.querySelector('.scorefinal').children[1].innerHTML;
+
+    if (scoreTotal == 6400) {
+      messageTotal = `<p>Score parfait! Quel complétiste..;</p>`;
+    } else {
+      if (scoreTotal == 0) {
+        messageTotal = `<p>Vous avez <em>raté</em> tous les bonus. Impressionnant.</p>`;
+      } else {
+        messageTotal = `<p>Il vous manque quelques bonus !</p>`;
+      }
+    }
+
+
+    document.querySelector('.scorefinal').children[0].children[0].innerHTML = scoreTotal;
+    messageFin.style.display = 'block';
+
   };
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM VERIFIER POSITION POUR DIALOGUES MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -669,8 +702,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
     if (
-      parseFloat(positionDeAnne) >= -5200 &&
-      parseFloat(positionDeAnne) <= -5100
+      parseFloat(positionDeAnne) >= -5300 &&
+      parseFloat(positionDeAnne) <= -5200
     ) {
       if (!dialogues.reflexion.vu) {
         direction.gauche = false;
@@ -698,23 +731,54 @@ window.addEventListener("DOMContentLoaded", function () {
       parseFloat(positionDeAnne) >= -5900 &&
       parseFloat(positionDeAnne) <= -5800 && !animation2vue
     ) {
-      direction.droite = false;
-      direction.gauche = false;
-      animationEnCours = true;
-      animationDeux();
+      if (!dialogues.challenge.vu) {
+        direction.droite = false;
+        direction.gauche = false;
+        afficherDialogue(dialogues.challenge);
+        dialogueVisible = true;
+        dialogues.challenge.vu = true;
+      }
     }
 
     if (parseFloat(positionDeAnne) >= -5800 &&
       parseFloat(positionDeAnne) <= -5700 && animation2vue && direction.droite == false) {
       direction.gauche = false;
-      afficherDialogue(dialogues.limiteifocop);
-      dialogueVisible = true;
-
       if (direction.gauche) {
         incrementPosition = 0;
       }
+      afficherDialogue(dialogues.limiteifocop);
+      dialogueVisible = true;
     }
+
+    if (
+      parseFloat(positionDeAnne) >= -8800 &&
+      parseFloat(positionDeAnne) <= -8750
+    ) {
+      if (!dialogues.diplomeifocop.vu) {
+        direction.droite = false;
+        direction.gauche = false;
+        afficherDialogue(dialogues.diplomeifocop);
+        dialogueVisible = true;
+        dialogues.diplomeifocop.vu = true;
+      }
+    }
+
+    if (
+      parseFloat(positionDeAnne) >= -9200 &&
+      parseFloat(positionDeAnne) <= -9100 && direction.gauche == false
+    ) {
+      direction.droite = false;
+      if (direction.droite) {
+        incrementPosition = 0;
+      }
+      afficherDialogue(dialogues.limitedroite);
+      dialogueVisible = true;
+    }
+
   };
+
+
+
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM RECUPER LES BONUS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM RECUPER LES BONUS MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -752,7 +816,13 @@ window.addEventListener("DOMContentLoaded", function () {
             //revoir les éléments de détection des bonus
             sonBonus.play();
             score.innerHTML = parseFloat(score.innerHTML) + 200;
-            element.remove();
+
+            if (element.id == 'diplomeifocop') {
+              animationFin();
+              element.remove();
+            } else {
+              element.remove();
+            }
           }
         }
       }

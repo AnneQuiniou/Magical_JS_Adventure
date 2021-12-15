@@ -6,6 +6,7 @@
 @import "sass/_bonus";
 @import "sass/platformes";
 @import "sass/_notplayable";
+@import "sass/scorefinal";
 
 @font-face {
   font-family: "m3x6medium";
@@ -176,7 +177,7 @@ content {
 }
 
 .bg:nth-of-type(4) {
-  background-image: url("images/bg_city/foreground.png");
+  background-image: url("images/bg_city/foreground_pigeon.png");
   background-size: 90%;
   margin-top: 130px;
   height: 500px;
@@ -240,9 +241,7 @@ content {
   top: 0;
   left: 0;
   background-color: rgb(255, 255, 255);
-  position: absolute;
   z-index: 119;
-  opacity: 0;
 }
 
 // ----------------------------- Propriétés FOOTER  ----------------------------  //

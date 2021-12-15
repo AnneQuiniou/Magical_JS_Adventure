@@ -18,3 +18,25 @@
     width: 40px;
   }
 }
+
+//---------------- animation diplome ifocop ------------------------//
+
+#diplomeifocop {
+  animation-name: animation_diplome;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(2);
+
+  img {
+    width: 94px;
+  }
+}
+
+@keyframes animation_diplome {
+  from {
+    bottom: 150px;
+  }
+  to {
+    bottom: 160px;
+  }
+}

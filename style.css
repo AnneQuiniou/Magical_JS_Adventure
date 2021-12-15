@@ -59,6 +59,20 @@
   width: 140px;
 }
 
+#fin {
+  bottom: 27px;
+}
+#fin img {
+  width: 25px;
+}
+
+#fin2 {
+  bottom: 27px;
+}
+#fin2 img {
+  width: 25px;
+}
+
 .perso_anne {
   position: absolute;
   height: 80px;
@@ -103,6 +117,10 @@
 }
 #chien01 img {
   transform: scalex(-1);
+}
+
+#chienbonus img {
+  width: 60px;
 }
 
 @keyframes animation_pnj_sorcier {
@@ -153,7 +171,7 @@
 }
 
 #reflexion {
-  bottom: 130px;
+  bottom: 150px;
   left: 80px;
 }
 
@@ -161,9 +179,18 @@
   width: 500px;
   bottom: 240px;
   left: 217px;
-  border: 5px solid white;
+  border: 5px solid #d9c5e0;
   background-color: rgba(38, 24, 39, 0.8);
-  color: white;
+  color: #d9c5e0;
+}
+
+#dialoguefin {
+  width: 400px;
+  bottom: 300px;
+  left: 80px;
+  border: 5px solid #d9c5e0;
+  background-color: rgba(38, 24, 39, 0.8);
+  color: #d9c5e0;
 }
 
 .bonus {
@@ -184,6 +211,24 @@
   width: 40px;
 }
 
+#diplomeifocop {
+  animation-name: animation_diplome;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(2);
+}
+#diplomeifocop img {
+  width: 94px;
+}
+
+@keyframes animation_diplome {
+  from {
+    bottom: 150px;
+  }
+  to {
+    bottom: 160px;
+  }
+}
 .plateforme {
   position: absolute;
   z-index: 70;
@@ -262,6 +307,52 @@
 }
 .notplayable a:hover {
   color: #5c5980;
+}
+
+.scorefinal {
+  position: absolute;
+  border: 5px solid rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 52, 77, 0.5);
+  border-radius: 20px;
+  width: 600px;
+  z-index: 9000;
+  left: 100px;
+  top: 20px;
+  text-align: center;
+  display: none;
+  font-family: "minecraftiaregular";
+  font-size: 1em;
+}
+.scorefinal #decorate {
+  color: white;
+  font-family: "alagardmedium";
+  font-size: 3em;
+}
+.scorefinal #decorate span {
+  color: coral;
+}
+.scorefinal h2 {
+  font-family: "alagardmedium";
+}
+.scorefinal button {
+  background-color: #9dc8f5;
+  font-family: "alagardmedium";
+  font-size: 1em;
+  color: white;
+  margin: 10px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  border-top: 4px solid #fafcfe;
+  border-left: 4px solid #fafcfe;
+  border-bottom: 4px solid #4094ec;
+  border-right: 4px solid #4094ec;
+}
+.scorefinal button:hover {
+  background-color: coral;
+  border-bottom: 4px solid #ffcab6;
+  border-right: 4px solid #ffcab6;
+  border-top: 4px solid #e93f00;
+  border-left: 4px solid #e93f00;
 }
 
 @font-face {
@@ -410,7 +501,7 @@ content {
 }
 
 .bg:nth-of-type(4) {
-  background-image: url("images/bg_city/foreground.png");
+  background-image: url("images/bg_city/foreground_pigeon.png");
   background-size: 90%;
   margin-top: 130px;
   height: 500px;
@@ -470,9 +561,7 @@ content {
   top: 0;
   left: 0;
   background-color: white;
-  position: absolute;
   z-index: 119;
-  opacity: 0;
 }
 
 footer {
