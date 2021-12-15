@@ -582,13 +582,6 @@ window.addEventListener("DOMContentLoaded", function () {
     }, 800);
   };
 
-  $("#getcvagain").on("click", function () {
-    window.open(
-      "docs/Anne_Quiniou_-_Développeuse_JS_Fullstack.pdf",
-      "CV",
-      "location=no,menubar=no"
-    );
-  });
 
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
   //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM DEPLACER UN ELEMENT AVEC LE FOND MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM//
@@ -633,18 +626,17 @@ window.addEventListener("DOMContentLoaded", function () {
 
     let messageFin = document.querySelector('.scorefinal');
     let scoreTotal = score.innerHTML;
-    let messageTotal = document.querySelector('.scorefinal').children[1].innerHTML;
+    let messageTotal = document.querySelector('.scorefinal').children[1];
 
     if (scoreTotal == 6400) {
-      messageTotal = `<p>Score parfait! Quel complétiste..;</p>`;
+      messageTotal.innerHTML = `<p>Score parfait! Quel complétiste..;</p>`;
     } else {
       if (scoreTotal == 0) {
-        messageTotal = `<p>Vous avez <em>raté</em> tous les bonus. Impressionnant.</p>`;
+        messageTotal.innerHTML = `<p>Vous avez <em>raté</em> tous les bonus. Impressionnant.</p>`;
       } else {
-        messageTotal = `<p>Il vous manque quelques bonus !</p>`;
+        messageTotal.innerHTML = `<p>Il vous manque quelques bonus !</p>`;
       }
     }
-
 
     document.querySelector('.scorefinal').children[0].children[0].innerHTML = scoreTotal;
     messageFin.style.display = 'block';

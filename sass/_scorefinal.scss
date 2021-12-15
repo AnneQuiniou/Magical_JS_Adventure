@@ -27,25 +27,11 @@
     font-family: $font_titles;
   }
 
-  button {
-    background-color: $light_blue;
-    font-family: $font_titles;
-    font-size: 1em;
-    color: white;
-    margin: 10px;
-    padding: 10px 30px;
-    border-radius: 10px;
-    border-top: 4px solid lighten($light_blue, 20%);
-    border-left: 4px solid lighten($light_blue, 20%);
-    border-bottom: 4px solid darken($light_blue, 20%);
-    border-right: 4px solid darken($light_blue, 20%);
+  a {
+    color: $highlight;
   }
 
-  button:hover {
-    background-color: $highlight;
-    border-bottom: 4px solid lighten($highlight, 20%);
-    border-right: 4px solid lighten($highlight, 20%);
-    border-top: 4px solid darken($highlight, 20%);
-    border-left: 4px solid darken($highlight, 20%);
+  a:hover {
+    color: $dark_purple;
   }
 }
