@@ -448,7 +448,7 @@ window.addEventListener("DOMContentLoaded", function () {
   // OOOOOOOOOOOOOOOO000OOOOOOOOOOOOOOOOOOO Intro OOOOOO000OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO //
   $("#getcv").on("click", function () {
     window.open(
-      "docs/Anne_Quiniou_-_Développeuse_JS_Fullstack.pdf",
+      "docs/Anne_Quiniou_-_Dev_JS_Fullstack.pdf",
       "CV",
       "location=no,menubar=no"
     );
