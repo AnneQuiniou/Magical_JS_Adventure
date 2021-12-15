@@ -48,11 +48,11 @@ const dialogues = {
         vu: false,
         nom: 'limiteifocop',
     },
-    diplomeifocop: {
+    diplomeifocop2: {
         perso: "<strong>Anne</strong>",
         texte: "Wow le diplôme de Développeur JavaScript Fullstack !<br>Enfin !",
         vu: false,
-        nom: 'diplomeifocop',
+        nom: 'diplomeifocop2',
     },
     dialoguefin: {
         perso: "<strong>Anne Magique</strong>",
