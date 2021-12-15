@@ -791,12 +791,12 @@ window.addEventListener("DOMContentLoaded", function () {
                     parseFloat(positionDeAnne) >= -8800 &&
                     parseFloat(positionDeAnne) <= -8750
                 ) {
-                    if (!dialogues.diplomeifocop.vu) {
+                    if (!dialogues.diplomeifocop2.vu) {
                         jeu.direction.gauche = false;
                         jeu.direction.droite = false;
-                        jeu.dialogues.afficherDialogue(dialogues.diplomeifocop);
-                        jeu.elementsCommuns.dialogueVisible = true;
-                        dialogues.diplomeifocop.vu = true;
+                        jeu.dialogues.afficherDialogue(dialogues.diplomeifocop2);
+                        jeu.elementsCommuns.dialogueVisible = true; g
+                        dialogues.diplomeifocop2.vu = true;
                     }
                 }
 
