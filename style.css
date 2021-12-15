@@ -152,6 +152,20 @@
   margin: 0;
 }
 
+#reflexion {
+  bottom: 130px;
+  left: 80px;
+}
+
+#challenge {
+  width: 500px;
+  bottom: 240px;
+  left: 217px;
+  border: 5px solid white;
+  background-color: rgba(38, 24, 39, 0.8);
+  color: white;
+}
+
 .bonus {
   position: absolute;
   width: 50px;
@@ -186,6 +200,22 @@
 
 .plat-long img {
   width: 290px;
+}
+
+.forest-med img {
+  width: 150px;
+}
+
+.forest-med-tree img {
+  width: 160px;
+}
+
+.forest-long img {
+  width: 200px;
+}
+
+.forest-small img {
+  width: 130px;
 }
 
 .notplayable {
@@ -394,16 +424,15 @@ content {
   top: 0;
   left: 0;
   background-size: cover;
-  display: none;
 }
 
 .bg_nuages:nth-of-type(5) {
-  background-image: url("images/bg_mystery/background_0.png");
+  background-image: url("images/bg_mystery/background_0_large.png");
   z-index: 6;
 }
 
 .bg_nuages:nth-of-type(6) {
-  background-image: url("images/bg_mystery/background_1.png");
+  background-image: url("images/bg_mystery/background_1_large.png");
   top: 55px;
   z-index: 100;
 }
@@ -423,7 +452,7 @@ content {
 }
 
 .bg_forest:nth-of-type(3) {
-  background-image: url("images/bg_forest/background_1.png");
+  background-image: url("images/bg_forest/background_1_complexe.png");
   margin-top: -20px;
   z-index: 5;
 }
@@ -434,13 +463,16 @@ content {
   z-index: 7;
 }
 
-.bg_sol {
-  bottom: 0px;
-  height: 40px;
+.masque {
   width: 800px;
-  background-color: #2a1723;
+  height: 520px;
   position: absolute;
-  z-index: 6;
+  top: 0;
+  left: 0;
+  background-color: white;
+  position: absolute;
+  z-index: 119;
+  opacity: 0;
 }
 
 footer {

@@ -193,16 +193,15 @@ content {
   top: 0;
   left: 0;
   background-size: cover;
-  display: none; // A RETIRER QUAND ON LANCERA LE JEU HEIN ANNE N'EST-CE PAS
 }
 
 .bg_nuages:nth-of-type(5) {
-  background-image: url("images/bg_mystery/background_0.png");
+  background-image: url("images/bg_mystery/background_0_large.png");
   z-index: 6;
 }
 
 .bg_nuages:nth-of-type(6) {
-  background-image: url("images/bg_mystery/background_1.png");
+  background-image: url("images/bg_mystery/background_1_large.png");
   top: 55px;
   z-index: 100;
 }
@@ -223,7 +222,7 @@ content {
 }
 
 .bg_forest:nth-of-type(3) {
-  background-image: url("images/bg_forest/background_1.png");
+  background-image: url("images/bg_forest/background_1_complexe.png");
   margin-top: -20px;
   z-index: 5;
 }
@@ -234,14 +233,16 @@ content {
   z-index: 7;
 }
 
-.bg_sol {
-  //pas utilisé pour l'instant, à voir et à supprimer si pas utilisé au final
-  bottom: 0px;
-  height: 40px;
+.masque {
   width: 800px;
-  background-color: $pavement;
+  height: 520px;
   position: absolute;
-  z-index: 6;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  z-index: 119;
+  opacity: 0;
 }
 
 // ----------------------------- Propriétés FOOTER  ----------------------------  //

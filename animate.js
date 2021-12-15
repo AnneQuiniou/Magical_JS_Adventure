@@ -51,415 +51,8 @@ window.addEventListener("DOMContentLoaded", function () {
     },
   };
 
-  const elementsJeu = {
-    chiens: {
-      chien01: {
-        apparitionX: 330,
-        apparitionY: 28,
-        width: 60,
-        id: "chien01",
-        class: "pnj_chien",
-        url: "images/sprites/chien02.png",
-        droite: false,
-      },
-      chien02: {
-        apparitionX: 3330,
-        apparitionY: 28,
-        width: 60,
-        id: "chien02",
-        class: "pnj_chien",
-        url: "images/sprites/chien03.png",
-        droite: false,
-      },
-    },
+  let fondEnCours = 'bg';
 
-    panneaux: {
-      limitegauche: {
-        apparitionX: 120,
-        apparitionY: 40,
-        width: 140,
-        id: "limitegauche",
-        class: "panneaux",
-        url: "images/panneaux/panneaulimite.png",
-        div: document.querySelectorAll(".panneaux")[0],
-        droite: false,
-      },
-      sodexo: {
-        div: document.querySelectorAll(".panneaux")[1],
-        apparitionX: 1400,
-        apparitionY: 40,
-        width: 120,
-        id: "sodexo",
-        class: "panneaux",
-        url: "images/panneaux/sodexo.png",
-        droite: true,
-      },
-      datawords: {
-        div: document.querySelectorAll(".panneaux")[2],
-        apparitionX: 3600,
-        apparitionY: 40,
-        width: 120,
-        id: "datawords",
-        class: "panneaux",
-        url: "images/panneaux/datawords.png",
-        droite: true,
-      },
-      ifocop: {
-        div: document.querySelectorAll(".panneaux")[3],
-        apparitionX: 10000,
-        apparitionY: 40,
-        width: 120,
-        id: "ifocop",
-        class: "panneaux",
-        url: "images/panneaux/ifocop.png",
-        droite: true,
-      },
-    },
-
-    plateformes: {
-      plat0: {
-        div: document.getElementById("plat0"),
-        apparitionX: 1700,
-        apparitionY: 140,
-        width: 290,
-        url: "images/platforms/city_verylong_clair.png",
-        id: "plat0",
-        visible: false,
-        droite: true,
-        class: "plateforme plat-long",
-      },
-      plat1: {
-        div: document.getElementById("plat1"),
-        apparitionX: 2200,
-        apparitionY: 110,
-        width: 100,
-        url: "images/platforms/city_small_clair.png",
-        id: "plat1",
-        visible: false,
-        droite: true,
-        class: "plateforme plat-small",
-      },
-      plat2: {
-        div: document.getElementById("plat2"),
-        apparitionX: 2500,
-        apparitionY: 200,
-        width: 190,
-        url: "images/platforms/city_long_clair.png",
-        id: "plat2",
-        visible: false,
-        droite: true,
-        class: "plateforme plat-med",
-      },
-      plat2a: {
-        div: document.getElementById("plat2"),
-        apparitionX: 2800,
-        apparitionY: 100,
-        width: 290,
-        url: "images/platforms/city_verylong_clair.png",
-        id: "plat2a",
-        visible: false,
-        droite: true,
-        class: "plateforme plat-long",
-      },
-      plat3: {
-        div: document.getElementById("plat3"),
-        apparitionX: 3920,
-        apparitionY: 110,
-        width: 100,
-        url: "images/platforms/city_small_clair.png",
-        id: "plat3",
-        visible: false,
-        droite: true,
-        class: "plateforme plat-small",
-      },
-      plat4: {
-        div: document.getElementById("plat4"),
-        apparitionX: 4200,
-        apparitionY: 110,
-        width: 100,
-        url: "images/platforms/city_small_clair.png",
-        id: "plat4",
-        visible: false,
-        droite: true,
-        class: "plateforme plat-small",
-      },
-      plat5: {
-        div: document.getElementById("plat5"),
-        apparitionX: 4600,
-        apparitionY: 140,
-        width: 290,
-        url: "images/platforms/city_verylong_clair.png",
-        id: "plat5",
-        visible: false,
-        droite: true,
-        class: "plateforme plat-long",
-      },
-      plat6: {
-        div: document.getElementById("plat6"),
-        apparitionX: 5000,
-        apparitionY: 300,
-        width: 190,
-        url: "images/platforms/city_long_clair.png",
-        id: "plat6",
-        visible: false,
-        droite: true,
-        class: "plateforme plat-med",
-      },
-    },
-    bonus: {
-      explorateur: {
-        apparitionX: 145,
-        apparitionY: 220,
-        url: "images/icones/bonus_explo.png",
-        id: "explorateur",
-        class: "bonus",
-        visible: false,
-        droite: false,
-        titre: `Bonus Explorateur`,
-      },
-      diplome1: {
-        apparitionX: 1000,
-        apparitionY: 28,
-        url: "images/icones/diplome_1.png",
-        id: "bonus1",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Master d'anglais`,
-      },
-      diplome2: {
-        apparitionX: 1400,
-        apparitionY: 28,
-        url: "images/icones/diplome_2.png",
-        id: "bonus2",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Master d'allemand`,
-      },
-      defendre: {
-        apparitionX: 1800,
-        apparitionY: 300,
-        url: "images/icones/defendre.png",
-        id: "defendre",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Défendre ses idées`,
-      },
-      lourd: {
-        apparitionX: 2000,
-        apparitionY: 380,
-        url: "images/icones/lourd.png",
-        id: "lourd",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Forger le caractère`,
-      },
-      stratego: {
-        apparitionX: 2450,
-        apparitionY: 350,
-        url: "images/icones/strategie.png",
-        id: "stratego",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Planning stratégique`,
-      },
-      marketing: {
-        apparitionX: 2200,
-        apparitionY: 310,
-        url: "images/icones/marketing.png",
-        id: "marketing",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Marketing`,
-      },
-      entraide: {
-        apparitionX: 2400,
-        apparitionY: 30,
-        url: "images/icones/entraide.png",
-        id: "entraide",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Esprit d'entraide`,
-      },
-      planning: {
-        apparitionX: 2800,
-        apparitionY: 260,
-        url: "images/icones/planning.png",
-        id: "planning",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Gérer les plannings`,
-      },
-      multilingue: {
-        apparitionX: 3050,
-        apparitionY: 200,
-        url: "images/icones/multilingue.png",
-        id: "multilingue",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Equipes multilingues`,
-      },
-      vba: {
-        apparitionX: 3250,
-        apparitionY: 200,
-        url: "images/icones/vba.png",
-        id: "vba",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Programmation VBA`,
-      },
-      diplome3: {
-        apparitionX: 4030,
-        apparitionY: 300,
-        url: "images/icones/diplome_3.png",
-        id: "bonus3",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Gestion de projet`,
-      },
-      estomac: {
-        apparitionX: 4200,
-        apparitionY: 300,
-        url: "images/icones/estomac.png",
-        id: "estomac",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Estomac bien accroché`,
-      },
-      seo: {
-        apparitionX: 4400,
-        apparitionY: 30,
-        url: "images/icones/seo.png",
-        id: "seo",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `SEO`,
-      },
-      budget: {
-        apparitionX: 4510,
-        apparitionY: 320,
-        url: "images/icones/budget.png",
-        id: "budget",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Gestion des budgets`,
-      },
-      commercial: {
-        apparitionX: 5000,
-        apparitionY: 350,
-        url: "images/icones/commercial.png",
-        id: "estomac",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Présenter aux clients`,
-      },
-      coeur: {
-        apparitionX: 4700,
-        apparitionY: 380,
-        url: "images/icones/coeur.png",
-        id: "coeur",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Résister au stress`,
-      },
-      plante: {
-        apparitionX: 5080,
-        apparitionY: 30,
-        url: "images/icones/plante.png",
-        id: "plante",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Main verte`,
-      },
-      equipe: {
-        apparitionX: 5200,
-        apparitionY: 300,
-        url: "images/icones/partage.png",
-        id: "equipe",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Esprit d'équipe`,
-      },
-
-      javascript: {
-        apparitionX: 400,
-        apparitionY: 300,
-        url: "images/icones/javascript.png",
-        id: "javascript",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Vanilla JS`,
-      },
-      jquery: {
-        apparitionX: 400,
-        apparitionY: 300,
-        url: "images/icones/jquery.png",
-        id: "jquery",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `jquery`,
-      },
-      meteor: {
-        apparitionX: 400,
-        apparitionY: 300,
-        url: "images/icones/meteor.png",
-        id: "meteor",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `meteor`,
-      },
-      mongo: {
-        apparitionX: 400,
-        apparitionY: 300,
-        url: "images/icones/mongo.png",
-        id: "mongo",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `mongo`,
-      },
-      expressjs: {
-        apparitionX: 400,
-        apparitionY: 300,
-        url: "images/icones/expressjs.png",
-        id: "expressjs",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `expressJS`,
-      },
-      angular: {
-        apparitionX: 400,
-        apparitionY: 300,
-        url: "images/icones/angular.png",
-        id: "angular",
-        class: "bonus",
-        visible: false,
-        droite: true,
-        titre: `Angular JS`,
-      },
-    },
-  };
   let hauteurDeLaTerre = 24;
   let persoPrincipal = sprite.classique.reference;
   let dialogueEnCours;
@@ -467,79 +60,9 @@ window.addEventListener("DOMContentLoaded", function () {
   let score = document.querySelector(".score").children[0].children[1];
   score.innerHTML = '0';
 
-  const dialogues = {
-    limite: {
-      perso: "Anne",
-      texte:
-        "Gif-sur-DotNet ?<br> Mais non, je veux aller à Paris ! Allez, hop, demi-tour !",
-      nom: 'limite',
-    },
-    intro0: {
-      perso: "<strong>Guide</strong>",
-      texte: `Utilisez <strong>D et F</strong> pour aller à gauche et à droite.<br>
-            Utilisez <strong>Maj</strong> pour sauter et <strong>Entrée</strong> pour dialoguer.`,
-      nom: 'intro0',
-    },
-    intro1: {
-      positionVSparallax: "-255",
-      perso: "Anne",
-      texte: `Wow, Paris. Quelle belle ville. J'ai hâte d'y avoir mes diplômes.`,
-      nom: 'intro1',
-    },
-    diplome: {
-      positionVSparallax: "-255",
-      perso: "Anne",
-      texte: `Parée pour entrer dans le monde du travail avec mes diplômes!`,
-      vu: false,
-      nom: 'diplome',
-    },
-    sodexo: {
-      positionVSparallax: "-255",
-      perso: "Anne",
-      texte: `C'était cool chez Sodexo mais j'ai envie de projets plus courts et concrets. Peut être en changeant d'environnement?`,
-      vu: false,
-      nom: 'sodexo',
-    },
-    reflexion: {
-      positionVSparallax: '-255',
-      perso: "Anne",
-      texte: "Ca fait bizarre toutes ces années. Même Paris n'est plus la même, on a 4 sortes de pigeons bicolores maintenant. Et moi, j'ai l'impression d'avoir fait le tour de la gestion de projet...",
-      vu: false,
-      nom: 'reflexion',
-    },
-    surprise: {
-      positionVSparallax: '-255',
-      perso: "Anne",
-      texte: "???",
-      vu: false,
-      nom: 'surprise',
-    },
-    challenge: {
-      positionVSparallax: '-255',
-      perso: "????",
-      texte: "Oseras-tu...<br>Tester tes limites...<br>Risquer de casser ton clavier...<br>Pour devenir...<br> Magicienne du JavaScript??",
-      vu: false,
-      nom: 'challenge',
-    },
-    challenge2: {
-      positionVSparallax: '-255',
-      perso: "Anne",
-      texte: "Gandalf ????",
-      vu: false,
-      nom: 'challenge2',
-    },
-    challenge3: {
-      positionVSparallax: '-255',
-      perso: "Anne du futur",
-      texte: "Oulà malheureuse, tu veux qu'on se fasse poursuivre par les héritiers de JRR Tolkien? Non, je suis toi du futur! Viens avec moi et deviens plus puissante que tu n'imaginais!",
-      vu: false,
-      nom: 'challenge3',
-    },
-  };
-
   window.addEventListener("keydown", function (evenementSurevenu) {
     let positionDeAnne =
-      document.getElementsByClassName("bg")[2].style["background-position-x"];
+      document.getElementsByClassName(fondEnCours)[2].style["background-position-x"];
 
     if (!dialogueVisible && !animationEnCours) {
       if ("KeyF" === evenementSurevenu.code) {
@@ -592,9 +115,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
   var leMoteurPourLesAnimations = function () {
     if (direction.droite) {
-      deplacementDuFond("bg", "droite");
-      checkPositionAnnePourDialogue("bg");
-      faireApparaitreLesElementsDuJeu("bg");
+      deplacementDuFond(fondEnCours, "droite");
+      checkPositionAnnePourDialogue(fondEnCours);
+      faireApparaitreLesElementsDuJeu(fondEnCours);
       incrementPosition = -10;
       checkerElementEtDeplacerAvecLeFond();
       recupererBonus();
@@ -622,11 +145,11 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     if (direction.gauche) {
-      deplacementDuFond("bg", "gauche");
-      checkPositionAnnePourDialogue("bg");
+      deplacementDuFond(fondEnCours, "gauche");
+      checkPositionAnnePourDialogue(fondEnCours);
       incrementPosition = 10;
       checkerElementEtDeplacerAvecLeFond();
-      faireApparaitreLesElementsDuJeu("bg");
+      faireApparaitreLesElementsDuJeu(fondEnCours);
       recupererBonus();
       lancerLaVerificationPlateforme();
 
@@ -973,6 +496,11 @@ window.addEventListener("DOMContentLoaded", function () {
   $("#launch").on("click", function () {
     animationEnCours = true;
 
+    let musiqueFond = new Audio('musique/Pegan Hill - Moments.mp3');
+    musiqueFond.volume = 0.6;
+    musiqueFond.loop = true;
+    musiqueFond.play();
+
     const divIntro = document.querySelector(".opening");
     divIntro.innerHTML = "";
 
@@ -1016,96 +544,44 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM animation numero 2 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM //
 
+  let animation2vue = false;
+
   const animationDeux = function () {
-    let fondsNuage = document.querySelectorAll('.bg_nuages');
+
+    const fondsNuage = document.querySelectorAll('.bg_nuages');
+
+    afficherDialogue(dialogues.challenge);
+
+
+
+    let fondsUtilises = document.querySelectorAll('.bg');
+
+    fondsUtilises.forEach(function (element) {
+      element.className = 'bg_forest';
+    })
+
+    document.querySelector('.pnj_sorcier').remove();
+    document.querySelector('#ifocop').style.left = '220px';
+    document.querySelector('.score').style.color = '#9dc8f5';
+    fondEnCours = 'bg_forest';
+
     fondsNuage.forEach(function (element) {
-      element.style.left = '750px';
-      element.style.display = 'inline';
+      element.remove();
     });
 
-    lancerLesNuages();
-
-    let sorcier = document.createElement('div');
-    sorcier.className = 'pnj_sorcier';
-    sorcier.style = '{bottom: 350px; left: 750px;}';
-
-    let image = document.createElement('img');
-    image.src = 'images/sprites/whitewitch.png';
-    sorcier.appendChild(image);
-
-    document.querySelector('content').appendChild(sorcier);
-    lancerLeSorcier();
-
-    if (document.querySelector('.pnj_sorcier').style.left == stopSorcier) {
-      afficherDialogue(dialogues.challenge);
-    };
-
-
-
-
-
+    document.querySelector
 
 
 
 
 
     gestionDuSaut.enCours = false;
-  };
-
-  let stopDeplacementNuage;
-  let premierStopNuage = 260;
-  let positionXNuage;
-
-  const deplacerNuages = function () {
-    let fondsNuage = document.querySelectorAll('.bg_nuages');
-    let increment = 5;
-
-    fondsNuage.forEach(function (element) {
-      positionXNuage = parseFloat(element.style.left);
-      if (isNaN(positionXNuage)) {
-        positionXNuage = 750;
-      }
-      positionXNuage = positionXNuage - increment;
-      element.style.left = positionXNuage + 'px';
-    });
-
-    if (positionXNuage == premierStopNuage) {
-      clearInterval(stopDeplacementNuage);
-    }
-  };
-
-  const lancerLesNuages = function () {
-    stopDeplacementNuage = setInterval(deplacerNuages, 25);
+    animationEnCours = false;
+    animation2vue = true;
   };
 
 
-  let stopDeplacementSorcier;
-  let positionXSorcier;
-  let stopSorcier = 340;
-  let positionOKpourDialogue = false;
 
-  const lancerLeSorcier = function () {
-    stopDeplacementSorcier = setInterval(deplacerSorcier, 25);
-  };
-  const deplacerSorcier = function () {
-    let sorcier = document.querySelector('.pnj_sorcier');
-    let increment = 10;
-
-    positionXSorcier = parseFloat(sorcier.style.left);
-    if (isNaN(positionXSorcier)) {
-      positionXSorcier = 750;
-    }
-    positionXSorcier = positionXSorcier - increment;
-    sorcier.style.left = positionXSorcier + 'px';
-
-    if (positionXSorcier == stopSorcier) {
-      clearInterval(stopDeplacementSorcier);
-      positionOKpourDialogue = true;
-    };
-  }
-
-
-  // ne marche pas, à finir
 
 
 
@@ -1220,12 +696,23 @@ window.addEventListener("DOMContentLoaded", function () {
 
     if (
       parseFloat(positionDeAnne) >= -5900 &&
-      parseFloat(positionDeAnne) <= -5800
+      parseFloat(positionDeAnne) <= -5800 && !animation2vue
     ) {
       direction.droite = false;
       direction.gauche = false;
       animationEnCours = true;
       animationDeux();
+    }
+
+    if (parseFloat(positionDeAnne) >= -5800 &&
+      parseFloat(positionDeAnne) <= -5700 && animation2vue && direction.droite == false) {
+      direction.gauche = false;
+      afficherDialogue(dialogues.limiteifocop);
+      dialogueVisible = true;
+
+      if (direction.gauche) {
+        incrementPosition = 0;
+      }
     }
   };
 
@@ -1235,8 +722,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
   var recupererBonus = function () {
     var lesBonus = document.querySelectorAll(".bonus");
+    var sonBonus = new Audio('sons/completetask_0.mp3');
+    sonBonus.volume = .6;
 
-    // REVOIR LES FOREACH
+
     lesBonus.forEach(function (element) {
       let positionXBonus = parseFloat(element.style.left);
       let positionYBonus = parseFloat(element.style.bottom);
@@ -1258,13 +747,10 @@ window.addEventListener("DOMContentLoaded", function () {
           let topBonusDansHitBoxPerso = topBonus > topPerso && topBonus < bottomPerso;
           let bottomBonusDansHitBoxPerso = bottomBonus < bottomPerso && bottomBonus > topPerso;
           let BonusDansHitBoxPerso = topBonus > topPerso && bottomBonus < bottomPerso;
-          console.log('top bonus: ' + topBonus);
-          console.log('bottom bonus: ' + bottomBonus);
-          console.log('top perso: ' + topPerso);
-          console.log('bottom pser: ' + bottomPerso);
 
           if (topBonusDansHitBoxPerso || bottomBonusDansHitBoxPerso || BonusDansHitBoxPerso) {
             //revoir les éléments de détection des bonus
+            sonBonus.play();
             score.innerHTML = parseFloat(score.innerHTML) + 200;
             element.remove();
           }
@@ -1343,7 +829,20 @@ window.addEventListener("DOMContentLoaded", function () {
 
       if (isNaN(positionDeDepart)) {
         let reference = String(element.id);
-        positionDeDepart = elementsJeu.chiens[reference]["apparitionX"];
+        positionDeDepart = elementsJeu.pnj[reference]["apparitionX"];
+      }
+
+      deplacementDeLElementAvecFond(element, positionDeDepart);
+    });
+
+    //sorcier
+    let tousLesSorciers = document.querySelectorAll(".pnj_sorcier");
+    tousLesSorciers.forEach(function (element) {
+      let positionDeDepart = parseFloat(element.style.left);
+
+      if (isNaN(positionDeDepart)) {
+        let reference = String(element.id);
+        positionDeDepart = elementsJeu.pnj[reference]["apparitionX"];
       }
 
       deplacementDeLElementAvecFond(element, positionDeDepart);
@@ -1369,6 +868,17 @@ window.addEventListener("DOMContentLoaded", function () {
       if (isNaN(positionDeDepart)) {
         let reference = String(element.id);
         positionDeDepart = elementsJeu.plateformes[reference]["apparitionX"];
+      }
+      deplacementDeLElementAvecFond(element, positionDeDepart);
+    });
+
+    //nuages
+    let tousLesNuages = document.querySelectorAll(".bg_nuages");
+    tousLesNuages.forEach(function (element) {
+      let positionDeDepart = parseFloat(element.style.left);
+
+      if (isNaN(positionDeDepart)) {
+        positionDeDepart = 6000;
       }
       deplacementDeLElementAvecFond(element, positionDeDepart);
     });
