@@ -586,6 +586,8 @@ window.addEventListener("DOMContentLoaded", function () {
             animationDeux: function () {
                 jeu.elementsCommuns.animationEnCours = true;
                 jeu.elementsCommuns.dialogueVisible = true;
+                jeu.direction.gauche = false;
+                jeu.direction.droite = false;
 
 
                 $('.masque').fadeIn('slow').delay(1000).fadeOut('slow');
@@ -661,7 +663,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 if (scoreTotal == 6400) {
                     messageTotal.innerHTML = `<p>Score parfait! Quel complétiste..;</p>`;
                 } else {
-                    if (scoreTotal == 0) {
+                    if (scoreTotal == 200) {
                         messageTotal.innerHTML = `<p>Vous avez <em>raté</em> tous les bonus. Impressionnant.</p>`;
                     } else {
                         messageTotal.innerHTML = `<p>Il vous manque quelques bonus !</p>`;
@@ -795,7 +797,7 @@ window.addEventListener("DOMContentLoaded", function () {
                         jeu.direction.gauche = false;
                         jeu.direction.droite = false;
                         jeu.dialogues.afficherDialogue(dialogues.diplomeifocop2);
-                        jeu.elementsCommuns.dialogueVisible = true; g
+                        jeu.elementsCommuns.dialogueVisible = true;
                         dialogues.diplomeifocop2.vu = true;
                     }
                 }
