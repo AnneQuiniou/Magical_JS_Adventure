@@ -824,12 +824,12 @@ window.addEventListener("DOMContentLoaded", function () {
             document.getElementsByClassName(jeu.elementsCommuns.fondUtilise)[2].style["background-position-x"];
 
         if (!jeu.elementsCommuns.dialogueVisible && !jeu.elementsCommuns.animationEnCours) {
-            if ("KeyF" === evenementSurevenu.code) {
+            if ("KeyD" === evenementSurevenu.code) {
                 jeu.direction.droite = true;
                 jeu.direction.idle = false;
             }
 
-            if ("KeyD" === evenementSurevenu.code) {
+            if ("KeyQ" === evenementSurevenu.code) {
                 if (parseFloat(positionDeAnne) >= 120) {
                     jeu.direction.gauche = false;
                     jeu.dialogues.afficherDialogue(dialogues.limite);
@@ -868,11 +868,11 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     window.addEventListener("keyup", function (evenementSurevenu) {
-        if ("KeyF" === evenementSurevenu.code) {
+        if ("KeyD" === evenementSurevenu.code) {
             jeu.direction.droite = false;
             jeu.direction.idle = true;
         }
-        if ("KeyD" === evenementSurevenu.code) {
+        if ("KeyQ" === evenementSurevenu.code) {
             jeu.direction.gauche = false;
             jeu.direction.idle = true;
         }

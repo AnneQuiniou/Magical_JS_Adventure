@@ -7,8 +7,8 @@ const dialogues = {
     },
     intro0: {
         perso: "<strong>Guide</strong>",
-        texte: `<img src='images/icones/touches.png'><br>
-        Utilisez <strong>D et F</strong> pour aller à gauche et à droite.<br>
+        texte: `<img src='images/icones/touches2.png'><br>
+        Utilisez <strong>Q et D</strong> pour aller à gauche et à droite.<br>
             Utilisez <strong>Maj</strong> pour sauter et <strong>Entrée</strong> pour dialoguer.`,
         nom: 'intro0',
     },
