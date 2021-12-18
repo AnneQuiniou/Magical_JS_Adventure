@@ -85,6 +85,14 @@ nav {
     font-size: 4em;
     letter-spacing: 0.1em;
     text-shadow: 0 0 10px #110c2f;
+
+    a {
+      font-style: normal;
+    }
+
+    a:hover {
+      color: $highlight;
+    }
   }
 
   ul {

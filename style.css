@@ -423,6 +423,12 @@ nav h1 {
   letter-spacing: 0.1em;
   text-shadow: 0 0 10px #110c2f;
 }
+nav h1 a {
+  font-style: normal;
+}
+nav h1 a:hover {
+  color: coral;
+}
 nav ul {
   display: inline-block;
   list-style-type: none;

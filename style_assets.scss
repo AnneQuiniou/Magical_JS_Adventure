@@ -38,10 +38,10 @@ body {
   background-repeat: no-repeat;
   background-image: url("images/bg_mystery/background_1_large_trans.png");
   background-position: bottom right;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto 800px auto;
+  grid-template-rows: auto auto auto auto 40px;
+  min-height: 100%;
   margin: 0;
   width: 100%;
 
@@ -60,9 +60,9 @@ body {
 
 // ----------------------------- Propriétés NAV  ----------------------------  //
 nav {
-  height: 17%;
+  grid-row: 1;
+  grid-column: 1 / span 3;
   text-align: center;
-  width: 100%;
   a {
     font-style: normal;
   }
@@ -72,6 +72,10 @@ nav {
     font-size: 4em;
     letter-spacing: 0.1em;
     text-shadow: 0 0 10px #110c2f;
+
+    a:hover {
+      color: $highlight;
+    }
   }
 
   ul {
@@ -105,10 +109,9 @@ nav {
 
 // ----------------------------- Propriétés CONTENT  ----------------------------  //
 content {
-  position: relative;
+  grid-row: 3;
+  grid-column: 2;
   z-index: 1;
-  height: 1000px;
-  z-index: 6;
   h2 {
     font-family: $font_titles;
     font-size: 2.2em;
@@ -122,6 +125,8 @@ li {
 
 // ----------------------------- Propriétés FOOTER  ----------------------------  //
 footer {
+  grid-row: 5;
+  grid-column: 1 / span 3;
   background-color: $dark_purple;
   height: 30px;
   text-align: center;
@@ -130,8 +135,4 @@ footer {
 
   // ----------- Mise en forme des polices-----------  //
   font-size: 0.8em;
-
-  @media (max-height: 700px) {
-    display: none;
-  }
 }

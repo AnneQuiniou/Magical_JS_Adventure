@@ -60,6 +60,20 @@
   width: 140px;
 }
 
+#fin {
+  bottom: 27px;
+}
+#fin img {
+  width: 25px;
+}
+
+#fin2 {
+  bottom: 27px;
+}
+#fin2 img {
+  width: 25px;
+}
+
 .perso_anne {
   position: absolute;
   height: 80px;
@@ -104,6 +118,10 @@
 }
 #chien01 img {
   transform: scalex(-1);
+}
+
+#chienbonus img {
+  width: 60px;
 }
 
 @keyframes animation_pnj_sorcier {
@@ -153,6 +171,39 @@
   margin: 0;
 }
 
+#intro0 {
+  bottom: 200px;
+  left: 240px;
+  border: 5px solid #2b2a35;
+  color: #2b2a35;
+}
+#intro0 img {
+  padding-bottom: 20px;
+}
+
+#reflexion {
+  bottom: 150px;
+  left: 80px;
+}
+
+#challenge {
+  width: 500px;
+  bottom: 240px;
+  left: 217px;
+  border: 5px solid #d9c5e0;
+  background-color: rgba(38, 24, 39, 0.8);
+  color: #d9c5e0;
+}
+
+#dialoguefin {
+  width: 400px;
+  bottom: 300px;
+  left: 80px;
+  border: 5px solid #d9c5e0;
+  background-color: rgba(38, 24, 39, 0.8);
+  color: #d9c5e0;
+}
+
 .bonus {
   position: absolute;
   width: 50px;
@@ -171,6 +222,24 @@
   width: 40px;
 }
 
+#diplomeifocop {
+  animation-name: animation_diplome;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(2);
+}
+#diplomeifocop img {
+  width: 94px;
+}
+
+@keyframes animation_diplome {
+  from {
+    bottom: 150px;
+  }
+  to {
+    bottom: 160px;
+  }
+}
 .plateforme {
   position: absolute;
   z-index: 70;
@@ -187,6 +256,22 @@
 
 .plat-long img {
   width: 290px;
+}
+
+.forest-med img {
+  width: 150px;
+}
+
+.forest-med-tree img {
+  width: 160px;
+}
+
+.forest-long img {
+  width: 200px;
+}
+
+.forest-small img {
+  width: 130px;
 }
 
 .notplayable {
@@ -208,7 +293,7 @@
     height: 100%;
   }
 }
-@media (max-height: 607px) {
+@media (max-height: 520px) {
   .notplayable {
     display: block;
     position: absolute;
@@ -259,10 +344,10 @@ body {
   background-repeat: no-repeat;
   background-image: url("images/bg_mystery/background_1_large_trans.png");
   background-position: bottom right;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto 800px auto;
+  grid-template-rows: auto auto auto auto 40px;
+  min-height: 100%;
   margin: 0;
   width: 100%;
   color: white;
@@ -277,9 +362,9 @@ body a {
 }
 
 nav {
-  height: 17%;
+  grid-row: 1;
+  grid-column: 1/span 3;
   text-align: center;
-  width: 100%;
 }
 nav a {
   font-style: normal;
@@ -290,6 +375,12 @@ nav h1 {
   font-size: 4em;
   letter-spacing: 0.1em;
   text-shadow: 0 0 10px #110c2f;
+}
+nav h1 a {
+  font-style: normal;
+}
+nav h1 a:hover {
+  color: coral;
 }
 nav ul {
   display: inline-block;
@@ -316,9 +407,9 @@ nav ul img:first-of-type:hover::before {
 }
 
 content {
-  position: relative;
+  grid-row: 3;
+  grid-column: 2;
   z-index: 1;
-  height: 1000px;
   z-index: 6;
 }
 content h2 {
@@ -332,17 +423,14 @@ li {
 }
 
 footer {
+  grid-row: 5;
+  grid-column: 1/span 3;
   background-color: #2b2a35;
   height: 30px;
   text-align: center;
   padding: 10px 0;
   width: 100%;
   font-size: 0.8em;
-}
-@media (max-height: 700px) {
-  footer {
-    display: none;
-  }
 }
 
 /*# sourceMappingURL=style_assets.css.map */

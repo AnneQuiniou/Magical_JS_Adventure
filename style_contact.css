@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .opening {
   width: 800px;
   height: 520px;
@@ -60,6 +59,20 @@
   width: 140px;
 }
 
+#fin {
+  bottom: 27px;
+}
+#fin img {
+  width: 25px;
+}
+
+#fin2 {
+  bottom: 27px;
+}
+#fin2 img {
+  width: 25px;
+}
+
 .perso_anne {
   position: absolute;
   height: 80px;
@@ -104,6 +117,10 @@
 }
 #chien01 img {
   transform: scalex(-1);
+}
+
+#chienbonus img {
+  width: 60px;
 }
 
 @keyframes animation_pnj_sorcier {
@@ -153,6 +170,39 @@
   margin: 0;
 }
 
+#intro0 {
+  bottom: 200px;
+  left: 240px;
+  border: 5px solid #2b2a35;
+  color: #2b2a35;
+}
+#intro0 img {
+  padding-bottom: 20px;
+}
+
+#reflexion {
+  bottom: 150px;
+  left: 80px;
+}
+
+#challenge {
+  width: 500px;
+  bottom: 240px;
+  left: 217px;
+  border: 5px solid #d9c5e0;
+  background-color: rgba(38, 24, 39, 0.8);
+  color: #d9c5e0;
+}
+
+#dialoguefin {
+  width: 400px;
+  bottom: 300px;
+  left: 80px;
+  border: 5px solid #d9c5e0;
+  background-color: rgba(38, 24, 39, 0.8);
+  color: #d9c5e0;
+}
+
 .bonus {
   position: absolute;
   width: 50px;
@@ -171,6 +221,24 @@
   width: 40px;
 }
 
+#diplomeifocop {
+  animation-name: animation_diplome;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(2);
+}
+#diplomeifocop img {
+  width: 94px;
+}
+
+@keyframes animation_diplome {
+  from {
+    bottom: 150px;
+  }
+  to {
+    bottom: 160px;
+  }
+}
 .plateforme {
   position: absolute;
   z-index: 70;
@@ -187,6 +255,22 @@
 
 .plat-long img {
   width: 290px;
+}
+
+.forest-med img {
+  width: 150px;
+}
+
+.forest-med-tree img {
+  width: 160px;
+}
+
+.forest-long img {
+  width: 200px;
+}
+
+.forest-small img {
+  width: 130px;
 }
 
 .notplayable {
@@ -208,7 +292,7 @@
     height: 100%;
   }
 }
-@media (max-height: 607px) {
+@media (max-height: 520px) {
   .notplayable {
     display: block;
     position: absolute;
@@ -263,8 +347,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  min-height: 100vh;
   margin: 0;
-  height: 100vh;
   width: 100%;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
@@ -278,9 +362,9 @@ body a {
 }
 
 nav {
-  height: 17%;
   text-align: center;
-  width: 100%;
+  height: 17%;
+  min-height: 200px;
 }
 nav a {
   font-style: normal;
@@ -291,6 +375,9 @@ nav h1 {
   font-size: 4em;
   letter-spacing: 0.1em;
   text-shadow: 0 0 10px #110c2f;
+}
+nav h1 a:hover {
+  color: coral;
 }
 nav ul {
   display: inline-block;
@@ -317,9 +404,8 @@ nav ul img:first-of-type:hover::before {
 }
 
 content {
-  z-index: 1;
   flex: 1;
-  z-index: 6;
+  z-index: 1;
 }
 content h2 {
   font-family: "alagardmedium";
@@ -334,7 +420,6 @@ content ul {
   padding: 0;
 }
 content ul li {
-  list-style-type: "✦ ";
   text-transform: lowercase;
   list-style-type: none;
   letter-spacing: 0.1em;
@@ -373,8 +458,8 @@ content ul a:hover {
   position: relative;
   margin-top: 50px;
   left: 20%;
-  min-width: 600px;
   width: 60%;
+  min-width: 600px;
 }
 
 @keyframes anne-imation {
@@ -392,11 +477,6 @@ footer {
   padding: 10px 0;
   width: 100%;
   font-size: 0.8em;
-}
-@media (max-height: 700px) {
-  footer {
-    display: none;
-  }
 }
 
 /*# sourceMappingURL=style_contact.css.map */
