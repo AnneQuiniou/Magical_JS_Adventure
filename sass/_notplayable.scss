@@ -5,7 +5,7 @@
   text-align: center;
   z-index: 9000;
 
-  @media (max-width: 800px) {
+  @media (max-width: $min_width) {
     display: block;
     position: absolute;
     top: 0px;
@@ -14,7 +14,7 @@
     height: 100%;
   }
 
-  @media (max-height: 607px) {
+  @media (max-height: $min_height) {
     display: block;
     position: absolute;
     top: 0px;
