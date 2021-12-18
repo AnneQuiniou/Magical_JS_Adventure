@@ -829,7 +829,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 jeu.direction.idle = false;
             }
 
-            if (("KeyA" || "KeyQ") === evenementSurevenu.code) {
+            if ("KeyA" === evenementSurevenu.code || "KeyQ" === evenementSurevenu.code) {
                 if (parseFloat(positionDeAnne) >= 120) {
                     jeu.direction.gauche = false;
                     jeu.dialogues.afficherDialogue(dialogues.limite);
@@ -872,7 +872,7 @@ window.addEventListener("DOMContentLoaded", function () {
             jeu.direction.droite = false;
             jeu.direction.idle = true;
         }
-        if (("KeyA" || "KeyQ") === evenementSurevenu.code) {
+        if ("KeyA" === evenementSurevenu.code || "KeyQ" === evenementSurevenu.code) {
             jeu.direction.gauche = false;
             jeu.direction.idle = true;
         }
