@@ -186,10 +186,10 @@ window.addEventListener("DOMContentLoaded", function () {
         saut: {
             gestionDuSaut: {
                 enCours: false,
-                forceDuSaut: 23,
+                forceDuSaut: 14,
                 hauteurDuSol: 24,
                 graviteDescente: 1,
-                hauteurDeLaTerre: 24,
+                hauteurDeLaTerre: 20,
                 forceEnAction: false,
             },
 
@@ -210,7 +210,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 ) {
                     divPersoPrincipal.style.bottom = jeu.saut.gestionDuSaut.hauteurDuSol + 1 + "px";
                     jeu.saut.gestionDuSaut.enCours = false;
-                    jeu.saut.gestionDuSaut.forceDuSaut = 23;
+                    jeu.saut.gestionDuSaut.forceDuSaut = 20;
                     clearInterval(stopForce);
                 } else {
                     jeu.saut.gestionDuSaut.forceDuSaut = jeu.saut.gestionDuSaut.forceDuSaut - 1;
@@ -661,7 +661,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 let messageTotal = document.querySelector('.scorefinal').children[1];
 
                 if (scoreTotal == 6400) {
-                    messageTotal.innerHTML = `<p>Score parfait! Quel complétiste..;</p>`;
+                    messageTotal.innerHTML = `<p>Score parfait ! Bonus "Complétiste" unlocked !</p>`;
                 } else {
                     if (scoreTotal == 200) {
                         messageTotal.innerHTML = `<p>Vous avez <em>raté</em> tous les bonus. Impressionnant.</p>`;
@@ -829,7 +829,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 jeu.direction.idle = false;
             }
 
-            if ("KeyQ" === evenementSurevenu.code) {
+            if (("KeyA" || "KeyQ") === evenementSurevenu.code) {
                 if (parseFloat(positionDeAnne) >= 120) {
                     jeu.direction.gauche = false;
                     jeu.dialogues.afficherDialogue(dialogues.limite);
@@ -872,7 +872,7 @@ window.addEventListener("DOMContentLoaded", function () {
             jeu.direction.droite = false;
             jeu.direction.idle = true;
         }
-        if ("KeyQ" === evenementSurevenu.code) {
+        if (("KeyA" || "KeyQ") === evenementSurevenu.code) {
             jeu.direction.gauche = false;
             jeu.direction.idle = true;
         }

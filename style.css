@@ -424,7 +424,7 @@ nav ul img:first-of-type:hover::before {
   color: white;
   font-family: "alagardmedium";
 }
-@media (max-height: 700px) {
+@media (max-height: 500px) {
   nav {
     display: none;
   }
