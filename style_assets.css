@@ -344,10 +344,11 @@ body {
   background-repeat: no-repeat;
   background-image: url("images/bg_mystery/background_1_large_trans.png");
   background-position: bottom right;
-  display: grid;
-  grid-template-columns: auto 800px auto;
-  grid-template-rows: auto auto auto auto 40px;
-  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
   margin: 0;
   width: 100%;
   color: white;
@@ -362,9 +363,9 @@ body a {
 }
 
 nav {
-  grid-row: 1;
-  grid-column: 1/span 3;
   text-align: center;
+  height: 17%;
+  min-height: 200px;
 }
 nav a {
   font-style: normal;
@@ -375,9 +376,6 @@ nav h1 {
   font-size: 4em;
   letter-spacing: 0.1em;
   text-shadow: 0 0 10px #110c2f;
-}
-nav h1 a {
-  font-style: normal;
 }
 nav h1 a:hover {
   color: coral;
@@ -407,10 +405,8 @@ nav ul img:first-of-type:hover::before {
 }
 
 content {
-  grid-row: 3;
-  grid-column: 2;
+  flex: 1;
   z-index: 1;
-  z-index: 6;
 }
 content h2 {
   font-family: "alagardmedium";
@@ -423,8 +419,6 @@ li {
 }
 
 footer {
-  grid-row: 5;
-  grid-column: 1/span 3;
   background-color: #2b2a35;
   height: 30px;
   text-align: center;
